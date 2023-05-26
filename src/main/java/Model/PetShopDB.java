@@ -12,7 +12,7 @@ public abstract class PetShopDB {
    public static Connection getConnection () throws SQLException, ClassNotFoundException {
        String url="jdbc:sqlserver://localhost:1433;"+ "databaseName="+ databaseName+";encrypt=false";
        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-       System.out.println("Kết nối thành công");
+       System.out.println("Kết nối database");
        return DriverManager.getConnection(url,username,password);
    }
 
