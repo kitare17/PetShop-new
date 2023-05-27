@@ -37,5 +37,5 @@
 <%--        </c:forEach>--%>
 <%--    </c:otherwise>--%>
 <%--</c:choose>--%>
-<a href="pet?page=last&type=${param.type}">last</a>
+<%--<a href="pet?page=last&type=${param.type}">last</a>--%>
 <%@include file="include/footer.jsp" %>

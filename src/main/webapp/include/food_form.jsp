@@ -29,7 +29,7 @@
                             <div class="product-item position-relative bg-light d-flex flex-column text-center">
                                 <img class="img-fluid mb-4 w-100" src="${food.listFoodImage.get(0).url}" alt="${food.listFoodImage.get(0).url}">
                                 <h6 class="text-uppercase">${food.productName}</h6>
-                                <h5 class="text-primary mb-0">${food.productPrice}</h5>
+                                <h5 class="text-primary mb-0">${food.getPriceToString()}</h5>
                                 <div class="btn-action d-flex justify-content-center">
                                     <a class="btn btn-primary py-2 px-3" href="getfooddetail?id=${food.productID}"><i class="bi bi-cart"></i></a>
                                     <a class="btn btn-primary py-2 px-3" href="getfooddetail?id=${food.productID}"><i class="bi bi-eye"></i></a>

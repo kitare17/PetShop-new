@@ -1,5 +1,6 @@
 package Entity;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Food extends Product{
@@ -7,7 +8,11 @@ public class Food extends Product{
     private ArrayList<Image> listFoodImage;
     private ArrayList<FoodImported> listFoodImported;
 
-
+    public String getPriceToString(){
+        DecimalFormat df = new DecimalFormat("##,###,###,###,###.##");
+        String strNum = df.format(this.getProductPrice());
+        return strNum;
+    }
 
     public Food(String productID, String productName, String productType, String origin, double productPrice, String productStatus) {
         super(productID, productName, productType, productPrice, productStatus);

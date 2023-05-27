@@ -1,5 +1,6 @@
 package Entity;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Pet extends Product{
@@ -8,7 +9,11 @@ public class Pet extends Product{
         super(productID, productName, productType, productPrice, productStatus);
         listPetImage=new ArrayList<>();
     }
-
+    public String getPriceToString(){
+        DecimalFormat df = new DecimalFormat("##,###,###,###,###.##");
+        String strNum = df.format(this.getProductPrice());
+        return strNum;
+    }
     public ArrayList<Image> getListPetImage() {
         return listPetImage;
     }
