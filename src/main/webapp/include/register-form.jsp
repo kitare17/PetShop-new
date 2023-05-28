@@ -15,36 +15,110 @@
         <div class="row g-5">
             <div class="col-lg-7">
                 <h1>${message}</h1>
-                <form onsubmit="return validateForm()" action="register" method="post">
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <input type="text" name ="username" minlength="7" maxlength="50" required pattern="[a-zA-Z0-9]+" class="form-control bg-light border-0 px-4" placeholder="User Name" style="height: 55px;">
+
+                <form class="needs-validation" novalidate action="register" method="post" >
+
+                    <div class="row">
+                        <div class="col-12" style="background-color:#7ab730;border-radius: 10px " >
+                            <h2>Đăng kí thành viên mới</h2>
                         </div>
-                        <div class="col-12">
-                            <input type="password" minlength="7" maxlength="50" name ="password" id="password" class="form-control bg-light border-0 px-4" placeholder="Password" style="height: 55px;" required>
+
+
+                        <%--input username--%>
+                        <div class="col-md-6 offset-3 mb-3">
+                            <label for="username">Username</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="username" placeholder="Username" name="username"
+                                       aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z][a-zA-Z0-9]{7,20}$" required>
+                                <div class="invalid-feedback">
+                                   Username bắt đầu bằng chữ cái  và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <input type="password" minlength="7" maxlength="50" name ="confirmPassword" id="confirm-password" class="form-control bg-light border-0 px-4" placeholder="Confirm Password" style="height: 55px;" required>
+                        <%--input password--%>
+                        <div class="col-md-6 offset-3 mb-3">
+                            <label for="password">Mật khẩu</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password" placeholder="Mật khẩu" name="password"
+                                       aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z0-9]{7,32}$" required>
+                                <div class="invalid-feedback">
+                                    Mật khẩu chứa số hoặc chữ cái độ dài từ 7 đến 32 kí tự
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <input type="text" name ="fullName" class="form-control bg-light border-0 px-4" placeholder="Full Name" style="height: 55px;" required>
+
+                        <%--input re-password--%>
+                        <div class="col-md-6 offset-3 mb-3">
+                            <label for="re-password">Nhập mật khẩu</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="re-password" placeholder="Nhập lại mật khẩu" name="re-password"
+                                       aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z0-9]{7,32}$" required>
+                                <div class="invalid-feedback">
+                                    Mật khẩu không trùng nhau
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <input type="number" name ="age" class="form-control bg-light border-0 px-4" placeholder="Age" min="10" max="100" style="height: 55px;" required>
+
+
+
+
+
+                    <%--input fistname--%>
+                        <div class="col-md-6 offset-3 mb-3">
+                            <label for="firstname">Họ</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="firstname" placeholder="Họ" name="firstname"
+                                       aria-describedby="inputGroupPrepend" pattern="^[A-Za-z ]{1,50}$" required>
+                                <div class="invalid-feedback">
+                                    Họ chứa từ 1 đến 50 kí tự
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <input type="email" name ="email" class="form-control bg-light border-0 px-4" placeholder="Your Email" style="height: 55px;" required>
+                        <%-- input lastname--%>
+                        <div class="col-md-6 offset-3 mb-3">
+                            <label for="lastname">Tên</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="lastname" placeholder="Tên" name="lastname"
+                                       aria-describedby="inputGroupPrepend" pattern="^[A-Za-z ]{1,50}$" required>
+                                <div class="invalid-feedback">
+                                    Tên chứa từ 1 đến 50 kí tự
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <input type="tel" maxlength="10" minlength="10" required pattern="[0-9]{10}" name = "phone" class="form-control bg-light border-0 px-4" placeholder="Phone number" style="height: 55px;" required>
+
+                        <%--        input address--%>
+                        <div class="col-md-6 offset-3 ol mb-3">
+                            <label for="address">Địa chỉ</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="address" placeholder="Địa chỉ" name="address"
+                                       aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z0-9\s#-_,./()]{1,100}$" required>
+                                <div class="invalid-feedback">
+                                    Địa chỉ có độ dài 100 kí tự
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <input type="text" name ="address" class="form-control bg-light border-0 px-4" placeholder="Address" style="height: 55px;" required>
-                        </div>
-                        <div class="col-12">
-                            <button class="btn btn-primary w-100 py-3" type="submit">Register</button>
+
+                        <%--        input phone--%>
+                        <div class="col-md-6 offset-3 mb-3">
+                            <label for="address">Điện thoại</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="phone" placeholder="Điện thoại" name="phone"
+                                       aria-describedby="inputGroupPrepend" pattern="^[0-9]{10}$" required>
+                                <div class="invalid-feedback">
+                                    Số điện thoại có dộ dài 10 kí tự
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+
+                    <div class="row">
+                        <div class="col-3 offset-3">
+                            <button class="btn btn-primary" type="submit">Đăng kí</button>
+                        </div>
+
+                    </div>
+
                 </form>
             </div>
             <div class="col-lg-5">
@@ -81,17 +155,55 @@
         </div>
     </div>
 
-    <script>
-        function validateForm() {
-            var password = document.getElementById("password").value;
-            var confirmPassword = document.getElementById("confirm-password").value;
 
-            if (password!==confirmPassword) {
-                alert("Mật khẩu nhập lại không khớp!");
-                return false;
-            }
-            return true;
-        }
-    </script>
+
 </div>
 <!-- Contact End -->
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+<script>
+    // Lấy đối tượng của 2 trường password
+    const passwordField = document.getElementById("password");
+    const rePasswordField = document.getElementById("re-password");
+
+    // Thêm sự kiện khi thay đổi giá trị của trường re-password
+    rePasswordField.addEventListener("input", function() {
+        // Kiểm tra xem giá trị của 2 trường có giống nhau hay không
+        if (passwordField.value !== rePasswordField.value) {
+            // Nếu không giống nhau, hiển thị thông báo lỗi
+            rePasswordField.setCustomValidity("Mật khẩu không khớp");
+        } else {
+            // Nếu giống nhau, xóa thông báo lỗi đi
+            rePasswordField.setCustomValidity("");
+        }
+    });
+
+    // Thêm sự kiện submit cho form
+    document.querySelector("form").addEventListener("submit", function(event) {
+        // Kiểm tra xem giá trị của 2 trường có giống nhau hay không
+        if (passwordField.value !== rePasswordField.value) {
+            // Nếu không giống nhau, ngăn chặn form được submit
+            event.preventDefault();
+        }
+    });
+
+</script>
