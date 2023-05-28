@@ -2,7 +2,7 @@
 
 
 <div class="container mt-3">
-    <form class="needs-validation" novalidate action="profile" method="post">
+    <form class="needs-validation" novalidate action="updateprofile" method="post">
 
         <div class="row">
             <div class="col-12" style="background-color:#7ab730;border-radius: 10px " >
@@ -59,7 +59,8 @@
 
         <div class="row">
             <div class="col-3 offset-3">
-                <button class="btn btn-primary" type="submit">Submit form</button>
+                <button class="btn btn-primary" type="submit">Cập nhật</button>
+                <pc style="color: green">${thongbao}</pc>
             </div>
 
         </div>

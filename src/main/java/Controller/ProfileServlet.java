@@ -27,10 +27,6 @@ public class ProfileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String firstname=request.getParameter("firstname")
-                , lastname="lastname"
-                ,address="address"
-                ,phone="phone";
-        System.out.println( firstname+ " "+lastname+" "+address+" "+phone);
+
     }
 }
