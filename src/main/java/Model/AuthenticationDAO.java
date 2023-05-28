@@ -74,7 +74,7 @@ public class AuthenticationDAO {
 
     public static void main(String[] args) {
         //Test Verify
-//        System.out.println(Verify("Admin","123456789"));
+       System.out.println(Verify("khoanguvai","123456789"));
 //        System.out.println(Verify("Khoangungoc","khoangungoc"));
 //        System.out.println(Verify("QuangE","123456789"));
 

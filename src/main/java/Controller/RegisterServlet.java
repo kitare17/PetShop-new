@@ -16,20 +16,29 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userID= MyRandom.getRandomCusID();
+
         String username=request.getParameter("username");
         String password = request.getParameter("password");
         String firstname=request.getParameter("firstname")
                 , lastname=request.getParameter("lastname")
                 ,address=request.getParameter("address")
                 ,phone=request.getParameter("phone");
-        System.out.println("Register "+ username +" " + password+" "+ firstname+ " "+lastname+" "+address+" "+phone);
         //check exist username
+        if(UserDAO.checkExistUsername(username)){
+            request.setAttribute("thongbao","Tên đăng nhập đã tồn tại");
+            request.getRequestDispatcher("register.jsp").forward(request,response);
+        }
+        else {
+            String userID= MyRandom.getRandomCusID();
+
+            System.out.println("Register "+ username +" " + password+" "+ firstname+ " "+lastname+" "+address+" "+phone);
+            //insert table tblCustomer and tblAccount
+            UserDAO.addCustomer(userID,firstname,lastname,address,phone,username,password);
+
+            request.setAttribute("thongbao","Đăng kí thành công vui lòng đăng nhập vào hệ thống");
+            request.getRequestDispatcher("login.jsp").forward(request,response);
+        }
 
 
-        //insert table tblCustomer and tblAccount
-        UserDAO.addEmployee(userID,firstname,lastname,address,phone,username,password);
-        request.setAttribute("thongbao","Đăng kí thành công vui lòng đăng nhập vào hệ thống");
-        request.getRequestDispatcher("login").forward(request,response);
     }
 }

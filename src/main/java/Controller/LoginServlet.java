@@ -21,6 +21,7 @@ public class LoginServlet extends HttpServlet {
 
         String username=request.getParameter("username");
         String password=request.getParameter("password");
+        System.out.println(username+" "+password);
         User user= AuthenticationDAO.Verify(username,password);
         System.out.println(user);
         if(user!=null){
@@ -33,6 +34,7 @@ public class LoginServlet extends HttpServlet {
             HttpSession session=request.getSession();
             session.setAttribute("user", user);
             //session.setAttribute("cart", new Cart());
+            System.out.println("Đăng nhập thành công");
             response.sendRedirect("index.jsp");
 
         }

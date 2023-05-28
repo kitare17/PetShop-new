@@ -28,7 +28,7 @@
                         <div class="col-md-6 offset-3 mb-3">
                             <label for="username">Username</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="username" placeholder="Username" name="username"
+                                <input type="text" class="form-control" id="username" placeholder="Username" name="username" value="${username}"
                                        aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z][a-zA-Z0-9]{7,20}$" required>
                                 <div class="invalid-feedback">
                                    Username bắt đầu bằng chữ cái  và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
@@ -67,7 +67,7 @@
                         <div class="col-md-6 offset-3 mb-3">
                             <label for="firstname">Họ</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="firstname" placeholder="Họ" name="firstname"
+                                <input type="text" class="form-control" id="firstname" placeholder="Họ" name="firstname" value="${firstname}"
                                        aria-describedby="inputGroupPrepend" pattern="^[A-Za-z ]{1,50}$" required>
                                 <div class="invalid-feedback">
                                     Họ chứa từ 1 đến 50 kí tự
@@ -78,7 +78,7 @@
                         <div class="col-md-6 offset-3 mb-3">
                             <label for="lastname">Tên</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="lastname" placeholder="Tên" name="lastname"
+                                <input type="text" class="form-control" id="lastname" placeholder="Tên" name="lastname" value="${lastname}"
                                        aria-describedby="inputGroupPrepend" pattern="^[A-Za-z ]{1,50}$" required>
                                 <div class="invalid-feedback">
                                     Tên chứa từ 1 đến 50 kí tự
@@ -90,7 +90,7 @@
                         <div class="col-md-6 offset-3 ol mb-3">
                             <label for="address">Địa chỉ</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="address" placeholder="Địa chỉ" name="address"
+                                <input type="text" class="form-control" id="address" placeholder="Địa chỉ" name="address" value="${address}"
                                        aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z0-9\s#-_,./()]{1,100}$" required>
                                 <div class="invalid-feedback">
                                     Địa chỉ có độ dài 100 kí tự
@@ -102,7 +102,7 @@
                         <div class="col-md-6 offset-3 mb-3">
                             <label for="address">Điện thoại</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="phone" placeholder="Điện thoại" name="phone"
+                                <input type="text" class="form-control" id="phone" placeholder="Điện thoại" name="phone" value="${phone}"
                                        aria-describedby="inputGroupPrepend" pattern="^[0-9]{10}$" required>
                                 <div class="invalid-feedback">
                                     Số điện thoại có dộ dài 10 kí tự
@@ -115,6 +115,7 @@
                     <div class="row">
                         <div class="col-3 offset-3">
                             <button class="btn btn-primary" type="submit">Đăng kí</button>
+                            <p style="color: red">${thongbao}</p>
                         </div>
 
                     </div>

@@ -6,6 +6,7 @@ import Entity.Pet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class UserDAO {
@@ -69,6 +70,23 @@ public class UserDAO {
 
     }
 
+    public static boolean checkExistUsername(String username){
+        try {
+            String query ="select * from tblAccount where Username=?";
+            Connection con = PetShopDB.getConnection();
+            PreparedStatement preSt = con.prepareStatement(query);
+            preSt.setString(1,username);
+            ResultSet rs=preSt.executeQuery();
+            boolean checkID= rs.next();
+            con.close();
+            return checkID;
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public static boolean addEmployee(String userID, String firstname, String lastname, String address, String phone,String username,String password) {
 
@@ -148,6 +166,7 @@ public class UserDAO {
     }
 
     public static void main(String[] args) {
+
         //test updateUser
         //updateUser("0001","Nguyễn","Huệ","Đà Nẵng","0123456789");
         //test addCustomer
@@ -155,7 +174,8 @@ public class UserDAO {
         //test addEmployee
        //addEmployee("E0004","Nguyễn","Huệ","Đà Nẵng","0123456789","khoatest1","123");
         //check checkExistID
-        System.out.println(checkExistID("C0001"));
-
+       // System.out.println(checkExistID("C0001"));
+        //check checkExistUsername
+        System.out.println(checkExistUsername("Khoangungoc"));
     }
 }
