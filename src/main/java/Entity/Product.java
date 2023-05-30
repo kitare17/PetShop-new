@@ -6,6 +6,7 @@ public class Product {
             productType;
     protected double productPrice;
     protected String productStatus;
+    protected int productAmount;
 
     public Product(String productID, String productName, String productType, double productPrice, String productStatus) {
         this.productID = productID;
@@ -53,6 +54,14 @@ public class Product {
 
     public void setProductStatus(String productStatus) {
         this.productStatus = productStatus;
+    }
+
+    public int getProductAmount() {
+        return productAmount;
+    }
+
+    public void setProductAmount(int productAmount) {
+        this.productAmount = productAmount;
     }
 
     @Override
