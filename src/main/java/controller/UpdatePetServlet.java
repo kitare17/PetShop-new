@@ -19,16 +19,16 @@ public class UpdatePetServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
-        String name = request.getParameter("name");
-        String type = request.getParameter("type");
-        double price = Double.parseDouble(request.getParameter("price"));
-        int amount = Integer.parseInt(request.getParameter("amount"));
-        String color = request.getParameter("color");
-        Pet pet = new Pet(id, name, type, price, amount, color);
-        System.out.println(pet);
-        AdminRepository.updatePet(pet);
-        response.sendRedirect("admin.jsp");
+//        String id = request.getParameter("id");
+//        String name = request.getParameter("name");
+//        String type = request.getParameter("type");
+//        double price = Double.parseDouble(request.getParameter("price"));
+//        int amount = Integer.parseInt(request.getParameter("amount"));
+//        String color = request.getParameter("color");
+//        Pet pet = new Pet(id, name, type, price, amount,);
+//        System.out.println(pet);
+//        AdminRepository.updatePet(pet);
+//        response.sendRedirect("admin.jsp");
 
     }
 }

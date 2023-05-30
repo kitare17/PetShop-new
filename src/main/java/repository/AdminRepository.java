@@ -7,6 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 public class AdminRepository {
+
+
+    /*
     public static int getAmountUser() {
         try {
             String query = "select count(1) from tblUser";
@@ -334,5 +337,5 @@ public class AdminRepository {
             System.out.println(pet);
         }
 
-    }
+    }*/
 }

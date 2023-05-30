@@ -15,15 +15,15 @@ import java.io.IOException;
 public class GetPetDetailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
-        if (id == null) {
-            System.out.println("null");
-        } else {
-            Product p = ProductRepository.getPet(id);
-            System.out.println(p);
-            request.setAttribute("product", p);
-            request.getRequestDispatcher("product-detail.jsp").forward(request, response);
-        }
+//        String id = request.getParameter("id");
+//        if (id == null) {
+//            System.out.println("null");
+//        } else {
+//            Product p = ProductRepository.getPet(id);
+//            System.out.println(p);
+//            request.setAttribute("product", p);
+//            request.getRequestDispatcher("product-detail.jsp").forward(request, response);
+//        }
     }
 
     @Override

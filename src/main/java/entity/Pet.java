@@ -1,7 +1,9 @@
 package entity;
 
+import java.util.ArrayList;
+
 public class Pet extends Product {
-    private String petColor;
+
 
 
 //    private String productId;
@@ -12,22 +14,12 @@ public class Pet extends Product {
     public Pet() {
     }
 
-    public Pet(String productId, String productName, String productType, double productPrice, int productAmount, String petColor) {
-        super(productId, productName, productType, productPrice, productAmount);
-        this.petColor = petColor;
-    }
-
-
-    public String getPetColor() {
-        return petColor;
-    }
-
-    public void setPetColor(String petColor) {
-        this.petColor = petColor;
+    public Pet(String productId, String productName, String productType, double productPrice, int productAmount, ArrayList<Image> listImg, int status) {
+        super(productId, productName, productType, productPrice, productAmount, listImg, status);
     }
 
     @Override
     public String toString() {
-        return "Pet{" + "productId=" + productId + ", productName=" + productName + ", productType=" + productType + ", productPrice=" + productPrice + ", productAmount=" + productAmount + "petColor=" + petColor + '}';
+        return "Pet{" + "productId=" + productId + ", productName=" + productName + ", productType=" + productType + ", productPrice=" + productPrice + ", productAmount=" + productAmount + '}';
     }
 }

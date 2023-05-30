@@ -28,15 +28,15 @@ public class PetShowServlet extends HttpServlet {
         try {
             String PetType = request.getParameter("type");
             if (PetType.equals("all") || PetType.isEmpty()) {
-                listPet = ProductService.listPet();
+                listPet = ProductRepository.getListPet();
             } else if (PetType.equals("dog")) {
-                listPet = ProductService.listDog();
+                listPet = ProductRepository.getListDog();
             } else if (PetType.equals("cat")) {
-                listPet = ProductService.listCat();
+                listPet = ProductRepository.getListCat();
 
             }
         } catch (Exception e) {
-            listPet = ProductService.listPet();
+            listPet = ProductRepository.getListPet();
 
         }
         ArrayList<Pet> subListPet = new ArrayList<Pet>();

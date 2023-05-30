@@ -15,10 +15,10 @@ public class AcceptOderServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id= request.getParameter("id");
-        System.out.println(id);
-        AdminRepository.acceptOrder(id);
-        response.sendRedirect("admin.jsp");
+//        String id= request.getParameter("id");
+//        System.out.println(id);
+//        AdminRepository.acceptOrder(id);
+//        response.sendRedirect("admin.jsp");
     }
 
     @Override

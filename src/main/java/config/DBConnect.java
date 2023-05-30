@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 public class DBConnect {
     public static String serverName = "LAPTOP-7UOA152U\\SQLEXPRESS";
-    public static String dbName = "PetShopDBOld";
+    public static String dbName = "PetShopDB";
     public static String portNumber = "1433";
     public static String userID = "sa";
     public static String password = "kungkimp3";
