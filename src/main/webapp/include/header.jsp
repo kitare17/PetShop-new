@@ -106,12 +106,12 @@
             </c:if>
             <c:if test="${sessionScope.user!=null}">
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle bg-primary text-white px-5 ms-lg-5" data-bs-toggle="dropdown">${sessionScope.user.userName}</a>
+                    <a href="#" class="nav-link dropdown-toggle bg-primary text-white px-5 ms-lg-5" data-bs-toggle="dropdown">${sessionScope.user.firstname} ${sessionScope.user.lastname}</a>
                     <div class="dropdown-menu m-0">
-                        <a href="inforUser.jsp" class="dropdown-item">Your information</a>
-                        <c:if test="${sessionScope.user.userRole.equals('admin')}">
-                            <a href="admin.jsp" class="dropdown-item">Admin</a>
-                        </c:if>
+                        <a href="profile" class="dropdown-item">Your information</a>
+<%--                        <c:if test="${sessionScope.user.userRole.equals('admin')}">--%>
+<%--                            <a href="admin.jsp" class="dropdown-item">Admin</a>--%>
+<%--                        </c:if>--%>
 
                         <a href="cart.jsp" class="dropdown-item">Your cart</a>
                         <a href="getorderhistory" class="dropdown-item">History order</a>

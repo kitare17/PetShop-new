@@ -1,101 +1,67 @@
 package entity;
 
 public class User {
-    private String userName, userPass, userFullName;
-    private int userAge;
-    private String userEmail, userPhone, userAdress, userRole;
+    protected String userId ,firstname, lastname,address,phone;
 
     public User() {
     }
 
-    public User(String userName, String userPass, String userFullName, int userAge,
-                String userEmail, String userPhone, String userAdress) {
-        this.userName = userName;
-        this.userPass = userPass;
-        this.userFullName = userFullName;
-        this.userAge = userAge;
-        this.userEmail = userEmail;
-        this.userPhone = userPhone;
-        this.userAdress = userAdress;
-        this.userRole = "user";
-    }
-    public User(String userName, String userPass, String userFullName, int userAge, String userEmail, String userPhone, String userAdress, String userRole) {
-        this.userName = userName;
-        this.userPass = userPass;
-        this.userFullName = userFullName;
-        this.userAge = userAge;
-        this.userEmail = userEmail;
-        this.userPhone = userPhone;
-        this.userAdress = userAdress;
-        this.userRole = userRole;
-    }
-    public String getUserName() {
-        return userName;
+    public User(String userId, String firstname, String lastname, String address, String phone) {
+        this.userId = userId;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.address = address;
+        this.phone = phone;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getUserId() {
+        return userId;
     }
 
-    public String getUserPass() {
-        return userPass;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public void setUserPass(String userPass) {
-        this.userPass = userPass;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public String getUserFullName() {
-        return userFullName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public void setUserFullName(String userFullName) {
-        this.userFullName = userFullName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public int getUserAge() {
-        return userAge;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public void setUserAge(int userAge) {
-        this.userAge = userAge;
+    public String getAddress() {
+        return address;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public String getPhone() {
+        return phone;
     }
 
-    public String getUserPhone() {
-        return userPhone;
-    }
-
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
-    }
-
-    public String getUserAdress() {
-        return userAdress;
-    }
-
-    public void setUserAdress(String userAdress) {
-        this.userAdress = userAdress;
-    }
-
-    public String getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @Override
     public String toString() {
-        return "User{" + "userName=" + userName + ", userPass=" + userPass + ", userFullName=" + userFullName + ", userAge=" + userAge + ", userEmail=" + userEmail + ", userPhone=" + userPhone + ", userAdress=" + userAdress + ", userRole=" + userRole + '}';
+        return "User{" +
+                "userId='" + userId + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
-
 }

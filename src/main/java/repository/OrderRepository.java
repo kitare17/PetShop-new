@@ -35,28 +35,28 @@ public class OrderRepository {
         }
         return null;
     }
-
-    public static String createOrder(Cart cart, User user) {
-        try {
-            Connection con = DBConnect.getConnection();
-            String query = "insert into tblOrder values (?,?,?,?,?)";
-            String orderID = getOrderId();
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setString(1, orderID);
-            stmt.setString(2, Isvalid.getCurrentDate());
-            stmt.setString(3, null);
-            stmt.setString(4, user.getUserName());
-            stmt.setString(5, "Đang xử lý");
-            stmt.executeUpdate();
-            con.close();
-            createOrderDetail(cart, orderID);
-            return orderID;
-        } catch (Exception e) {
-            System.out.println("Loi method createOrder(Cart cart, User user) trong OrderRepository.java ");
-
-        }
-        return null;
-    }
+//
+//    public static String createOrder(Cart cart, User user) {
+//        try {
+//            Connection con = DBConnect.getConnection();
+//            String query = "insert into tblOrder values (?,?,?,?,?)";
+//            String orderID = getOrderId();
+//            PreparedStatement stmt = con.prepareStatement(query);
+//            stmt.setString(1, orderID);
+//            stmt.setString(2, Isvalid.getCurrentDate());
+//            stmt.setString(3, null);
+//            stmt.setString(4, user.getUserName());
+//            stmt.setString(5, "Đang xử lý");
+//            stmt.executeUpdate();
+//            con.close();
+//            createOrderDetail(cart, orderID);
+//            return orderID;
+//        } catch (Exception e) {
+//            System.out.println("Loi method createOrder(Cart cart, User user) trong OrderRepository.java ");
+//
+//        }
+//        return null;
+//    }
 
     public static boolean createOrderDetail(Cart cart, String orderId) {
         for (Items i : cart.getCart()) {

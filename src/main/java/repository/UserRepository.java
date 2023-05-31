@@ -22,53 +22,164 @@ public class UserRepository {
         return false;
     }
 
-    public static int register(User user) {
+
+
+
+    public static boolean updateUser(String userID, String firstname, String lastname, String address, String phone) {
         try {
+            String query;
+            if (userID.startsWith("A"))
+                query = "Update tblAdmin \n" +
+                        "set FirstnameAd =?, LastnameAd= ?, AddressAd=?,PhoneAd=?\n" +
+                        "where AdminID = ?";
+            else if (userID.startsWith("E"))
+                query = "Update tblEmployee \n" +
+                        "set FirstnameEmp =?, LastnameEmp= ?, AddressEmp=?,PhoneEmp=?\n" +
+                        "where EmployeeID = ?";
+            else query = "Update tblCustomer \n" +
+                        "set FirstnameCus =?, LastnameCus= ?, AddressCus=?,PhoneCus=?\n" +
+                        "where CustomerID = ?";
+
             Connection con = DBConnect.getConnection();
-            PreparedStatement stmt = con.prepareStatement("insert into tblUser values(?,?,?,?,?,?,?,?)");
-            stmt.setString(1, user.getUserName());
-            stmt.setString(2, user.getUserPass());
-            stmt.setString(3, user.getUserFullName());
-            stmt.setInt(4, user.getUserAge());
-            stmt.setString(5, user.getUserEmail());
-            stmt.setString(6, user.getUserPhone());
-            stmt.setString(7, user.getUserAdress());
-            stmt.setString(8, user.getUserRole());
-            return stmt.executeUpdate(); //tra ve so hang bi anh huong?
+            PreparedStatement preSt = con.prepareStatement(query);
+            preSt.setString(1, firstname);
+            preSt.setString(2, lastname);
+            preSt.setString(3, address);
+            preSt.setString(4, phone);
+            preSt.setString(5, userID);
+
+            preSt.executeUpdate();
+            con.close();
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+
+    public static boolean checkExistID(String userID) {
+
+        try {
+            String query;
+            if (userID.startsWith("A"))
+                query = "select AdminID from tblAdmin where AdminID=?";
+            else if (userID.startsWith("E"))
+                query = "select EmployeeID from tblEmployee where EmployeeID=?";
+            else query ="select CustomerID from tblCustomer where CustomerID=?";
+
+            Connection con = DBConnect.getConnection();
+            PreparedStatement preSt = con.prepareStatement(query);
+            preSt.setString(1,userID);
+            ResultSet rs=preSt.executeQuery();
+            boolean checkID= rs.next();
+            con.close();
+            return checkID;
 
         } catch (Exception e) {
-            System.out.println("Loi Database method register trong UserRepository");
-            return 0;
+
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    public static boolean checkExistUsername(String username){
+        try {
+            String query ="select * from tblAccount where Username=?";
+            Connection con = DBConnect.getConnection();
+            PreparedStatement preSt = con.prepareStatement(query);
+            preSt.setString(1,username);
+            ResultSet rs=preSt.executeQuery();
+            boolean checkID= rs.next();
+            con.close();
+            return checkID;
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return false;
         }
     }
 
-    public static User login(String username, String password) {
-        User user=null;
+    public static boolean addEmployee(String userID, String firstname, String lastname, String address, String phone,String username,String password) {
+
         try {
-            String query = "Select * from tblUser where UserName=? and UserPass=?";
+
+            String query="\n" +
+                    "insert into tblEmployee values \n" +
+                    "(?,?,?,?,?)\n";
+
+
             Connection con = DBConnect.getConnection();
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setString(1,username );
-            stmt.setString(2,password );
-            ResultSet results = stmt.executeQuery();
-            if (results.next()) {
-                String userName=results.getString(1);
-                String userPass=results.getString(2);
-                String userFullName=results.getString(3);
-                int userAge=results.getInt(4);
-                String userEmail=results.getString(5);
-                String userPhone=results.getString(6);
-                String userAdress=results.getString(7);
-                String role=results.getString(8);
-                user=new User( userName,  userPass,  userFullName,  userAge, userEmail,  userPhone,  userAdress,role);
-            }
+            PreparedStatement preSt = con.prepareStatement(query);
+            preSt.setString(1, userID);
+            preSt.setString(2, firstname);
+            preSt.setString(3, lastname);
+            preSt.setString(4, address);
+            preSt.setString(5, phone);
 
+            //insert to tblCustomer
+            preSt.executeUpdate();
+            //inster to tblAccount
+            query="insert into tblAccount values\n" +
+                    "(?,?,?,1)";
+
+            preSt= con.prepareStatement(query);
+            preSt.setString(1,username);
+            preSt.setString(2,password);
+            preSt.setString(3,userID);
+            preSt.executeUpdate();
+            con.close();
         } catch (Exception e) {
-            System.err.println("Loi Database method login trong UserRepository ");
-        }
-        return user;
 
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
+
+
+    public static boolean addCustomer(String userID, String firstname, String lastname, String address, String phone,String username,String password) {
+
+
+        try {
+
+            String query="\n" +
+                    "insert into tblCustomer values \n" +
+                    "(?,?,?,?,?)\n";
+
+
+            Connection con = DBConnect.getConnection();
+            PreparedStatement preSt = con.prepareStatement(query);
+            preSt.setString(1, userID);
+            preSt.setString(2, firstname);
+            preSt.setString(3, lastname);
+            preSt.setString(4, address);
+            preSt.setString(5, phone);
+
+            //insert to tblCustomer
+            preSt.executeUpdate();
+            //inster to tblAccount
+            query="insert into tblAccount values\n" +
+                    "(?,?,?,1)";
+            preSt= con.prepareStatement(query);
+            preSt= con.prepareStatement(query);
+            preSt.setString(1,username);
+            preSt.setString(2,password);
+            preSt.setString(3,userID);
+            preSt.executeUpdate();
+
+            con.close();
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
 //        User user=login("khoavl", "123456789");
 //        System.out.println(user);
