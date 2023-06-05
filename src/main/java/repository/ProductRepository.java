@@ -154,7 +154,7 @@ public class ProductRepository {
                 int status=results.getInt(6);
                 int productAmount = getFoodAmount(productId);
                 ArrayList<Image> listImage=getListFoodImage(productId);
-                Food food = new Food(productId,productName,productType,productPrice,productAmount,null,status,origin);
+                Food food = new Food(productId,productName,productType,productPrice,productAmount,listImage,status,origin);
                 listFood.add(food);
             }
         } catch (Exception e) {
