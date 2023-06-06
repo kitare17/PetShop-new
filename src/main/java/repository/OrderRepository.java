@@ -15,7 +15,7 @@ public class OrderRepository {
     public static String getOrderId() {
         try {
             String OrderId = RandomGenerator.generateRandomString();
-            String query = "select OrderID from tblOrder";
+            String query = "select BillID from tblBill";
             Connection con = DBConnect.getConnection();
             PreparedStatement stmt = con.prepareStatement(query);
             ResultSet results = stmt.executeQuery();
@@ -35,34 +35,35 @@ public class OrderRepository {
         }
         return null;
     }
-//
-//    public static String createOrder(Cart cart, User user) {
-//        try {
-//            Connection con = DBConnect.getConnection();
-//            String query = "insert into tblOrder values (?,?,?,?,?)";
-//            String orderID = getOrderId();
-//            PreparedStatement stmt = con.prepareStatement(query);
-//            stmt.setString(1, orderID);
-//            stmt.setString(2, Isvalid.getCurrentDate());
-//            stmt.setString(3, null);
-//            stmt.setString(4, user.getUserName());
-//            stmt.setString(5, "Đang xử lý");
-//            stmt.executeUpdate();
-//            con.close();
-//            createOrderDetail(cart, orderID);
-//            return orderID;
-//        } catch (Exception e) {
-//            System.out.println("Loi method createOrder(Cart cart, User user) trong OrderRepository.java ");
-//
-//        }
-//        return null;
-//    }
+
+    public static String createOrder(Cart cart, User user) {
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "insert into tblBill (BillID,CustomerID,AddressDelivery,DateCreate,PreferentialID,StatusBill) values (?,?,?,?,?,?)";
+            String orderID = getOrderId();
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, orderID);
+            stmt.setString(2, user.getUserId());
+            stmt.setString(3, user.getAddress());
+            stmt.setString(4, Isvalid.getCurrentDate());
+            stmt.setString(5, null);
+            stmt.setString(6, "Đang xử lý");
+            stmt.executeUpdate();
+            con.close();
+            createOrderDetail(cart, orderID);
+            return orderID;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Loi method createOrder(Cart cart, User user) trong OrderRepository.java ");
+        }
+        return null;
+    }
 
     public static boolean createOrderDetail(Cart cart, String orderId) {
         for (Items i : cart.getCart()) {
             try {
                 Connection con = DBConnect.getConnection();
-                String query = "insert into tblOrderDetail values (?,?,?)";
+                String query = "insert into tblOrderDetails values (?,?,?)";
                 PreparedStatement stmt = con.prepareStatement(query);
                 stmt.setString(1, orderId);
                 stmt.setString(2, i.getProduct().getProductId());
@@ -70,18 +71,19 @@ public class OrderRepository {
                 stmt.executeUpdate();
                 con.close();
             } catch (Exception e) {
+                e.printStackTrace();
                 System.out.println("Loi method createOrderDetail(Cart cart,String orderId) trong OrderRepository.java ");
 
             }
         }
         return true;
     }
-
+///bugggggggggggggggggggggggggggggggggggggggggggggg
     public static ArrayList<Items> getOrder(String OrderId) {
         try {
             ArrayList<Items> orderedList = new ArrayList<>();
             Connection con = DBConnect.getConnection();
-            String query = "select * from tblOrderDetail where OrderID = ?";
+            String query = "select * from tblOrderDetails where BillID = ?";
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setString(1, OrderId);
             ResultSet results = stmt.executeQuery();
@@ -110,13 +112,13 @@ public class OrderRepository {
                 if (orderdetailId.contains("F")) {
                     String id = results.getString(1);
                     String name = results.getString(2);
-                    double price = results.getDouble(4);
+                    double price = results.getDouble(5);
                     con.close();
                     return new Product(id, name, price);
                 } else {
                     String id = results.getString(1);
                     String name = results.getString(2);
-                    double price = results.getDouble(5);
+                    double price = results.getDouble(4);
                     con.close();
                     return new Product(id, name, price);
                 }
@@ -134,7 +136,7 @@ public class OrderRepository {
         String id = null;
         try {
             Connection con = DBConnect.getConnection();
-            String query = "select OrderStatus from tblOrder where OrderID = ?";
+            String query = "select StatusBill from tblBill where BillID = ?";
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setString(1, orderId);
             ResultSet results = stmt.executeQuery();
@@ -152,7 +154,7 @@ public class OrderRepository {
         ArrayList<String> listOrderId = new ArrayList<>();
         try {
             Connection con = DBConnect.getConnection();
-            String query = "select OrderId from tblOrder where UserName = ?";
+            String query = "select BillID from tblBill where CustomerID = ?";
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setString(1, userId);
             ResultSet results = stmt.executeQuery();
@@ -170,7 +172,7 @@ public class OrderRepository {
         String date = null;
         try {
             Connection con = DBConnect.getConnection();
-            String query = "select OrDate from tblOrder where OrderID= ?";
+            String query = "select DateCreate from tblBill where BillID= ?";
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setString(1, orderId);
             ResultSet results = stmt.executeQuery();

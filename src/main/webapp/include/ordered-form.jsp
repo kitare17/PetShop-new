@@ -66,10 +66,10 @@
                 <div class="border-top pt-3 col-md-4 kt-right">
                     <h3>Thông tin khách hàng</h3>
                     <div>
-                        <p>${sessionScope.user.userFullName}</p>
-                        <p>Số điện thoại: ${sessionScope.user.userPhone}</p>
-                        <p>Gmail: ${sessionScope.user.userEmail}</p>
-                        <p>Địa chỉ: ${sessionScope.user.userAdress}</p>
+                        <p>${sessionScope.user.firstname}</p>
+                        <p>Số điện thoại: ${sessionScope.user.phone}</p>
+                        <p>Gmail: thằng khoa nó chua bo? email =((</p>
+                        <p>Địa chỉ: ${sessionScope.user.address}</p>
                     </div>
                 </div>
             </div>

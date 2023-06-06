@@ -20,7 +20,7 @@ public class Food extends Product{
 //        super(productId, productName, productType, productPrice, productAmount);
 //    }
 
-    public Food(String productId, String productName, String productType, double productPrice, int productAmount, ArrayList<Image> listImg, int status, String origin) {
+    public Food(String productId, String productName, String productType , String origin, double productPrice , int productAmount, ArrayList<Image> listImg, int status) {
         super(productId, productName, productType, productPrice, productAmount, listImg, status);
         this.origin = origin;
     }

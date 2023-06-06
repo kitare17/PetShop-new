@@ -1,5 +1,6 @@
 package controller;
 
+import entity.Cart;
 import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -32,7 +33,7 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(passCookies);
             HttpSession session=request.getSession();
             session.setAttribute("user", user);
-            //session.setAttribute("cart", new Cart());
+            session.setAttribute("cart", new Cart());
             System.out.println("Đăng nhập thành công");
             response.sendRedirect("index.jsp");
 

@@ -119,7 +119,7 @@
 <div class="container-fluid">
     <div class="container d-flex justify-content-around">
         <div class="col-md-4">
-            <img class="w-100" src="img/product/${product.productId}.jpg" alt="">
+            <img class="w-100" src="${product.listImg.get(0).getUrl()}" alt="asdsd">
         </div>
         <div class="col-md-7">
 
