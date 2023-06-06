@@ -18,12 +18,12 @@ public class MakeOrderServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        HttpSession session = request.getSession();
-//        User user = (User) session.getAttribute("user");
-//        Cart cart = (Cart) session.getAttribute("cart");
-//        String orderId = OrderRepository.createOrder(cart,user);
-//        cart.removeAll();
-//        request.getRequestDispatcher("getordereddetail?orderId="+orderId).forward(request, response);
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        Cart cart = (Cart) session.getAttribute("cart");
+        String orderId = OrderRepository.createOrder(cart,user);
+        cart.removeAll();
+        request.getRequestDispatcher("getordereddetail?orderId="+orderId).forward(request, response);
     }
 
     @Override

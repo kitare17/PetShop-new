@@ -154,59 +154,71 @@ public class ProductRepository {
                 int status=results.getInt(6);
                 int productAmount = getFoodAmount(productId);
                 ArrayList<Image> listImage=getListFoodImage(productId);
-                Food food = new Food(productId,productName,productType,productPrice,productAmount,null,status,origin);
+                Food food = new Food(productId,productName,productType,origin,productPrice,productAmount,listImage,status);
                 listFood.add(food);
+
             }
         } catch (Exception e) {
             System.err.println("Loi database method listFood class ProductRepository");
         }
         return listFood;
     }
-//    public static Pet getPet(String id ) {
-//        try {
-//            String query = "select * from tblPet where PetID = ? ";
-//            Connection con = DBConnect.getConnection();
-//            PreparedStatement stmt = con.prepareStatement(query);
-//            stmt.setString(1, id);
-//            ResultSet results = stmt.executeQuery();
-//            while (results.next()) {
-//                String productId = results.getString(1);
-//                String productName = results.getString(2);
-//                String petColor = results.getString(3);
-//                String productType = results.getString(4);
-//                double productPrice = results.getDouble(5);
-//                int productAmount = results.getInt(6);
-//                Pet pet = new Pet(productId, productName, productType, productPrice, productAmount, petColor);
-//                return pet;
-//            }
-//        }catch(Exception e) {
-//            System.out.println("Loi method GetPet() trong ProductRepository.java ");
-//        }
-//        return null;
-//    }
-//    public static Food getFood(String id ) {
-//        try {
-//            String query = "select * from tblFood where FoodID = ? ";
-//            Connection con = DBConnect.getConnection();
-//            PreparedStatement stmt = con.prepareStatement(query);
-//            stmt.setString(1, id);
-//            ResultSet results = stmt.executeQuery();
-//            while (results.next()) {
-//                String productId = results.getString(1);
-//                String productName = results.getString(2);
-//                String productType = results.getString(3);
-//                double productPrice = results.getDouble(4);
-//                int productAmount = results.getInt(5);
-//                Food food = new Food(productId, productName, productType, productPrice, productAmount);
-//                return food;
-//            }
-//            con.close();
-//        }catch(Exception e) {
-//            System.out.println("Loi method GetFood() trong ProductRepository.java ");
-//        }
-//        return null;
-//    }
-//
+    public static Pet getPet(String id ) {
+        try {
+            String query = "SELECT * FROM  tblPet f join tblPetImage i  on f.PetID = i.PetID where f.PetID = ?";
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, id);
+            ResultSet results = stmt.executeQuery();
+            while (results.next()) {
+                String productId = results.getString(1);
+                String productName = results.getString(2);
+                String productType = results.getString(3);
+                double productPrice = results.getDouble(4);
+                int status = results.getInt(5);
+
+                String imgUrl = results.getString(7);
+                ArrayList<Image> listImage = new ArrayList<>();
+                Image image = new Image(id,imgUrl);
+                listImage.add(image);
+
+                Pet pet = new Pet(productId, productName, productType, productPrice,1,listImage,status);
+                return pet;
+            }
+        }catch(Exception e) {
+            System.out.println("Loi method GetPet() trong ProductRepository.java ");
+        }
+        return null;
+    }
+    public static Food getFood(String id ) {
+        try {
+            String query = "SELECT * FROM  tblFood f join tblFoodImage i  on f.FoodID = i.FoodID join tblImported im on f.FoodID = im.FoodID where f.FoodID = ?";
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, id);
+            ResultSet results = stmt.executeQuery();
+            while (results.next()) {
+                String productId = results.getString(1);
+                String productName = results.getString(2);
+                String productType = results.getString(3);
+                String productOrigin = results.getString(4);
+                double productPrice = results.getDouble(5);
+                int status = results.getInt(6);
+                String imgUrl = results.getString(8);
+                int productAmmount = results.getInt(11);
+                ArrayList<Image> listImage = new ArrayList<>();
+                Image image = new Image(id,imgUrl);
+                listImage.add(image);
+                Food food = new Food(productId, productName,productType,productOrigin,productPrice,productAmmount,listImage,status);
+                return food;
+            }
+            con.close();
+        }catch(Exception e) {
+            System.out.println("Loi method GetFood() trong ProductRepository.java ");
+        }
+        return null;
+    }
+
 
     public static void main(String[] args) {
 //                ArrayList<Pet> listPet = listPet();

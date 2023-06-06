@@ -16,24 +16,24 @@ import java.util.ArrayList;
 @WebServlet(name = "GetOrderHistory", value = "/getorderhistory")
 public class GetOrderHistory extends HttpServlet {
 //    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        HttpSession session = request.getSession();
-//        User user = (User) session.getAttribute("user");
-//        String userId = user.getUserName();
-//        ArrayList<String> listOrderId = OrderRepository.getOrderIdList(userId); //danh sach id cua cac order
-//        ArrayList<Cart> listOrdered = new ArrayList<>(); //list cac don hang da dat(cart)
-//        for (String orderId : listOrderId) {
-//            Cart orderedCart = new Cart();
-//            orderedCart.setCart(OrderRepository.getOrder(orderId));
-//            orderedCart.setOrderedId(orderId);
-//            orderedCart.setOrderStatus(OrderRepository.getOrderStatus(orderId));
-//            orderedCart.setDate(OrderRepository.getOrderDate(orderId));
-//            listOrdered.add(orderedCart);
-//        }
-//        request.setAttribute("listOrdered", listOrdered);
-//        request.getRequestDispatcher("orderhistory.jsp").forward(request, response);
-//
-//    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        String userId = user.getUserId();
+        ArrayList<String> listOrderId = OrderRepository.getOrderIdList(userId); //danh sach id cua cac order
+        ArrayList<Cart> listOrdered = new ArrayList<>(); //list cac don hang da dat(cart)
+        for (String orderId : listOrderId) {
+            Cart orderedCart = new Cart();
+            orderedCart.setCart(OrderRepository.getOrder(orderId));
+            orderedCart.setOrderedId(orderId);
+            orderedCart.setOrderStatus(OrderRepository.getOrderStatus(orderId));
+            orderedCart.setDate(OrderRepository.getOrderDate(orderId));
+            listOrdered.add(orderedCart);
+        }
+        request.setAttribute("listOrdered", listOrdered);
+        request.getRequestDispatcher("orderhistory.jsp").forward(request, response);
+
+    }
 
 
     @Override

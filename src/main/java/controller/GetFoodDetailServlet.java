@@ -18,15 +18,15 @@ import java.util.ArrayList;
 public class GetFoodDetailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String id = request.getParameter("id");
-//        if (id == null) {
-//            response.sendRedirect("index.jsp");
-//        } else {
-//            Product p = ProductRepository.getFood(id);
-//            System.out.println(p);
-//            request.setAttribute("product", p);
-//            request.getRequestDispatcher("product-detail.jsp").forward(request, response);
-//        }
+        String id = request.getParameter("id");
+        if (id == null) {
+            response.sendRedirect("index.jsp");
+        } else {
+            Product p = ProductRepository.getFood(id);
+            System.out.println(p);
+            request.setAttribute("product", p);
+            request.getRequestDispatcher("product-detail.jsp").forward(request, response);
+        }
     }
 
     @Override
