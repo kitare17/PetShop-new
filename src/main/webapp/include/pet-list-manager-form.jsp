@@ -5,8 +5,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <nav class="nav nav-pills nav-justified">
-    <a class="nav-item nav-link " href="#">Thêm thức ăn</a>
-    <a class="nav-item nav-link" href="#">Thêm thú cưng</a>
+    <a class="nav-item nav-link " href="food-add.jsp">Thêm thức ăn</a>
+    <a class="nav-item nav-link" href="pet-add.jsp">Thêm thú cưng</a>
     <a class="nav-item nav-link " href="food-list-manager">Danh sách thức ăn</a>
     <a class="nav-item nav-link active " href="#">Danh sách thú cưng</a>
 </nav>
@@ -39,7 +39,7 @@
                 <td>${pet.productAmount}</td>
                 <td>${pet.status}</td>
                 <td><img style="width: 100%" src="${pet.listImg.get(0).url}" alt="${pet.productId}"></td>
-                <td> <button class="btn btn-success ">Cập nhật</button> </td>
+                <td> <a class="btn btn-success " href="updatepet?petID=${pet.productId}">Cập nhật</a> </td>
             </tr>
 
         </c:forEach>

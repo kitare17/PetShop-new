@@ -1,26 +1,29 @@
 package repository;
+
 import config.DBConnect;
 import entity.Food;
 import entity.Image;
+import entity.ImportedFood;
 import entity.Pet;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
 public class ProductRepository {
-    public static ArrayList<Image> getListPetImage(String petID){
-        ArrayList<Image> images=new ArrayList<>();
+    public static ArrayList<Image> getListPetImage(String petID) {
+        ArrayList<Image> images = new ArrayList<>();
         try {
             String query = "select * from tblPetImage where PetID =?";
             Connection con = DBConnect.getConnection();
             PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setString(1,petID);
+            stmt.setString(1, petID);
             ResultSet results = stmt.executeQuery();
 
             while (results.next()) {
-                String url=results.getString(2);
-                Image img=new Image(petID,url);
+                String url = results.getString(2);
+                Image img = new Image(petID, url);
                 images.add(img);
             }
         } catch (Exception e) {
@@ -28,18 +31,19 @@ public class ProductRepository {
         }
         return images;
     }
-    public static ArrayList<Image> getListFoodImage(String foodID){
-        ArrayList<Image> images=new ArrayList<>();
+
+    public static ArrayList<Image> getListFoodImage(String foodID) {
+        ArrayList<Image> images = new ArrayList<>();
         try {
             String query = "select * from tblFoodImage where FoodID =?";
             Connection con = DBConnect.getConnection();
             PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setString(1,foodID);
+            stmt.setString(1, foodID);
             ResultSet results = stmt.executeQuery();
 
             while (results.next()) {
-                String url=results.getString(2);
-                Image img=new Image(foodID,url);
+                String url = results.getString(2);
+                Image img = new Image(foodID, url);
                 images.add(img);
             }
         } catch (Exception e) {
@@ -47,6 +51,7 @@ public class ProductRepository {
         }
         return images;
     }
+
     public static ArrayList<Pet> getListPet() {
         ArrayList<Pet> listPet = new ArrayList<Pet>();
         try {
@@ -60,10 +65,10 @@ public class ProductRepository {
                 String productType = results.getString(3);
                 double productPrice = results.getDouble(4);
                 int productAmount = 1;
-                int productStatus=results.getInt(5);
-                ArrayList<Image> images=getListPetImage(productId);
-                
-                Pet pet = new Pet(productId,productName,productType,productPrice,productAmount,images,productStatus);
+                int productStatus = results.getInt(5);
+                ArrayList<Image> images = getListPetImage(productId);
+
+                Pet pet = new Pet(productId, productName, productType, productPrice, productAmount, images, productStatus);
                 listPet.add(pet);
             }
         } catch (Exception e) {
@@ -72,7 +77,7 @@ public class ProductRepository {
         return listPet;
     }
 
-    public static ArrayList<Pet> getListCat(){
+    public static ArrayList<Pet> getListCat() {
         ArrayList<Pet> listPet = new ArrayList<Pet>();
         try {
             String query = "select * from tblPet where PetType='cat'";
@@ -85,10 +90,10 @@ public class ProductRepository {
                 String productType = results.getString(3);
                 double productPrice = results.getDouble(4);
                 int productAmount = 1;
-                int productStatus=results.getInt(5);
-                ArrayList<Image> images=getListPetImage(productId);
+                int productStatus = results.getInt(5);
+                ArrayList<Image> images = getListPetImage(productId);
 
-                Pet pet = new Pet(productId,productName,productType,productPrice,productAmount,images,productStatus);
+                Pet pet = new Pet(productId, productName, productType, productPrice, productAmount, images, productStatus);
                 listPet.add(pet);
             }
         } catch (Exception e) {
@@ -96,7 +101,8 @@ public class ProductRepository {
         }
         return listPet;
     }
-    public static ArrayList<Pet> getListDog(){
+
+    public static ArrayList<Pet> getListDog() {
         ArrayList<Pet> listPet = new ArrayList<Pet>();
         try {
             String query = "select * from tblPet where PetType='dog'";
@@ -109,10 +115,10 @@ public class ProductRepository {
                 String productType = results.getString(3);
                 double productPrice = results.getDouble(4);
                 int productAmount = 1;
-                int productStatus=results.getInt(5);
-                ArrayList<Image> images=getListPetImage(productId);
+                int productStatus = results.getInt(5);
+                ArrayList<Image> images = getListPetImage(productId);
 
-                Pet pet = new Pet(productId,productName,productType,productPrice,productAmount,images,productStatus);
+                Pet pet = new Pet(productId, productName, productType, productPrice, productAmount, images, productStatus);
                 listPet.add(pet);
             }
         } catch (Exception e) {
@@ -120,24 +126,26 @@ public class ProductRepository {
         }
         return listPet;
     }
+
     // TODO: 5/30/2023  them tru so luong da ban trong bill
-    public static int getFoodAmount(String FoodID){
-        int amount=0;
+    public static int getFoodAmount(String FoodID) {
+        int amount = 0;
         try {
             String query = "select sum(Amount) from tblImported where FoodID=?";
             Connection con = DBConnect.getConnection();
             PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setString(1,FoodID);
+            stmt.setString(1, FoodID);
             ResultSet results = stmt.executeQuery();
 
             while (results.next()) {
-               amount=results.getInt(1);
+                amount = results.getInt(1);
             }
         } catch (Exception e) {
             System.err.println("Loi database method getFoodAmount class ProductRepository");
         }
         return amount;
     }
+
     public static ArrayList<Food> getListFood() {
         ArrayList<Food> listFood = new ArrayList<Food>();
         try {
@@ -149,12 +157,12 @@ public class ProductRepository {
                 String productId = results.getString(1);
                 String productName = results.getString(2);
                 String productType = results.getString(3);
-                String origin=results.getString(4);
+                String origin = results.getString(4);
                 double productPrice = results.getDouble(5);
-                int status=results.getInt(6);
+                int status = results.getInt(6);
                 int productAmount = getFoodAmount(productId);
-                ArrayList<Image> listImage=getListFoodImage(productId);
-                Food food = new Food(productId,productName,productType,origin,productPrice,productAmount,listImage,status);
+                ArrayList<Image> listImage = getListFoodImage(productId);
+                Food food = new Food(productId, productName, productType, origin, productPrice, productAmount, listImage, status);
                 listFood.add(food);
 
             }
@@ -163,7 +171,8 @@ public class ProductRepository {
         }
         return listFood;
     }
-    public static Pet getPet(String id ) {
+
+    public static Pet getPet(String id) {
         try {
             String query = "SELECT * FROM  tblPet f join tblPetImage i  on f.PetID = i.PetID where f.PetID = ?";
             Connection con = DBConnect.getConnection();
@@ -179,18 +188,19 @@ public class ProductRepository {
 
                 String imgUrl = results.getString(7);
                 ArrayList<Image> listImage = new ArrayList<>();
-                Image image = new Image(id,imgUrl);
+                Image image = new Image(id, imgUrl);
                 listImage.add(image);
 
-                Pet pet = new Pet(productId, productName, productType, productPrice,1,listImage,status);
+                Pet pet = new Pet(productId, productName, productType, productPrice, 1, listImage, status);
                 return pet;
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Loi method GetPet() trong ProductRepository.java ");
         }
         return null;
     }
-    public static Food getFood(String id ) {
+
+    public static Food getFood(String id) {
         try {
             String query = "SELECT * FROM  tblFood f join tblFoodImage i  on f.FoodID = i.FoodID join tblImported im on f.FoodID = im.FoodID where f.FoodID = ?";
             Connection con = DBConnect.getConnection();
@@ -205,21 +215,223 @@ public class ProductRepository {
                 double productPrice = results.getDouble(5);
                 int status = results.getInt(6);
                 String imgUrl = results.getString(8);
+
                 int productAmmount = results.getInt(11);
                 ArrayList<Image> listImage = new ArrayList<>();
-                Image image = new Image(id,imgUrl);
+                Image image = new Image(id, imgUrl);
                 listImage.add(image);
-                Food food = new Food(productId, productName,productType,productOrigin,productPrice,productAmmount,listImage,status);
+                Food food = new Food(productId, productName, productType, productOrigin, productPrice, productAmmount, listImage, status);
                 return food;
             }
             con.close();
-        }catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Loi method GetFood() trong ProductRepository.java ");
         }
         return null;
     }
 
+    public static boolean checkExistPetID(String petID) {
+        try {
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement("select PetID from tblPet where PetID=?");
+            stmt.setString(1, petID);
+            ResultSet resultSet = stmt.executeQuery();
+            return resultSet.next();
 
+        } catch (Exception e) {
+            System.out.println("loi checkExistPetID((String petID))");
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean checkExistFoodID(String foodID) {
+        try {
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement("select FoodID from tblFood where FoodID=?");
+            stmt.setString(1, foodID);
+            ResultSet resultSet = stmt.executeQuery();
+            return resultSet.next();
+
+        } catch (Exception e) {
+            System.out.println("loi checkExistFoodID(String foodID)");
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean addPet(Pet pet) {
+        try {
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement("insert into tblPet(petid, petname, pettype, petprice, statuspet)\n" +
+                    "values (?,?,?,?,?)");
+            stmt.setString(1, pet.getProductId());
+            stmt.setString(2, pet.getProductName());
+            stmt.setString(3, pet.getProductType());
+            stmt.setDouble(4, pet.getProductPrice());
+            stmt.setInt(5, pet.getStatus());
+            stmt.executeUpdate();
+            for (Image img : pet.getListImg()) {
+                addPetImg(img);
+            }
+        } catch (Exception e) {
+            System.out.println("loi addPet(Pet pet)");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean addPetImg(Image petImg) {
+        try {
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement("insert into  tblPetImage(PetID, URLPetImage) \n" +
+                    "values (?,?)");
+            stmt.setString(1, petImg.getId());
+            stmt.setString(2, petImg.getUrl());
+
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("loi addPetImg(Image petImg)");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+
+
+
+
+    public static boolean updatePet(Pet pet) {
+        try {
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement("update tblPet\n" +
+                    "set PetName=?, PetType=?,PetPrice=?, StatusPet=?\n" +
+                    "where PetID=?");
+            stmt.setString(1, pet.getProductName());
+            stmt.setString(2, pet.getProductType());
+            stmt.setDouble(3, pet.getProductPrice());
+            stmt.setInt(4, pet.getStatus());
+            stmt.setString(5,pet.getProductId());
+
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("loi updatePet(Pet pet)");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean addFood(Food food) {
+        try {
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement("insert into tblFood (FoodID, FoodName, FoodType, Origin, FoodPrice, StatusFood) \n" +
+                    "values (?,?,?,?,?,?)");
+            stmt.setString(1, food.getProductId());
+            stmt.setString(2, food.getProductName());
+            stmt.setString(3, food.getProductType());
+            stmt.setString(4, food.getOrigin());
+            stmt.setDouble(5, food.getProductPrice());
+            stmt.setInt(6, food.getStatus());
+            stmt.executeUpdate();
+            for (Image img : food.getListImg()) {
+                addFoodImg(img);
+            }
+        } catch (Exception e) {
+            System.out.println("loi addFood(Food food)");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean addFoodImg(Image FoodImg) {
+        try {
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement("insert into tblFoodImage(FoodID, URLFoodImage)  \n" +
+                    "values (?,?)");
+            stmt.setString(1, FoodImg.getId());
+            stmt.setString(2, FoodImg.getUrl());
+
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("loi addFoodImg(Image FoodImg)");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean UpdateFood(Food food) {
+        try {
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement("update  tblFood set FoodName=?\n" +
+                    "                 ,FoodType=?\n" +
+                    "                 ,Origin=?\n" +
+                    "                 ,FoodPrice=?\n" +
+                    "                 ,StatusFood=?\n" +
+                    "                 where FoodID= ?");
+            stmt.setString(1, food.getProductName());
+            stmt.setString(2, food.getProductType());
+            stmt.setString(3, food.getOrigin());
+            stmt.setDouble(4, food.getProductPrice());
+            stmt.setInt(5, food.getStatus());
+            stmt.setString(6,food.getProductId());
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("loi addFood(Food food)");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    public static boolean addImportedFood(ImportedFood importedFood){
+
+        try {
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement("insert into tblImported(FoodID, Consignment, Amount, DateImported) " +
+                    "values (?,?,?,?)");
+            stmt.setString(1,importedFood.getFoodID());
+            stmt.setString(2,importedFood.getImportName());
+            stmt.setInt(3,importedFood.getImportAmount());
+            stmt.setString(4,importedFood.getImportDate());
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("loi addImportedFood(ImportedFood ImportedFood)");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public static ArrayList<ImportedFood> getListImportedFood(String foodID){
+             ArrayList<ImportedFood> listImportedFood=new ArrayList<>();
+        try {
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement("select * from tblImported where FoodID=?");
+           stmt.setString(1,foodID);
+           ResultSet rs= stmt.executeQuery();
+           while (rs.next()){
+
+               String importName=rs.getString(2);
+               int importAmount=rs.getInt(3);
+               String importDate=rs.getString(4);
+               ImportedFood importedFood=new ImportedFood(foodID,importName,importAmount,importDate);
+               listImportedFood.add(importedFood);
+           }
+
+        } catch (Exception e) {
+            System.out.println("loi addImportedFood(ImportedFood ImportedFood)");
+            e.printStackTrace();
+           return null;
+        }
+        return listImportedFood;
+    }
     public static void main(String[] args) {
 //                ArrayList<Pet> listPet = listPet();
 //                for (Pet pet : listPet) {
@@ -227,20 +439,28 @@ public class ProductRepository {
 //
 //        }
 //                System.out.println(listPet.size());
-//        ArrayList<Food> listFood = listFood();
-//        for (Food food : listFood) {
-//            System.out.println(food);
-//
-//        }
-//        System.out.println(listFood.size());
-        for (Food pet: getListFood()
-             ) {
-            System.out.println(pet);
-            for (Image img: getListFoodImage(pet.getProductId())
+        ArrayList<Food> listFood = getListFood();
+        for (Food food : listFood) {
+            System.out.println(food);
+            for (Image img: food.getListImg()
                  ) {
                 System.out.println(img);
             }
+
         }
-       // System.out.println(getFoodAmount("F0001"));
+//        System.out.println(listFood.size());
+//        for (Food pet: getListFood()
+//             ) {
+//            System.out.println(pet);
+//            for (Image img: getListFoodImage(pet.getProductId())
+//                 ) {
+//                System.out.println(img);
+//            }
+//        }
+        // System.out.println(getFoodAmount("F0001"));
+//        System.out.println(checkExistFoodID("F0001"));
+//        Pet pet = new Pet("P0041", "test", "dog", 5000, 1, null, 1);
+//        addPet(pet);
+
     }
 }

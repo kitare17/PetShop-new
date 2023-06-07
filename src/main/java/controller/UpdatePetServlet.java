@@ -1,5 +1,6 @@
 package controller;
 
+import entity.Image;
 import entity.Pet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import repository.AdminRepository;
+import repository.ProductRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,20 +17,33 @@ import java.util.ArrayList;
 public class UpdatePetServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String petID=request.getParameter("petID");
+    Pet pet= ProductRepository.getPet(petID);
+    request.setAttribute("pet",pet);
+    request.getRequestDispatcher("pet-update.jsp").forward(request,response);
+
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String id = request.getParameter("id");
-//        String name = request.getParameter("name");
-//        String type = request.getParameter("type");
-//        double price = Double.parseDouble(request.getParameter("price"));
-//        int amount = Integer.parseInt(request.getParameter("amount"));
-//        String color = request.getParameter("color");
-//        Pet pet = new Pet(id, name, type, price, amount,);
-//        System.out.println(pet);
-//        AdminRepository.updatePet(pet);
-//        response.sendRedirect("admin.jsp");
+
+//        String productId, String productName, String productType,
+//        double productPrice, int productAmount, ArrayList<
+//        Image > listImg, int status
+        String petID=request.getParameter("petID");
+        String petName=request.getParameter("petName");
+        double petPrice=Double.parseDouble(request.getParameter("petPrice")) ;
+        String petType=request.getParameter("petType");
+        Pet pet =new Pet();
+        pet.setProductId(petID);
+        pet.setProductName(petName);
+        pet.setProductPrice(petPrice);
+        pet.setProductType(petType);
+        ProductRepository.updatePet(pet);
+        request.setAttribute("pet",pet);
+        request.setAttribute("thongbao","Cập nhật thành công");
+        request.getRequestDispatcher("pet-update.jsp").forward(request,response);
 
     }
 }

@@ -1,12 +1,15 @@
 package controller;
 
 import entity.Food;
+import entity.Image;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import repository.AdminRepository;
+import repository.ProductRepository;
+import service.MyRandom;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,18 +18,28 @@ import java.util.ArrayList;
 public class UpdateFoodServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String foodID=request.getParameter("foodID");
+
+        Food food=ProductRepository.getFood(foodID) ;
+        request.setAttribute("food",food);
+        request.getRequestDispatcher("food-update.jsp").forward(request,response);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String id = request.getParameter("id");
-//        String name = request.getParameter("name");
-//        String type = request.getParameter("type");
-//        double price = Double.parseDouble(request.getParameter("price")) ;
-//        int amount =Integer.parseInt(request.getParameter("amount")) ;
-//        Food food=new Food(id, name, type, price, amount);
-//        System.out.println(food);
-//        AdminRepository.updateFood(food);
-//        response.sendRedirect("admin.jsp");
+        String foodID= request.getParameter("productId");
+        String foodName=request.getParameter("foodName");
+        double foodPrice=Double.parseDouble( request.getParameter("foodPrice"))  ;
+        String foodType=request.getParameter("foodType");
+        String foodUrlImg=request.getParameter("foodUrlImg");
+        String foodOrigin=request.getParameter("foodOrigin");
+        System.out.println("Them " +foodID +" "+ foodName+" "+ foodPrice+" "+ foodType+" "+foodUrlImg +foodOrigin );
+        Food food=new Food(foodID,foodName,foodType,foodOrigin,foodPrice,1,null,1);
+        ProductRepository.UpdateFood(food);
+        request.setAttribute("thongbao","Cập nhật thành công");
+        request.setAttribute("food",food);
+
+        request.getRequestDispatcher("food-update.jsp").forward(request,response);
     }
 }

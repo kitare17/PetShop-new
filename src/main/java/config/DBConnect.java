@@ -9,7 +9,7 @@ public class DBConnect {
     public static String dbName = "PetShopDB";
     public static String portNumber = "1433";
     public static String userID = "sa";
-    public static String password = "kungkimp3";
+    public static String password = "123456789";
 //Khoa
 //    public static String serverName = "DESKTOP-0748AC0\\SQLEXPRESS";
 //    public static String dbName = "PetshopDB";
