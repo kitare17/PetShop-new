@@ -3,7 +3,7 @@
 <nav class="nav nav-pills nav-justified">
   <a class="nav-item nav-link " href="updatefood?foodID=${productId}">Thông tin chung</a>
   <a class="nav-item nav-link active" href="#">Nhập hàng</a>
-  <a class="nav-item nav-link " href="#">Xem danh sách nhập</a>
+  <a class="nav-item nav-link " href="food-list-import?productId=${productId}">Xem danh sách nhập</a>
   <a class="nav-item nav-link " href="food-image-manager?productId=${productId}">Quản lí hình ảnh</a>
 </nav>
 
@@ -14,7 +14,7 @@
 
       <div class="row">
         <div class="col-12" style="background-color:#7ab730;border-radius: 10px ">
-          <h2> Cập nhật thức ăn </h2>
+          <h2> Thêm lô hàng thức ăn mới </h2>
         </div>
         <%--input id thức ăn --%>
         <div class="col-md-6 offset-3 mb-3 mt-3">

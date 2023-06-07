@@ -19,7 +19,7 @@
 </nav>
 <div class="container mt-3">
   <h2>Quản lí danh sách nhập hàng của thức ăn ${productId}</h2>
-  <p>Nhân viên có thể xem được danh sách thú cưng ở đây</p>
+  <p>Nhân viên có thể xem được danh sách nhập hàng ở đây</p>
   <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm">
   <br>
   <table class="table table-bordered">

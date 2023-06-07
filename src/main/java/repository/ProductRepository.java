@@ -432,6 +432,39 @@ public class ProductRepository {
         }
         return listImportedFood;
     }
+    public static boolean addFoodImage(String foodID,String url){
+
+        try {
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement("    insert into tblFoodImage(FoodID, URLFoodImage) values (?,?)\n");
+            stmt.setString(1,foodID);
+            stmt.setString(2,url);
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("loi addFoodImage(String foodID,String url)");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean removeFoodImage(String foodID,String url){
+
+        try {
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement("  delete tblFoodImage where URLFoodImage=? and FoodID=?  ");
+            stmt.setString(2,foodID);
+            stmt.setString(1,url);
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("loi addFoodImage(String foodID,String url)");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
     public static void main(String[] args) {
 //                ArrayList<Pet> listPet = listPet();
 //                for (Pet pet : listPet) {
