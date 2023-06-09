@@ -93,7 +93,7 @@
             <a href="about.jsp" class="nav-item nav-link">About</a>
             <a href="service.jsp" class="nav-item nav-link">Service</a>
             <a href="product" class="nav-item nav-link">Product</a>
-            <a href="food-add.jsp" class="nav-item nav-link">Quản lí sản phẩm</a>
+<%--           --%>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                 <div class="dropdown-menu m-0">
@@ -113,7 +113,7 @@
 <%--                        <c:if test="${sessionScope.user.userRole.equals('admin')}">--%>
 <%--                            <a href="admin.jsp" class="dropdown-item">Admin</a>--%>
 <%--                        </c:if>--%>
-
+                        <a href="food-add.jsp" class="dropdown-item">Quản lí sản phẩm</a>
                         <a href="cart.jsp" class="dropdown-item">Your cart</a>
                         <a href="getorderhistory" class="dropdown-item">History order</a>
                         <a href="logout" class="dropdown-item text-danger">Log out</a>

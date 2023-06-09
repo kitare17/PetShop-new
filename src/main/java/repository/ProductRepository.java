@@ -465,6 +465,22 @@ public class ProductRepository {
         }
         return true;
     }
+    public static boolean removePetImage(String petID,String url){
+
+        try {
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement("  delete tblPetImage where URLPetImage=? and PetID=?  ");
+            stmt.setString(2,petID);
+            stmt.setString(1,url);
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("loi removePetImage(String petID,String url)");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
     public static void main(String[] args) {
 //                ArrayList<Pet> listPet = listPet();
 //                for (Pet pet : listPet) {

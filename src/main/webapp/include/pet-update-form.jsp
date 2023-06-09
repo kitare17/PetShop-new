@@ -2,7 +2,7 @@
 
 <nav class="nav nav-pills nav-justified">
     <a class="nav-item nav-link active" href="#">Thông tin chung</a>
-    <a class="nav-item nav-link " href="#">Quản lí hình ảnh</a>
+    <a class="nav-item nav-link " href="pet-image-manager?productId=${pet.productId}">Quản lí hình ảnh</a>
 </nav>
 
 

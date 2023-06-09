@@ -185,4 +185,38 @@ public class OrderRepository {
         }
         return date;
     }
+    public static boolean acceptOrder(String orderId){
+
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "update tblBill set StatusBill=N'Đã xác nhận' where BillID=?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            String accept="Đã xác nhận";
+
+            stmt.setString(1, orderId);
+          stmt.executeUpdate();
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : acceptOrder()<=============");
+            return false;
+        }
+        return true;
+    }
+    public static boolean cancelOrder(String orderId){
+
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "update tblBill set StatusBill=N'Đã hủy' where BillID=?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            String accept="Đã xác nhận";
+
+            stmt.setString(1, orderId);
+            stmt.executeUpdate();
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : cancelOrder()<=============");
+            return false;
+        }
+        return true;
+    }
 }
