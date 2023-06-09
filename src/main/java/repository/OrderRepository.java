@@ -1,9 +1,6 @@
 package repository;
 import config.DBConnect;
-import entity.Cart;
-import entity.Items;
-import entity.Product;
-import entity.User;
+import entity.*;
 import service.Isvalid;
 import service.RandomGenerator;
 
@@ -208,8 +205,6 @@ public class OrderRepository {
             Connection con = DBConnect.getConnection();
             String query = "update tblBill set StatusBill=N'Đã hủy' where BillID=?";
             PreparedStatement stmt = con.prepareStatement(query);
-            String accept="Đã xác nhận";
-
             stmt.setString(1, orderId);
             stmt.executeUpdate();
             con.close();
@@ -218,5 +213,40 @@ public class OrderRepository {
             return false;
         }
         return true;
+    }
+    public static  ArrayList<OrderAccept> getAllOrder(){
+        ArrayList<OrderAccept>listOrder;
+        try {
+           listOrder =new ArrayList<>();
+            Connection con = DBConnect.getConnection();
+            String query = "select * from tblBill";
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet rs=stmt.executeQuery();
+            while(rs.next()){
+                String orderID=rs.getString(1);
+                String employeeID=rs.getString(2);
+                String username=rs.getString(3);
+                String  address=rs.getString(4);
+                String date=rs.getString(5);
+                String preferentialId=rs.getString(6);
+                String status=rs.getString(7);
+                OrderAccept orderAccept=new OrderAccept();
+                orderAccept.setIdOrder(orderID);
+                orderAccept.setUsername(username);
+                orderAccept.setAddress(address);
+                orderAccept.setDate(date);
+                orderAccept.setEmployeeID(employeeID);
+                orderAccept.setOrderStatus(status);
+                orderAccept.setDiscountId(preferentialId);
+                listOrder.add(orderAccept);
+            }
+
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : cancelOrder()<=============");
+            return null;
+        }
+        return listOrder;
     }
 }

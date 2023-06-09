@@ -1,7 +1,10 @@
 package entity;
 
 public class OrderAccept {
-    String idOrder,username,date,discountId,total,orderStatus;
+    private String idOrder,username,date,discountId,total,orderStatus;
+    private String address,employeeID;
+
+
 
     public OrderAccept() {
     }
@@ -61,6 +64,21 @@ public class OrderAccept {
 
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
+    }
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEmployeeID() {
+        return employeeID;
+    }
+
+    public void setEmployeeID(String employeeID) {
+        this.employeeID = employeeID;
     }
 
     @Override
