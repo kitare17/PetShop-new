@@ -219,7 +219,77 @@ public class OrderRepository {
         try {
            listOrder =new ArrayList<>();
             Connection con = DBConnect.getConnection();
-            String query = "select * from tblBill";
+            String query = "select * from tblBill where StatusBill=N'Đang xử lý'";
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet rs=stmt.executeQuery();
+            while(rs.next()){
+                String orderID=rs.getString(1);
+                String employeeID=rs.getString(2);
+                String username=rs.getString(3);
+                String  address=rs.getString(4);
+                String date=rs.getString(5);
+                String preferentialId=rs.getString(6);
+                String status=rs.getString(7);
+                OrderAccept orderAccept=new OrderAccept();
+                orderAccept.setIdOrder(orderID);
+                orderAccept.setUsername(username);
+                orderAccept.setAddress(address);
+                orderAccept.setDate(date);
+                orderAccept.setEmployeeID(employeeID);
+                orderAccept.setOrderStatus(status);
+                orderAccept.setDiscountId(preferentialId);
+                listOrder.add(orderAccept);
+            }
+
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : getAllOrder()<=============");
+            return null;
+        }
+        return listOrder;
+    }
+    public static  ArrayList<OrderAccept> getAllOrderAccepted(){
+        ArrayList<OrderAccept>listOrder;
+        try {
+            listOrder =new ArrayList<>();
+            Connection con = DBConnect.getConnection();
+            String query = "select * from tblBill where StatusBill=N'Đã xác nhận'";
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet rs=stmt.executeQuery();
+            while(rs.next()){
+                String orderID=rs.getString(1);
+                String employeeID=rs.getString(2);
+                String username=rs.getString(3);
+                String  address=rs.getString(4);
+                String date=rs.getString(5);
+                String preferentialId=rs.getString(6);
+                String status=rs.getString(7);
+                OrderAccept orderAccept=new OrderAccept();
+                orderAccept.setIdOrder(orderID);
+                orderAccept.setUsername(username);
+                orderAccept.setAddress(address);
+                orderAccept.setDate(date);
+                orderAccept.setEmployeeID(employeeID);
+                orderAccept.setOrderStatus(status);
+                orderAccept.setDiscountId(preferentialId);
+                listOrder.add(orderAccept);
+            }
+
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : cancelOrder()<=============");
+            return null;
+        }
+        return listOrder;
+    }
+    public static  ArrayList<OrderAccept> getAllOrderCancel(){
+        ArrayList<OrderAccept>listOrder;
+        try {
+            listOrder =new ArrayList<>();
+            Connection con = DBConnect.getConnection();
+            String query = "select * from tblBill where StatusBill=N'Đã hủy'";
             PreparedStatement stmt = con.prepareStatement(query);
             ResultSet rs=stmt.executeQuery();
             while(rs.next()){

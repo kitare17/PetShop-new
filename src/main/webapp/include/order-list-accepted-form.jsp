@@ -5,14 +5,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <nav class="nav nav-pills nav-justified">
-    <a class="nav-item nav-link active" href="#">Đơn hàng đang chờ</a>
-    <a class="nav-item nav-link" href="list-order-accepted">Đơn hàng đã xác nhận</a>
+    <a class="nav-item nav-link " href="order-list-manager">Đơn hàng đang chờ</a>
+    <a class="nav-item nav-link active" href="#">Đơn hàng đã xác nhận</a>
     <a class="nav-item nav-link  " href="list-order-cancel">Đơn hàng đã hủy</a>
 
 </nav>
 <div class="container mt-3">
-    <h2>Quản lí danh sách đặt hàng</h2>
-    <p>Nhân viên có thể xem được danh sách đặt hàng ở đây</p>
+    <h2>Quản lí danh sách đặt hàng thành công</h2>
+    <p>Nhân viên có thể xem được danh sách đặt hàng thành công ở đây</p>
     <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm">
     <br>
     <table class="table table-bordered">
@@ -25,8 +25,7 @@
             <th>Ngày đặt</th>
             <th>Mã giảm giá</th>
             <th>Trạng thái</th>
-            <th></th>
-            <th></th>
+
         </tr>
         </thead>
         <tbody id="myTable">
@@ -40,8 +39,7 @@
                 <td>${order.date}</td>
                 <td>${order.discountId}</td>
                 <td>${order.orderStatus}</td>
-               <td><a href="acceptorder?id=${order.idOrder}" class="btn btn-success">Xác nhận</a></td>
-                <td><a href="cancelorder?id=${order.idOrder}" class="btn btn-danger">Hủy</a></td>
+
 
             </tr>
 
