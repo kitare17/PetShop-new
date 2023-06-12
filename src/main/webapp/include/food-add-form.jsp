@@ -23,7 +23,7 @@
                     <label for="foodName">Tên thức ăn</label>
                     <div class="input-group">
                         <input type="text" class="form-control" id="foodName" placeholder="Tên thức ăn" name="foodName"
-                               aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z][a-zA-Z0-9]{7,20}$" required>
+                               aria-describedby="inputGroupPrepend"  required>
                         <div class="invalid-feedback">
                             Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
                         </div>

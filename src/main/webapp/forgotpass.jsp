@@ -128,7 +128,7 @@
 <hr></hr>
 <h3>Nhập địa chỉ email của bạn</h3>
 
-<form action="index.html" method="post">
+<form action="mailforgot" method="post">
     <label for="mail">Email</label></br>
     <input type="email" id="mail" name="mail" placeholder="Nhập địa chỉ email của bạn" required onblur="validateName(mail)">
     <button type="submit">Submit</button>

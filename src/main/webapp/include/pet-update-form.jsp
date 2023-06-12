@@ -18,9 +18,9 @@
 
                 <%--input id pet--%>
                 <div class="col-md-6 offset-3 mb-3 mt-3">
-                    <label for="petID">ID thú cưng</label>
+                    <label for="petID">ID thú cưng <strong>${pet.productId}</strong></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="petID" placeholder="Tên thú cưng" name="petID"  value="${pet.productId}"
+                        <input type="hidden" class="form-control" id="petID" placeholder="Tên thú cưng" name="petID"  value="${pet.productId}"
                                aria-describedby="inputGroupPrepend" required>
                         <div class="invalid-feedback">
                             Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
@@ -60,7 +60,13 @@
                     </select>
                 </div>
 
-
+                <div class="col-md-6 offset-3 mb-3">
+                    <label for="status" class="form-label">Chọn loại thú cưng</label>
+                    <select class="form-select" id="status" name="status">
+                        <option value="0" ${(pet.status.equals("0")?"selected":" ")}>Ngừng bán</option>
+                        <option value="1" ${(pet.status.equals("1")?"selected":" ")}>Đang bán</option>
+                    </select>
+                </div>
                 <div class="row">
                     <div class="col-3 offset-3">
                         <button class="btn btn-primary" type="submit">Cập nhật</button>

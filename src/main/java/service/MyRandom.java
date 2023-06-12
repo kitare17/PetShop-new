@@ -51,8 +51,20 @@ public class MyRandom {
         while(ProductRepository.checkExistFoodID(String.valueOf(sb)));
         return sb.toString();
     }
+    public static String getRandomOTP(){
+        StringBuilder sb ;
+
+            sb = new StringBuilder();
+            sb.append("F");
+
+            for (int i = 1; i <= LENGTH; i++) {
+                sb.append(ALPHABET.charAt(new Random().nextInt(26)));
+            }
+
+        return sb.toString();
+    }
     public static void main(String[] args) {
         for (int i = 1; i <= 5; i++)
-            System.out.println(getRandomFoodID());
+            System.out.println(getRandomOTP());
     }
 }

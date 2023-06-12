@@ -12,6 +12,7 @@ public class User {
         this.lastname = lastname;
         this.address = address;
         this.phone = phone;
+
     }
 
     public String getUserId() {

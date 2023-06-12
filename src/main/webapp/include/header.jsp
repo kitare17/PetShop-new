@@ -4,7 +4,7 @@
     Author     : Admin
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -93,7 +93,7 @@
             <a href="about.jsp" class="nav-item nav-link">About</a>
             <a href="service.jsp" class="nav-item nav-link">Service</a>
             <a href="product" class="nav-item nav-link">Product</a>
-<%--           --%>
+            <%--           --%>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                 <div class="dropdown-menu m-0">
@@ -103,21 +103,29 @@
                 </div>
             </div>
             <c:if test="${sessionScope.user==null}">
-                <a href="login.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Log in <i class="bi bi-arrow-right"></i></a>
+                <a href="login.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Log in <i
+                        class="bi bi-arrow-right"></i></a>
             </c:if>
             <c:if test="${sessionScope.user!=null}">
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle bg-primary text-white px-5 ms-lg-5" data-bs-toggle="dropdown">${sessionScope.user.firstname} ${sessionScope.user.lastname}</a>
+                    <a href="#" class="nav-link dropdown-toggle bg-primary text-white px-5 ms-lg-5"
+                       data-bs-toggle="dropdown">${sessionScope.user.firstname} ${sessionScope.user.lastname}</a>
                     <div class="dropdown-menu m-0">
                         <a href="profile" class="dropdown-item">Your information</a>
-<%--                        <c:if test="${sessionScope.user.userRole.equals('admin')}">--%>
-<%--                            <a href="admin.jsp" class="dropdown-item">Admin</a>--%>
-<%--                        </c:if>--%>
-                        <a href="food-add.jsp" class="dropdown-item">Quản lí sản phẩm</a>
-                        <a href="order-list-manager" class="dropdown-item">Quản lí đơn hàng</a>
-                        <a href="cart.jsp" class="dropdown-item">Your cart</a>
-                        <a href="getorderhistory" class="dropdown-item">History order</a>
-                        <a href="logout" class="dropdown-item text-danger">Log out</a>
+                            <%--                        <c:if test="${sessionScope.user.userRole.equals('admin')}">--%>
+                            <%--                            <a href="admin.jsp" class="dropdown-item">Admin</a>--%>
+                            <%--                        </c:if>--%>
+
+                        <c:if test="${sessionScope.user.userId.startsWith('E')}">
+                            <a href="food-add.jsp" class="dropdown-item">Quản lí sản phẩm</a>
+                            <a href="order-list-manager" class="dropdown-item">Quản lí đơn hàng</a>
+                        </c:if>
+                        <c:if test="${sessionScope.user.userId.startsWith('C')}">
+                            <a href="cart.jsp" class="dropdown-item">Giỏ hàng</a>
+                            <a href="getorderhistory" class="dropdown-item">Lịch sử đặt hàng</a>
+                        </c:if>
+
+                        <a href="logout" class="dropdown-item text-danger">Đăng xuất</a>
                     </div>
                 </div>
             </c:if>

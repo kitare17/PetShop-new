@@ -68,7 +68,7 @@
                     <div>
                         <p>${sessionScope.user.firstname}</p>
                         <p>Số điện thoại: ${sessionScope.user.phone}</p>
-                        <p>Gmail: thằng khoa nó chua bo? email =((</p>
+<%--                        <p>Gmail: thằng khoa nó chua bo? email =((</p>--%>
                         <p>Địa chỉ: ${sessionScope.user.address}</p>
                     </div>
                 </div>

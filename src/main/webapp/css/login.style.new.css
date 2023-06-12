@@ -1,0 +1,335 @@
+* {
+    box-sizing: border-box;
+}
+.form-login {
+    width: 100vw;
+    height: 100vh;
+    background-color: #e0e0e0;
+    overflow: hidden;
+    font-size: 12px;
+    background-image: url("https://imgs.search.brave.com/D1xwGVqMajBE5x-SSa1Eg6B28V674i7B-HDvOyhL9Po/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9pbWFn/ZXM1LmFscGhhY29k/ZXJzLmNvbS8zNjkv/MzY5ODIxLmpwZw");
+    background-size: cover;
+}
+
+.center {
+    position: relative;
+    top: 50%;
+    left: 30%;
+    display: inline-block;
+    width: 400px;
+    height: 650px;
+    border-radius: 20px;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 40px 5px rgb(185, 185, 185);
+    overflow: hidden;
+    background-image: linear-gradient(to top right, #f9a743, #f9db5f);
+}
+@media screen and (max-height: 500px) {
+    .center {
+        transition: transform 0.5s;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+}
+.center .ear {
+    position: absolute;
+    top: -110px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background-color: rgb(37, 37, 37);
+}
+.center .ear.ear--left {
+    left: -135px;
+}
+.center .ear.ear--right {
+    right: -135px;
+}
+.center .face {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 220px;
+    height: 170px;
+    margin: 100px auto 10px;
+    --rotate-head: 0deg;
+    transform: rotate(var(--rotate-head));
+    transition: transform 0.2s;
+    transform-origin: center 20px;
+}
+.center .eye {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgb(37, 37, 37);
+}
+.center .eye.eye--left {
+    margin-right: 45px;
+}
+.center .eye.eye--right {
+    margin-left: 45px;
+}
+.center .eye .glow {
+    position: relative;
+    top: 3px;
+    right: -12px;
+    width: 12px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #fff;
+    transform: rotate(38deg);
+}
+.center .nose {
+    position: relative;
+    top: 35px;
+    transform: scale(1.1);
+}
+.center .nose .glow {
+    position: absolute;
+    top: 3px;
+    left: 32%;
+    width: 15px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #476375;
+}
+.center .mouth {
+    position: relative;
+    margin-top: 55px;
+}
+.center svg.smile {
+    position: absolute;
+    left: -28px;
+    top: -19px;
+    transform: scaleX(1.1);
+    stroke:rgb(37, 37, 37);
+}
+.center .mouth-hole {
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 60px;
+    height: 15px;
+    border-radius: 50%/100% 100% 0% 0;
+    transform: rotate(180deg);
+    background-color: rgb(37, 37, 37);
+    z-index: -1;
+}
+.center .tongue {
+    position: relative;
+    top: 5px;
+    width: 30px;
+    height: 25px;
+    background-color: #ffd7dd;
+    transform-origin: top;
+    transform: rotateX(60deg);
+}
+.center .tongue.breath {
+    animation: breath 0.3s infinite linear;
+}
+.center .tongue-top {
+    position: absolute;
+    bottom: -15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #ffd7dd;
+}
+.center .line {
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 5px;
+    background-color: #fcb7bf;
+}
+.center .median {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 25px;
+    border-radius: 5px;
+    background-color: #fcb7bf;
+}
+.center .hands {
+    position: relative;
+}
+.center .hands .hand {
+    position: absolute;
+    top: -4px;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    z-index: 1;
+}
+.center .hands .hand--left {
+    left: 90px;
+}
+.center .hands .hand--left.hide {
+    transform: translate(2px, -155px) rotate(-160deg);
+}
+.center .hands .hand--left.peek {
+    transform: translate(0px, -120px) rotate(-160deg);
+}
+.center .hands .hand--right {
+    left: 235px;
+}
+.center .hands .hand--right.hide {
+    transform: translate(-15px, -160px) rotate(160deg);
+}
+.center .hands .hand--right.peek {
+    transform: translate(-15px, -160px) rotate(160deg);
+}
+.center .hands .finger {
+    position: relative;
+    z-index: 0;
+}
+.center .hands .finger .bone {
+    width: 30px;
+    height: 25px;
+    border: 2px solid rgb(37, 37, 37);
+    border-bottom: none;
+    border-top: none;
+    background-color: #fac555;
+}
+.center .hands .finger .nail {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 30px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid rgb(37, 37, 37);
+    background-color: #fac555;
+    z-index: -1;
+}
+.center .hands .finger:nth-child(1),
+.center .hands .finger:nth-child(3) {
+    left: 4px;
+    z-index: 1;
+}
+.center .hands .finger:nth-child(1) .bone,
+.center .hands .finger:nth-child(3) .bone {
+    height: 20px;
+}
+.center .hands .finger:nth-child(3) {
+    left: -4px;
+}
+.center .hands .finger:nth-child(2) {
+    top: -5px;
+    z-index: 2;
+}
+.center .hands .finger:nth-child(1) .nail,
+.center .hands .finger:nth-child(3) .nail {
+    top: 0px;
+}
+.center .login {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.center .login label {
+    position: relative;
+    padding: 10px 20px;
+}
+.center .login label .fa {
+    position: absolute;
+    top: 40%;
+    left: 35px;
+    color: #bbb;
+    font-size: large;
+}
+.center .login label .fa:before {
+    position: relative;
+    left: 1px;
+}
+.center .login input,
+.center .login .login-button {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 30px;
+    font-size: x-large;
+}
+.center .login input {
+    padding: 0 20px 0 40px;
+    margin: 5px 0;
+    box-shadow: none;
+    outline: none;
+}
+.center .login input::placeholder {
+    color: #ccc;
+    font-size: x-large;
+}
+.center .login input.password {
+    padding: 0 90px 0 40px;
+
+}
+.center .login .login-button {
+    padding: 0 40px 0 40px;
+    background-color: rgb(37, 37, 37);
+    color: #fff;
+    transition: transform 0.1s;
+}
+.center .login .login-button:active {
+    transform: scale(0.95);
+}
+.center .social-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+.center .social-buttons .social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    margin: 0 10px;
+    border-radius: 50%;
+    background-color:rgb(37, 37, 37);
+    color: #fff;
+    font-size: 18px;
+}
+.center .social-buttons .social:active {
+    transform: scale(0.95);
+}
+.center .footer {
+    text-align: center;
+    margin-top: 15px;
+}
+.forgotpass{
+    text-align: right;
+}
+@-moz-keyframes breath {
+    0%, 100% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(60deg);
+    }
+}
+@-webkit-keyframes breath {
+    0%, 100% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(60deg);
+    }
+}
+@-o-keyframes breath {
+    0%, 100% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(60deg);
+    }
+}
+@keyframes breath {
+    0%, 100% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(60deg);
+    }
+}

@@ -182,15 +182,16 @@ public class OrderRepository {
         }
         return date;
     }
-    public static boolean acceptOrder(String orderId){
+    public static boolean acceptOrder(String orderId,String employeeID){
 
         try {
             Connection con = DBConnect.getConnection();
-            String query = "update tblBill set StatusBill=N'Đã xác nhận' where BillID=?";
+            String query = "update tblBill set StatusBill=N'Đã xác nhận',EmployeeID=? where BillID=?";
             PreparedStatement stmt = con.prepareStatement(query);
             String accept="Đã xác nhận";
+            stmt.setString(1, employeeID);
 
-            stmt.setString(1, orderId);
+            stmt.setString(2, orderId);
           stmt.executeUpdate();
             con.close();
         } catch (Exception e) {
@@ -199,13 +200,14 @@ public class OrderRepository {
         }
         return true;
     }
-    public static boolean cancelOrder(String orderId){
+    public static boolean cancelOrder(String orderId,String employeeID){
 
         try {
             Connection con = DBConnect.getConnection();
-            String query = "update tblBill set StatusBill=N'Đã hủy' where BillID=?";
+            String query = "update tblBill set StatusBill=N'Đã hủy',employeeID=?  where BillID=?";
             PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setString(1, orderId);
+            stmt.setString(1, employeeID);
+            stmt.setString(2, orderId);
             stmt.executeUpdate();
             con.close();
         } catch (Exception e) {

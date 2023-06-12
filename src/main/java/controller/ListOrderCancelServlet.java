@@ -1,6 +1,7 @@
 package controller;
 
 import entity.OrderAccept;
+import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 public class ListOrderCancelServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         ArrayList<OrderAccept> listOrder = OrderRepository.getAllOrderCancel();
         request.setAttribute("listOrder",listOrder);
         request.getRequestDispatcher("order-list-cancel.jsp").forward(request,response);

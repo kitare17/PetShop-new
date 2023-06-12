@@ -68,21 +68,21 @@
                 <div class="input-group">
                     <input type="text" class="form-control" id="firstname" placeholder="Họ" name="firstname"
                            value="${firstname}"
-                           aria-describedby="inputGroupPrepend" pattern="^[A-Za-z ]{1,50}$" required>
+                           aria-describedby="inputGroupPrepend" pattern="^[\p{Lu}\p{Ll}\sA-Za-záàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]{1,50}$" required>
                     <div class="invalid-feedback">
-                        Họ chứa từ 1 đến 50 kí tự
+                        Họ chứa từ 1 đến 50 kí tự, không chứa ký tự đặc biệt và chữ số
                     </div>
                 </div>
             </div>
             <%-- input lastname--%>
             <div class="col-md-6 offset-3 mb-3">
-                <label for="lastname">Lastname</label>
+                <label for="lastname">Tên</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="lastname" placeholder="Lastname" name="lastname"
+                    <input type="text" class="form-control" id="lastname" placeholder="Tên" name="lastname"
                            value="${lastname}"
-                           aria-describedby="inputGroupPrepend" pattern="^[A-Za-z ]{1,50}$" required>
+                           aria-describedby="inputGroupPrepend" pattern="^[\p{Lu}\p{Ll}\sA-Za-záàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]{1,50}$" required>
                     <div class="invalid-feedback">
-                        Tên chứa từ 1 đến 50 kí tự
+                        Tên chứa từ 1 đến 50 kí tự, không chứa ký tự đặc biệt và chữ số
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" id="address" placeholder="Address" name="address"
                            value="${address}"
-                           aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z0-9\s#-_,./()]{1,100}$" required>
+                           aria-describedby="inputGroupPrepend" pattern="^[^@#$%^&*\\(\\)\\-+=]+{1,100}$" required>
                     <div class="invalid-feedback">
                         Địa chỉ có độ dài 100 kí tự
                     </div>

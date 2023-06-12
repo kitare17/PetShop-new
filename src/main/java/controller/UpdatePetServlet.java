@@ -35,11 +35,13 @@ public class UpdatePetServlet extends HttpServlet {
         String petName=request.getParameter("petName");
         double petPrice=Double.parseDouble(request.getParameter("petPrice")) ;
         String petType=request.getParameter("petType");
+        int petStatus=Integer.parseInt(request.getParameter("status")) ;
         Pet pet =new Pet();
         pet.setProductId(petID);
         pet.setProductName(petName);
         pet.setProductPrice(petPrice);
         pet.setProductType(petType);
+        pet.setStatus(petStatus);
         ProductRepository.updatePet(pet);
         request.setAttribute("pet",pet);
         request.setAttribute("thongbao","Cập nhật thành công");
