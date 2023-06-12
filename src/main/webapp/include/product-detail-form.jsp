@@ -162,16 +162,16 @@
             <form action="additem">
                 <div>
                     <div class="shopee-input-quantity">
-                        <input type="button" class="sub-sl shopee-button-outline" title="Bớt"
+                        <input type="button" class="add-sl shopee-button-outline" title="Bớt"
                                onclick="var qty_el = document.getElementById('qty');
                                        var qty = qty_el.value;
-                                       if (!isNaN(qty))
+                                       if (!isNaN(qty) && qty >1)
                                            qty_el.value--;
                                        return false;">
 
                         <input aria-label="Number" name="ammount" id="qty" type="text" size="1"
-                               class="soluong_12 shopee-button-outline shopee-button-outline-mid" value="1">
-                        <input type="button" class="add-sl shopee-button-outline" title="Thêm"
+                               class="soluong_12 shopee-button-outline shopee-button-outline-mid" value="1" readonly>
+                        <input type="button" class="sub-sl shopee-button-outline" title="Thêm"
                                onclick="var qty_el = document.getElementById('qty');
                                        var qty = qty_el.value;
                                        if (!isNaN(qty))

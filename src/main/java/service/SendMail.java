@@ -7,8 +7,6 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.io.IOException;
 import java.util.Properties;
-
-
 public class SendMail {
     public static boolean forgotPass(String emailTo, String otp) {
         String to = emailTo; // to address. It can be any like gmail, hotmail etc.

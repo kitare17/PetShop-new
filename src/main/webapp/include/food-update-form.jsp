@@ -32,10 +32,10 @@
         <div class="col-md-6 offset-3 mb-3 mt-3">
           <label for="foodName">Tên thức ăn</label>
           <div class="input-group">
-            <input type="text" class="form-control" id="foodName" placeholder="Tên thức ăn" name="foodName"
+            <input pattern="^.{1,50}$" type="text" class="form-control" id="foodName" placeholder="Tên thức ăn" name="foodName"
                    aria-describedby="inputGroupPrepend" value="${food.productName}" required>
             <div class="invalid-feedback">
-              Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
+              Tối đa 1-50 ký tự
             </div>
           </div>
         </div>
@@ -45,10 +45,10 @@
         <div class="col-md-6 offset-3 mb-3">
           <label for="foodPrice">Giá thức ăn</label>
           <div class="input-group">
-            <input type="number" class="form-control" id="foodPrice" placeholder="Giá thức ăn" name="foodPrice"
+            <input type="text" pattern="^(?:\d+|\d*\.\d+)$" class="form-control" id="foodPrice" placeholder="Giá thức ăn" name="foodPrice"
                    aria-describedby="inputGroupPrepend"  value="${food.productPrice}" required>
             <div class="invalid-feedback">
-              Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
+              Giá tiền chỉ bao gồm chữ số
             </div>
           </div>
         </div>
@@ -64,10 +64,10 @@
         <div class="col-md-6 offset-3 mb-3">
           <label for="foodOrigin">Xuất xứ</label>
           <div class="input-group">
-            <input type="text" class="form-control" id="foodOrigin" placeholder="Xuất xứ" name="foodOrigin" value="${food.origin}"
+            <input type="text" pattern="^.{1,30}$" class="form-control" id="foodOrigin" placeholder="Xuất xứ" name="foodOrigin" value="${food.origin}"
                    aria-describedby="inputGroupPrepend"  required>
             <div class="invalid-feedback">
-              Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
+              Độ dài tối đa 30 ký tự
             </div>
           </div>
         </div>
@@ -84,8 +84,8 @@
           </div>
           <div class="col-6">${thongbao}  </div>
         </div>
+      </div>
     </form>
-
 
   </div>
 </div>

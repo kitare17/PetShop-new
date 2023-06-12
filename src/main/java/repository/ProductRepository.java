@@ -171,7 +171,52 @@ public class ProductRepository {
         }
         return listFood;
     }
+    public static ArrayList<Food> getListFoodPage(String page) {
+        ArrayList<Food> listFood = new ArrayList<Food>();
+        try {
+            String query = "select * from tblFood\n" +
+                    "order by FoodID\n" +
+                    "OFFSET (? - 1) * 9 ROWS\n" +
+                    "FETCH NEXT 9 ROWS ONLY;";
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1,page);
+            ResultSet results = stmt.executeQuery();
+            while (results.next()) {
+                String productId = results.getString(1);
+                String productName = results.getString(2);
+                String productType = results.getString(3);
+                String origin = results.getString(4);
+                double productPrice = results.getDouble(5);
+                int status = results.getInt(6);
+                int productAmount = getFoodAmount(productId);
+                ArrayList<Image> listImage = getListFoodImage(productId);
+                Food food = new Food(productId, productName, productType, origin, productPrice, productAmount, listImage, status);
+                listFood.add(food);
 
+            }
+        } catch (Exception e) {
+            System.err.println("Loi database method listFood class ProductRepository");
+        }
+        return listFood;
+    }
+    public  static int getFoodSize(){
+        int size=0;
+        try {
+            String query = "select COUNT(1) from tblFood";
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement(query);
+
+            ResultSet results = stmt.executeQuery();
+            while (results.next()) {
+               size=results.getInt(1);
+
+            }
+        } catch (Exception e) {
+            System.err.println("Loi database method listFood class ProductRepository");
+        }
+        return size;
+    }
     public static Pet getPet(String id) {
         try {
             String query = "SELECT * FROM  tblPet f join tblPetImage i  on f.PetID = i.PetID where f.PetID = ?";
@@ -510,6 +555,7 @@ public class ProductRepository {
 //        System.out.println(checkExistFoodID("F0001"));
 //        Pet pet = new Pet("P0041", "test", "dog", 5000, 1, null, 1);
 //        addPet(pet);
+        System.out.println(getFoodSize());
 
     }
 }

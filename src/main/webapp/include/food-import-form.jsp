@@ -31,10 +31,10 @@
         <div class="col-md-6 offset-3 mb-3 mt-3">
           <label for="importName">Tên lô hàng  </label>
           <div class="input-group">
-            <input type="text" class="form-control" id="importName" placeholder="Tên lô thức ăn" name="importName"
+            <input pattern="^.{1,100}$" type="text" class="form-control" id="importName" placeholder="Tên lô thức ăn" name="importName"
                    aria-describedby="inputGroupPrepend"  required>
             <div class="invalid-feedback">
-              Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
+              Tối đa 100 ký tự
             </div>
           </div>
         </div>
@@ -43,10 +43,10 @@
         <div class="col-md-6 offset-3 mb-3 mt-3">
           <label for="importAmount">Số lượng thức ăn  </label>
           <div class="input-group">
-            <input type="number" class="form-control" id="importAmount" placeholder="Số lượng thức ăn" name="importAmount"
+            <input  type="number" class="form-control" min="1" max="9999999" id="importAmount" placeholder="Số lượng thức ăn" name="importAmount"
                    aria-describedby="inputGroupPrepend"  required>
             <div class="invalid-feedback">
-              Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
+              Không bao gồm chữ cái
             </div>
           </div>
         </div>
@@ -58,7 +58,7 @@
             <input type="date" class="form-control" id="importDate" placeholder="Ngày nhập" name="importDate"
                    aria-describedby="inputGroupPrepend"  required>
             <div class="invalid-feedback">
-              Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
+              Trường này là bắt buộc
             </div>
           </div>
         </div>
@@ -71,6 +71,7 @@
           </div>
           <div class="col-6">${thongbao}  </div>
         </div>
+      </div>
     </form>
 
 

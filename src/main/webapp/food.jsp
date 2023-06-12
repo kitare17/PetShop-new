@@ -29,5 +29,5 @@
 <%--        </c:forEach>--%>
 <%--    </c:otherwise>--%>
 <%--</c:choose>--%>
-<a href="food?page=last">last</a>
+<%--<a href="food?page=last">last</a>--%>
 <%@include file="include/footer.jsp" %>

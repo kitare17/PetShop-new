@@ -25,7 +25,7 @@
                         <input type="text" class="form-control" id="petName" placeholder="Tên thú cưng" name="petName"
                                aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z][a-zA-Z0-9]{7,20}$" required>
                         <div class="invalid-feedback">
-                            Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
+                            Tối đa 1-50 ký tự
                         </div>
                     </div>
                 </div>
@@ -35,10 +35,10 @@
                 <div class="col-md-6 offset-3 mb-3">
                     <label for="petPrice">Giá thú cưng</label>
                     <div class="input-group">
-                        <input type="number" class="form-control" id="petPrice" placeholder="Giá thú cưng" name="petPrice"
+                        <input  pattern="^(?:\d+|\d*\.\d+)$" type="number" class="form-control" id="petPrice" placeholder="Giá thú cưng" name="petPrice"
                                aria-describedby="inputGroupPrepend"  required>
                         <div class="invalid-feedback">
-                            Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
+                            Giá tiền chỉ bao gồm chữ số
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                         <input type="text" class="form-control" id="petUrlImg" placeholder="URL" name="petUrlImg"
                                aria-describedby="inputGroupPrepend" required>
                         <div class="invalid-feedback">
-                            Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
+                            Trường này là bắt buộc
                         </div>
                     </div>
                 </div>
@@ -67,8 +67,8 @@
                     </div>
                     <div class="col-6">${thongbao}  </div>
                 </div>
+            </div>
         </form>
-
 
     </div>
 </div>
