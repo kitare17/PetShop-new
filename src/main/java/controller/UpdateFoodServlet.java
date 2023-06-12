@@ -34,8 +34,9 @@ public class UpdateFoodServlet extends HttpServlet {
         String foodType=request.getParameter("foodType");
         String foodUrlImg=request.getParameter("foodUrlImg");
         String foodOrigin=request.getParameter("foodOrigin");
+        int foodStatus=Integer.parseInt(request.getParameter("status")) ;
         System.out.println("Them " +foodID +" "+ foodName+" "+ foodPrice+" "+ foodType+" "+foodUrlImg +foodOrigin );
-        Food food=new Food(foodID,foodName,foodType,foodOrigin,foodPrice,1,null,1);
+        Food food=new Food(foodID,foodName,foodType,foodOrigin,foodPrice,1,null,foodStatus);
         ProductRepository.UpdateFood(food);
         request.setAttribute("thongbao","Cập nhật thành công");
         request.setAttribute("food",food);

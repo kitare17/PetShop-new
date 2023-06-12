@@ -71,7 +71,13 @@
             </div>
           </div>
         </div>
-
+        <div class="col-md-6 offset-3 mb-3">
+          <label for="status" class="form-label">Trạng thái</label>
+          <select class="form-select" id="status" name="status">
+            <option value="0" ${(food.status.equals("0")?"selected":" ")}>Ngừng bán</option>
+            <option value="1" ${(food.status.equals("1")?"selected":" ")}>Đang bán</option>
+          </select>
+        </div>
         <div class="row">
           <div class="col-3 offset-3">
             <button class="btn btn-primary" type="submit">Cập nhật</button>

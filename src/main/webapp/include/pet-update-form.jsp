@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="col-md-6 offset-3 mb-3">
-                    <label for="status" class="form-label">Chọn loại thú cưng</label>
+                    <label for="status" class="form-label">Trạng thái</label>
                     <select class="form-select" id="status" name="status">
                         <option value="0" ${(pet.status.equals("0")?"selected":" ")}>Ngừng bán</option>
                         <option value="1" ${(pet.status.equals("1")?"selected":" ")}>Đang bán</option>
