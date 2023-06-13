@@ -25,6 +25,9 @@ public class FoodShowServlet extends HttpServlet {
         ArrayList<Food> listFood = ProductRepository.getListFoodPage(page);
         double size = ProductRepository.getFoodSize();
         int max= (int) Math.ceil(size/9);
+
+
+
         request.setAttribute("listFood", listFood);
         request.setAttribute("maxPage",max);
 

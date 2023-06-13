@@ -7,6 +7,98 @@
     <a class="nav-item nav-link  " href="pet-list-manager">Danh sách thú cưng</a>
 </nav>
 
+<%--<div class="container">--%>
+
+<%--    <div class="row ">--%>
+<%--        <form class="needs-validation mt-3" novalidate action="addpet" method="post">--%>
+
+<%--            <div class="row">--%>
+<%--                <div class="col-12" style="background-color:#7ab730;border-radius: 10px ">--%>
+<%--                    <h2>Thêm một thú cưng mới</h2>--%>
+<%--                </div>--%>
+
+
+<%--                &lt;%&ndash;input ten pet&ndash;%&gt;--%>
+<%--                <div class="col-md-6 offset-3 mb-3 mt-3">--%>
+<%--                    <label for="petName">Tên thú cưng</label>--%>
+<%--                    <div class="input-group">--%>
+<%--                        <input type="text" class="form-control" id="petName" placeholder="Tên thú cưng" name="petName"--%>
+<%--                               aria-describedby="inputGroupPrepend" maxlength="50" required>--%>
+<%--                        <div class="invalid-feedback">--%>
+<%--                            Tối đa 1-50 ký tự--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+
+
+<%--                &lt;%&ndash;input giá pet&ndash;%&gt;--%>
+<%--                <div class="col-md-6 offset-3 mb-3">--%>
+<%--                    <label for="petPrice">Giá thú cưng</label>--%>
+<%--                    <div class="input-group">--%>
+<%--                        <input  pattern="^(?:\d+|\d*\.\d+)$" type="number" class="form-control" id="petPrice" placeholder="Giá thú cưng" name="petPrice"--%>
+<%--                               aria-describedby="inputGroupPrepend"  required>--%>
+<%--                        <div class="invalid-feedback">--%>
+<%--                            Giá tiền chỉ bao gồm chữ số--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                &lt;%&ndash;input loại pet&ndash;%&gt;--%>
+<%--                <div class="col-md-6 offset-3 mb-3">--%>
+<%--                    <label for="petType" class="form-label">Chọn loại thú cưng</label>--%>
+<%--                    <select class="form-select" id="petType" name="petType">--%>
+<%--                        <option value="dog">Chó</option>--%>
+<%--                        <option value="cat">Mèo</option>--%>
+<%--                    </select>--%>
+<%--                </div>--%>
+<%--                <div class="col-md-6 offset-3 mb-3">--%>
+<%--                    <label for="petUrlImg">Đường dẫn ảnh</label>--%>
+<%--                    <div class="input-group">--%>
+<%--                        <input type="text" class="form-control" id="petUrlImg" placeholder="URL" name="petUrlImg"--%>
+<%--                               aria-describedby="inputGroupPrepend" required>--%>
+<%--                        <div class="invalid-feedback">--%>
+<%--                            Trường này là bắt buộc--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+
+<%--                <div class="row">--%>
+<%--                    <div class="col-3 offset-3">--%>
+<%--                        <button class="btn btn-primary" type="submit">Thêm</button>--%>
+<%--                    </div>--%>
+<%--                    <div class="col-6">${thongbao}  </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </form>--%>
+
+<%--    </div>--%>
+<%--</div>--%>
+
+
+<%--<!-- Contact End -->--%>
+
+<%--<script>--%>
+<%--    // Example starter JavaScript for disabling form submissions if there are invalid fields--%>
+<%--    (function () {--%>
+<%--        'use strict';--%>
+<%--        window.addEventListener('load', function () {--%>
+<%--            // Fetch all the forms we want to apply custom Bootstrap validation styles to--%>
+<%--            var forms = document.getElementsByClassName('needs-validation');--%>
+<%--            // Loop over them and prevent submission--%>
+<%--            var validation = Array.prototype.filter.call(forms, function (form) {--%>
+<%--                form.addEventListener('submit', function (event) {--%>
+<%--                    if (form.checkValidity() === false) {--%>
+<%--                        event.preventDefault();--%>
+<%--                        event.stopPropagation();--%>
+<%--                    }--%>
+<%--                    form.classList.add('was-validated');--%>
+<%--                }, false);--%>
+<%--            });--%>
+<%--        }, false);--%>
+<%--    })();--%>
+<%--</script>--%>
+
+
+
 <div class="container">
 
     <div class="row ">
@@ -14,35 +106,35 @@
 
             <div class="row">
                 <div class="col-12" style="background-color:#7ab730;border-radius: 10px ">
-                    <h2>Thêm một thú cưng mới</h2>
+                    <h2>Thêm thú cưng mới</h2>
                 </div>
 
 
-                <%--input ten pet--%>
+                <%--input ten thú cưng--%>
                 <div class="col-md-6 offset-3 mb-3 mt-3">
                     <label for="petName">Tên thú cưng</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="petName" placeholder="Tên thú cưng" name="petName"
-                               aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z][a-zA-Z0-9]{7,20}$" required>
+                        <input pattern="^.{1,50}$" type="text" class="form-control" id="petName" placeholder="Tên thú cưng" name="petName"
+                               aria-describedby="inputGroupPrepend"  required>
                         <div class="invalid-feedback">
-                            Tối đa 1-50 ký tự
+                            Tối đa từ 1-50 ký tự
                         </div>
                     </div>
                 </div>
 
 
-                <%--input giá pet--%>
+                <%--input giá thú cưng--%>
                 <div class="col-md-6 offset-3 mb-3">
-                    <label for="petPrice">Giá thú cưng</label>
+                    <label for="petPrice">Giá thức ăn</label>
                     <div class="input-group">
-                        <input  pattern="^(?:\d+|\d*\.\d+)$" type="number" class="form-control" id="petPrice" placeholder="Giá thú cưng" name="petPrice"
+                        <input type="text" pattern="^(?:\d+|\d*\.\d+)$" class="form-control" id="petPrice" placeholder="Giá thú cưng" name="petPrice"
                                aria-describedby="inputGroupPrepend"  required>
                         <div class="invalid-feedback">
                             Giá tiền chỉ bao gồm chữ số
                         </div>
                     </div>
                 </div>
-                <%--input loại pet--%>
+                <%--input loại Food--%>
                 <div class="col-md-6 offset-3 mb-3">
                     <label for="petType" class="form-label">Chọn loại thú cưng</label>
                     <select class="form-select" id="petType" name="petType">
@@ -50,13 +142,14 @@
                         <option value="cat">Mèo</option>
                     </select>
                 </div>
+
                 <div class="col-md-6 offset-3 mb-3">
                     <label for="petUrlImg">Đường dẫn ảnh</label>
                     <div class="input-group">
                         <input type="text" class="form-control" id="petUrlImg" placeholder="URL" name="petUrlImg"
                                aria-describedby="inputGroupPrepend" required>
                         <div class="invalid-feedback">
-                            Trường này là bắt buộc
+                           Vui lòng điền vào
                         </div>
                     </div>
                 </div>
@@ -69,6 +162,7 @@
                 </div>
             </div>
         </form>
+
 
     </div>
 </div>

@@ -126,29 +126,29 @@
 <body>
 <h1>Quên mật khẩu</h1>
 <hr></hr>
-<h3>Nhập mật khẩu mới</h3>
+<h3>Chúng tôi đã gửi otp đến mail của bạn</h3>
 
-<form action="reset-pass" method="post">
-  <label for="username">Username: ${sessionScope.username}  </label></br>
-  <input type="hidden" id="username" name="username" value="${sessionScope.username}" required>
-  <label for="newpass">Mật khẩu mới</label></br>
-  <input type="password" id="newpass" name="newpass" placeholder="Nhập mật khẩu mới" required>
-  <label for="re-pass">Nhập mật lại mật khẩu mới</label></br>
-  <input type="password" id="re-pass" name="re-pass" placeholder="Nhập lại mật khẩu mới" required >
+<form action="otp" method="post">
+  <label for="otp">Nhập OTP</label></br>
+  <input type="text" id="otp" name="otp" placeholder="Nhập otp" required >
   <button type="submit">Submit</button>
-
+  <span id="nameError" style="display: none;" >There was an error with your email</span>
+  <div>
+    <p style="color: red">${thongbao}</p>
+  </div>
 </form>
-<script>
-  const form = document.querySelector('form');
-  const newPassInput = document.getElementById('newpass');
-  const rePassInput = document.getElementById('re-pass');
-
-  form.addEventListener('submit', (event) => {
-    if (newPassInput.value !== rePassInput.value) {
-      event.preventDefault();
-      alert('Mật khẩu nhập lại không trùng khớp với mật khẩu mới!');
-    }
-  });
-</script>
+<%--<script>--%>
+<%--  function validateName(x)--%>
+<%--  {--%>
+<%--    var re = /[A-Za-z@0-9.]/--%>
+<%--    if(re.test(document.getElementById(x).value)){--%>
+<%--      return true;--%>
+<%--    }else{--%>
+<%--      // document.getElementById(x ).style.background ='#e35152';--%>
+<%--      document.getElementById(x + 'Error').style.display = "block";--%>
+<%--      return false;--%>
+<%--    }--%>
+<%--  }--%>
+<%--</script>--%>
 </body>
 </html>

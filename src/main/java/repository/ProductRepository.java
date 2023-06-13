@@ -76,7 +76,34 @@ public class ProductRepository {
         }
         return listPet;
     }
+    public static ArrayList<Pet> getListPetPage(String page) {
+        ArrayList<Pet> listPet = new ArrayList<Pet>();
+        try {
+            String query = "select * from tblPet\n" +
+                    " order by PetID\n" +
+                    " OFFSET (? - 1) * 9 ROWS \n" +
+                    " FETCH NEXT 9 ROWS ONLY";
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1,page);
+            ResultSet results = stmt.executeQuery();
+            while (results.next()) {
+                String productId = results.getString(1);
+                String productName = results.getString(2);
+                String productType = results.getString(3);
+                double productPrice = results.getDouble(4);
+                int productAmount = 1;
+                int productStatus = results.getInt(5);
+                ArrayList<Image> images = getListPetImage(productId);
 
+                Pet pet = new Pet(productId, productName, productType, productPrice, productAmount, images, productStatus);
+                listPet.add(pet);
+            }
+        } catch (Exception e) {
+            System.err.println("Loi database method listPet class ProductRepository");
+        }
+        return listPet;
+    }
     public static ArrayList<Pet> getListCat() {
         ArrayList<Pet> listPet = new ArrayList<Pet>();
         try {
@@ -210,6 +237,23 @@ public class ProductRepository {
             ResultSet results = stmt.executeQuery();
             while (results.next()) {
                size=results.getInt(1);
+
+            }
+        } catch (Exception e) {
+            System.err.println("Loi database method listFood class ProductRepository");
+        }
+        return size;
+    }
+    public  static int getPetSize(){
+        int size=0;
+        try {
+            String query = "select COUNT(1) from tblPet";
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement(query);
+
+            ResultSet results = stmt.executeQuery();
+            while (results.next()) {
+                size=results.getInt(1);
 
             }
         } catch (Exception e) {
@@ -533,15 +577,7 @@ public class ProductRepository {
 //
 //        }
 //                System.out.println(listPet.size());
-        ArrayList<Food> listFood = getListFood();
-        for (Food food : listFood) {
-            System.out.println(food);
-            for (Image img: food.getListImg()
-                 ) {
-                System.out.println(img);
-            }
 
-        }
 //        System.out.println(listFood.size());
 //        for (Food pet: getListFood()
 //             ) {
@@ -555,7 +591,7 @@ public class ProductRepository {
 //        System.out.println(checkExistFoodID("F0001"));
 //        Pet pet = new Pet("P0041", "test", "dog", 5000, 1, null, 1);
 //        addPet(pet);
-        System.out.println(getFoodSize());
+        System.out.println(getPetSize());
 
     }
 }
