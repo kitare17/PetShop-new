@@ -51,7 +51,7 @@
                     <div class="mt-3">
                         <div class="w-50 d-flex justify-content-between">
                             <span>Tổng giá trị sản phẩm:</span>
-                            <strong style="font-size: larger;">${orderedCart.getThanhTienString(0)}</strong>
+                            <strong style="font-size: larger;">${orderedCart.getThanhTienStringAfterPurchase(0)}</strong>
                         </div>
                         <div class="w-50 d-flex justify-content-between">
                             <span>Phí vận chuyển:</span>
@@ -59,14 +59,14 @@
                         </div>
                         <div class="w-50 border-top pt-2 mt-3 d-flex justify-content-between">  
                             <span>Tổng cộng:</span>
-                            <strong style="font-size: x-large;">${orderedCart.getThanhTienString(30000)}</strong>
+                            <strong style="font-size: x-large;">${orderedCart.getThanhTienStringAfterPurchase(30000)}</strong>
                         </div>
                     </div>
                 </div>
                 <div class="border-top pt-3 col-md-4 kt-right">
                     <h3>Thông tin khách hàng</h3>
                     <div>
-                        <p>${sessionScope.user.firstname}</p>
+                        <p>${sessionScope.user.firstname} ${sessionScope.user.lastname}</p>
                         <p>Số điện thoại: ${sessionScope.user.phone}</p>
 <%--                        <p>Gmail: thằng khoa nó chua bo? email =((</p>--%>
                         <p>Địa chỉ: ${sessionScope.user.address}</p>

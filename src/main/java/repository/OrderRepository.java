@@ -57,14 +57,20 @@ public class OrderRepository {
     }
 
     public static boolean createOrderDetail(Cart cart, String orderId) {
+        System.out.println("=>>>>....>>>>>>>>>>>>>>>>>>>>>>>" + orderId);
+        System.out.println(cart.getCart());
+        System.out.println(cart.getCart().get(0).getProduct().getProductId());
+        System.out.println(cart.getCart().get(0).getProduct().getProductAmount());
+        System.out.println(cart.getCart().get(0).getProduct().getProductPrice());
         for (Items i : cart.getCart()) {
             try {
                 Connection con = DBConnect.getConnection();
-                String query = "insert into tblOrderDetails values (?,?,?)";
+                String query = "insert into tblOrderDetails values (?,?,?,?)";
                 PreparedStatement stmt = con.prepareStatement(query);
                 stmt.setString(1, orderId);
                 stmt.setString(2, i.getProduct().getProductId());
                 stmt.setInt(3, i.getAmmout());
+                stmt.setDouble(4,i.getPrice());
                 stmt.executeUpdate();
                 con.close();
             } catch (Exception e) {
@@ -321,4 +327,31 @@ public class OrderRepository {
         }
         return listOrder;
     }
+    public static double getPriceOrdered(String orderId,String productId) {
+        System.out.println("cho nay ne" + orderId);
+        System.out.println("cho nay ne" + productId);
+        double price = 0 ;
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select PriceAtPuchase from tblOrderDetails where ProductID=? and BillID =?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, productId);
+            stmt.setString(2, orderId);
+            ResultSet results = stmt.executeQuery();
+            if (results.next()) {
+                price = results.getDouble(1);
+                System.out.println("=>>>>>>>>>>>>>>>>>>.." + price);
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : getPriceOrdered()<=============");
+        }
+        return price;
+    }
+//    public static void main(String[] args) {
+//        System.out.println(getPriceOrdered("3GXRKMy01w","F0003"));
+//
+//    }
 }
+
+

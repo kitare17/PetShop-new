@@ -72,12 +72,25 @@ public class Cart {
         }
         return tong + phatsinh;
     }
-
+    public double getThanhTienAfterPurchase(double phatsinh) {
+        double tong = 0;
+        for (Items item : cart) {
+            tong += item.getPriceAfterPurchase(orderedId);
+        }
+        return tong + phatsinh;
+    }
     public String getThanhTienString(double phatsinh) {
         if (cart.isEmpty()) {
             return "0";
         }
         return formatter.format(getThanhTien(phatsinh));
+
+    }
+    public String getThanhTienStringAfterPurchase(double phatsinh) {
+        if (cart.isEmpty()) {
+            return "0";
+        }
+        return formatter.format(getThanhTienAfterPurchase(phatsinh));
 
     }
 

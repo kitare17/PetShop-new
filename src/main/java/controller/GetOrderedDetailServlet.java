@@ -21,6 +21,7 @@ public class GetOrderedDetailServlet extends HttpServlet {
         ArrayList<Items> ordered = OrderRepository.getOrder(orderId);
         String orderStatus = OrderRepository.getOrderStatus(orderId);
         orderedCart.setCart(ordered);
+        orderedCart.setOrderedId(orderId);
         request.setAttribute("orderId", orderId);
         request.setAttribute("orderStatus", orderStatus);
         request.setAttribute("orderedCart", orderedCart);
