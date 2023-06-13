@@ -22,7 +22,12 @@ public class JavaMailServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
- String mail=  request.getParameter("mail");
-        SendMail.forgotPass(mail, MyRandom.getRandomOTP());
+        String mail = request.getParameter("mail");
+        String otp = MyRandom.getRandomOTP();
+        HttpSession session = request.getSession();
+        session.setAttribute("otp", otp);
+        session.setAttribute("mailForgot", mail);
+        SendMail.forgotPass(mail, otp);
+        response.sendRedirect("otp");
     }
 }

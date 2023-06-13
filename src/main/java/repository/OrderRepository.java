@@ -60,11 +60,12 @@ public class OrderRepository {
         for (Items i : cart.getCart()) {
             try {
                 Connection con = DBConnect.getConnection();
-                String query = "insert into tblOrderDetails values (?,?,?)";
+                String query = "insert into tblOrderDetails values (?,?,?,?)";
                 PreparedStatement stmt = con.prepareStatement(query);
                 stmt.setString(1, orderId);
                 stmt.setString(2, i.getProduct().getProductId());
                 stmt.setInt(3, i.getAmmout());
+                stmt.setDouble(4,i.getPrice());
                 stmt.executeUpdate();
                 con.close();
             } catch (Exception e) {

@@ -66,7 +66,7 @@
 </div>
 --%>
 
-<div class="container-fluid d-none d-lg-block pt-5 " style="margin: 200px 0px">
+<div class="container-fluid d-none d-lg-block pt-5 " style="margin-bottom: 200px">
     <div class="container">
         <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
             <h6 class="text-primary text-uppercase">Pets</h6>

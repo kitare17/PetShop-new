@@ -2,10 +2,7 @@ package repository;
 
 
 import config.DBConnect;
-import entity.Admin;
-import entity.Customer;
-import entity.Employee;
-import entity.User;
+import entity.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -75,11 +72,51 @@ public class AuthenticationRepository {
         return null;
     }
 
+
+    public static String getUsernameByEmail(String email) {
+
+            try {
+                Connection con = DBConnect.getConnection();
+                String query = "select  * from tblAccount where Email=?";
+                PreparedStatement stmt = con.prepareStatement(query);
+                stmt.setString(1, email);
+                ResultSet resultSet=stmt.executeQuery();
+                while (resultSet.next())return resultSet.getString(1);
+
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Loi method createOrderDetail(Cart cart,String orderId) trong OrderRepository.java ");
+
+            }
+
+        return null;
+    }
+    public static void resetPass(String username,String pass){
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "update tblAccount set PasswordAcc=? where username=?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, pass);
+            stmt.setString(2,username);
+           stmt.executeUpdate();
+
+
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Loi method createOrderDetail(Cart cart,String orderId) trong OrderRepository.java ");
+
+        }
+
+
+
+    }
     public static void main(String[] args) {
         //Test Verify
-       System.out.println(Verify("khoanguvai","123456789"));
+//       System.out.println(Verify("khoanguvai","123456789"));
 //        System.out.println(Verify("Khoangungoc","khoangungoc"));
 //        System.out.println(Verify("QuangE","123456789"));
-
+        System.out.println(getUsernameByEmail("hoctapak@gmail.com"));
     }
 }
