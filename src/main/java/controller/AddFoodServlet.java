@@ -27,7 +27,8 @@ public class AddFoodServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String foodID= MyRandom.getRandomFoodID();
         String foodName=request.getParameter("foodName");
-        double foodPrice=Double.parseDouble( request.getParameter("foodPrice"))  ;
+        double foodPrice=0 ;
+        if(!request.getParameter("foodPrice").isEmpty()) foodPrice=Double.parseDouble( request.getParameter("foodPrice"))  ;
         String foodType=request.getParameter("foodType");
         String foodUrlImg=request.getParameter("foodUrlImg");
         String foodOrigin=request.getParameter("foodOrigin");

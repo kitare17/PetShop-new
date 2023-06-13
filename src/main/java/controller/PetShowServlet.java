@@ -22,52 +22,27 @@ public class PetShowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //        response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
+        String page = request.getParameter("page");
+        if (page==null) page="1";
+        ArrayList<Pet> listPet = ProductRepository.getListPetPage(page);
+        double size=ProductRepository.getPetSize();
+        int maxPage= (int) Math.ceil(size/9);
+//        try {
+//            String PetType = request.getParameter("type");
+//            if (PetType.equals("all") || PetType.isEmpty()) {
+//                listPet = ProductRepository.getListPet();
+//            } else if (PetType.equals("dog")) {
+//                listPet = ProductRepository.getListDog();
+//            } else if (PetType.equals("cat")) {
+//                listPet = ProductRepository.getListCat();
+//
+//            }
+//        } catch (Exception e) {
+//            listPet = ProductRepository.getListPet();
+//
+//        }
 
-        ArrayList<Pet> listPet=null;
-
-        try {
-            String PetType = request.getParameter("type");
-            if (PetType.equals("all") || PetType.isEmpty()) {
-                listPet = ProductRepository.getListPet();
-            } else if (PetType.equals("dog")) {
-                listPet = ProductRepository.getListDog();
-            } else if (PetType.equals("cat")) {
-                listPet = ProductRepository.getListCat();
-
-            }
-        } catch (Exception e) {
-            listPet = ProductRepository.getListPet();
-
-        }
-        ArrayList<Pet> subListPet = new ArrayList<Pet>();
-        int size = listPet.size();//get size
-        int amountPet = 8;//amount on page
-        int maxPage = (size % amountPet == 0) ? size / amountPet : size / amountPet + 1;
-        int pageAmount = 5;
-        int page;
-        try {
-            if (request.getParameter("page").equals("fisrt")) {
-                page = 1;
-            } else if (request.getParameter("page").equals("last")) {
-                page = maxPage;
-            } else {
-                page = Integer.parseInt(request.getParameter("page"));
-            }
-        } catch (Exception e) {
-            page = 1;
-        }
-
-        System.out.println(page + " " + size);
-
-        int realAmountPet = (page * amountPet > size) ? size : page * amountPet;//set amount user if exceed real size
-        System.out.println(realAmountPet);
-        for (int i = page * amountPet - amountPet; i < realAmountPet; i++) {
-            subListPet.add(listPet.get(i));
-            System.out.println(i);
-        }
-        request.setAttribute("listPet", subListPet);
-
-        request.setAttribute("page", page);
+        request.setAttribute("listPet", listPet);
         request.setAttribute("maxPage", maxPage);
         request.getRequestDispatcher("pet.jsp").forward(request, response);
     }

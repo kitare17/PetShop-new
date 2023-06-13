@@ -29,7 +29,8 @@ public class AddPetServlet extends HttpServlet {
         // , int productAmount, ArrayList<Image> listImg, int status
         String petID= MyRandom.getRandomPetID();
         String petName=request.getParameter("petName");
-        double petPrice=Double.parseDouble( request.getParameter("petPrice"))  ;
+        double petPrice=0  ;
+        if( !request.getParameter("petPrice").isEmpty())  petPrice=Double.parseDouble( request.getParameter("petPrice"))  ;
         String petType=request.getParameter("petType");
         String petUrlImg=request.getParameter("petUrlImg");
         System.out.println("Them " +petID +" "+ petName+" "+ petPrice+" "+ petType+" "+petUrlImg );

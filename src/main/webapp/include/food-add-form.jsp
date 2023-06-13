@@ -67,7 +67,7 @@
                         <input type="text" class="form-control" id="foodUrlImg" placeholder="URL" name="foodUrlImg"
                                aria-describedby="inputGroupPrepend" required>
                         <div class="invalid-feedback">
-                             chưa sửa ?
+                             Vui lòng điền vào
                         </div>
                     </div>
                 </div>
