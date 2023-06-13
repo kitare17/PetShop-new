@@ -158,7 +158,6 @@ public class UserRepository {
             preSt.setString(3, lastname);
             preSt.setString(4, address);
             preSt.setString(5, phone);
-
             //insert to tblCustomer
             preSt.executeUpdate();
             //inster to tblAccount

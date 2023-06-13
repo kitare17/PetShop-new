@@ -27,13 +27,13 @@
                             <td>Ngày mua</td>
                             <td>Sản phẩm</td>
                             <td>Tổng tiền</td>
-                            <td>Tình trạng</td
+                            <td>Tình trạng</td>
 
                             </thead>
                             <tbody>    
                                 <c:forEach items="${listOrdered}" var="i">
                                     <tr>
-                                        <td><a href="getordereddetail?orderId=${i.orderedId}">${i.orderedId}</td>
+                                        <td><a href="getordereddetail?orderId=${i.orderedId}">${i.orderedId}</a></td>
                                         <td>${i.date}</td>
                                         <td>
                                             <c:forEach items="${i.cart}" var="item">
@@ -41,7 +41,7 @@
                                             </c:forEach>
                                             
                                         </td>
-                                        <td width="15%">${i.getThanhTienString(30000)}</td>
+                                        <td width="15%">${i.getThanhTienStringAfterPurchase(30000)}</td>
                                         <td width="15%">
                                             ${i.orderStatus}</td>
                                     </tr>

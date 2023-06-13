@@ -1,5 +1,8 @@
 package entity;
 
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Or;
+import repository.OrderRepository;
+
 import java.text.DecimalFormat;
 
 public class Items {
@@ -33,6 +36,15 @@ public class Items {
 
     public double getPrice() {
         return product.getProductPrice() * ammout;
+    }
+    public double getPriceAfterPurchase (String OrderId) {
+        for (int i = 0 ; i < 10 ; i ++) {
+            System.out.println(OrderId);
+            System.out.println(product.getProductId());
+            System.out.println("me");
+            System.out.println(OrderRepository.getPriceOrdered(OrderId,product.getProductId()));
+        }
+        return OrderRepository.getPriceOrdered(OrderId,product.getProductId());
     }
     public String getPriceString() {
         return formatter.format(getPrice());
