@@ -19,7 +19,7 @@
         <thead>
         <tr>
             <th>Mã số đơn hàng</th>
-            <th>Người duyệt đơn</th>
+
             <th>ID khách hàng</th>
             <th>Địa chỉ</th>
             <th>Ngày đặt</th>
@@ -34,7 +34,7 @@
         <c:forEach var="order" items="${listOrder}">
             <tr>
                 <td>${order.idOrder}</td>
-                <td>${order.employeeID}</td>
+
                 <td>${order.username}</td>
                 <td>${order.address}</td>
                 <td>${order.date}</td>

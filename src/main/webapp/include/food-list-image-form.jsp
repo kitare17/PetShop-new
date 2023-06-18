@@ -111,7 +111,9 @@
             <tr>
                 <td>${img.id}</td>
                 <td><img src="${img.url}" style="width: 100%" alt="${img.url}"></td>
-                <td><a class="btn btn-danger" href="remove-food?productId=${img.id}&urlImage=${img.url}" >Xóa</a></td>
+                <td> <c:if test="${listImage.size()!=1}">
+                    <a class="btn btn-danger" href="remove-food?productId=${img.id}&urlImage=${img.url}" >Xóa</a></td>
+                </c:if>
             </tr>
 
         </c:forEach>

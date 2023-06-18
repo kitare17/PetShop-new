@@ -37,7 +37,7 @@
                 <td>${food.productType}</td>
                 <td>${food.getPriceString()}</td>
                 <td>${food.productAmount}</td>
-                <td>${food.status}</td>
+                <td>${(food.status==1)?"Đang bán":"Ngừng bán"}</td>
                 <td><img style="width: 100%" src="${food.listImg.get(0).url}" alt="${food.productId}"></td>
                 <td> <a class="btn btn-success " href="updatefood?foodID=${food.productId}">Cập nhật</a> </td>
             </tr>

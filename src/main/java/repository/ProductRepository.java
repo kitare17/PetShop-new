@@ -318,6 +318,30 @@ public class ProductRepository {
         }
         return null;
     }
+    public static Food getFoodInfor(String id) {
+        try {
+            String query = "SELECT * FROM  tblFood f where f.FoodID = ?";
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, id);
+            ResultSet results = stmt.executeQuery();
+            while (results.next()) {
+                String productId = results.getString(1);
+                String productName = results.getString(2);
+                String productType = results.getString(3);
+                String productOrigin = results.getString(4);
+                double productPrice = results.getDouble(5);
+                int status = results.getInt(6);
+
+                Food food = new Food(productId, productName, productType, productOrigin, productPrice, 0, null, status);
+                return food;
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("Loi method getFoodInfor() trong ProductRepository.java ");
+        }
+        return null;
+    }
 
     public static boolean checkExistPetID(String petID) {
         try {
