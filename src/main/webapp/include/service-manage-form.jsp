@@ -23,7 +23,7 @@
         dayMaxEvents: true, // allow "more" link when too many events
         dateClick: function(info) {
           // alert('Clicked on: ' + info.dateStr);
-      window.location.href = "index.jsp";
+      window.location.href = "slotdetail?day="+info.dateStr;
           // change the day's background color just for fun
           // info.dayEl.style.backgroundColor = 'red';
         },
