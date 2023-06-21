@@ -1,10 +1,7 @@
 package repository;
 
 import config.DBConnect;
-import entity.Food;
-import entity.Image;
-import entity.ImportedFood;
-import entity.Pet;
+import entity.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -285,6 +282,32 @@ public class ProductRepository {
             }
         } catch (Exception e) {
             System.out.println("Loi method GetPet() trong ProductRepository.java ");
+        }
+        return null;
+    }
+    public static Service getService(String id) {
+        try {
+            String query = "SELECT * FROM tblService s join tblServiceImage i  on s.ServiceID = i.ServiceID where s.ServiceID =?";
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, id);
+            ResultSet results = stmt.executeQuery();
+            while (results.next()) {
+                String serviceId = results.getString(1);
+                String serviceName = results.getString(2);
+                double servicePrice = results.getDouble(3);
+                int status = results.getInt(4);
+                String serviceDesription = results.getString(5);
+                String imgUrl = results.getString(7);
+                ArrayList<Image> listImage = new ArrayList<>();
+                Image image = new Image(id, imgUrl);
+                listImage.add(image);
+                Service service = new Service(serviceId,serviceName,servicePrice,status,serviceDesription,listImage);
+                return service;
+            }
+        } catch (Exception e) {
+            System.out.println("Loi method GetService(id) trong ProductRepository.java ");
+            e.printStackTrace();
         }
         return null;
     }
