@@ -7,5 +7,5 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="include/header.jsp" %>
-<%@include file="include/service-manage-form.jsp" %>
+<%@include file="include/service-calendar-manage-form.jsp" %>
 <%@include file="include/footer.jsp" %>

@@ -5,7 +5,8 @@
   Time: 9:05 CH
   To change this template use File | Settings | File Templates.
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>\
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,43 +17,29 @@
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialDate: '2023-01-12',
+        initialDate: '${date}',
         editable: true,
         selectable: true,
         businessHours: true,
         dayMaxEvents: true, // allow "more" link when too many events
         dateClick: function(info) {
           // alert('Clicked on: ' + info.dateStr);
-      window.location.href = "slotdetail?day="+info.dateStr;
+      window.location.href = "slotdetail?day="+info.dateStr+"&serviceID=";
           // change the day's background color just for fun
           // info.dayEl.style.backgroundColor = 'red';
         },
         events: [
+         <c:forEach  items="${listCalendar}" var="c">
           {
-            title: 'Slot1',
-            start: '2023-01-01T10:30:00',
-            end: '2023-01-01T12:30:00'
+            title: '${c.shiftName}',
+            start: '${c.setDay}T${c.startTime}',
+            end: '${c.setDay}T${c.endTime}'
           },
+          </c:forEach>
 
-          {
-            title: 'Meeting',
-            start: '2023-01-12T10:30:00',
-            end: '2023-01-12T12:30:00'
-          },
-          {
-            title: 'Lunch',
-            start: '2023-01-12T12:00:00'
-          },
-          {
-            title: 'Meeting',
-            start: '2023-01-12T14:30:00'
-          },
-          {
-            title: 'Happy Hour',
-            start: '2023-01-12T17:30:00'
-          }
 
-        ]
+        ],
+        eventColor: '#FF3333'
       });
 
       calendar.render();
@@ -93,10 +80,15 @@
   </style>
 </head>
 <body>
-
+<h1>Lịch trình của dịch vụ ${serviceID}</h1>
 <div id='calendar'></div>
+<c:forEach  items="${listCalendar}" var="c">
+ ${c.shiftName}
+  ${c.setDay}T${c.startTime}
+  ${c.setDay}T${c.endTime}
 
-
+</c:forEach>
+${date}
 
 </body>
 </html>

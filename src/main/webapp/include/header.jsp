@@ -124,7 +124,7 @@
                         <c:if test="${sessionScope.user.userId.startsWith('E')}">
                             <a href="food-add.jsp" class="dropdown-item">Quản lí sản phẩm</a>
                             <a href="order-list-manager" class="dropdown-item">Quản lí đơn hàng</a>
-                            <a href="manage-service.jsp"  class="dropdown-item">Quản lí dịch vụ</a>
+                            <a href="list-service-manager.jsp"  class="dropdown-item">Quản lí dịch vụ</a>
                         </c:if>
                         <c:if test="${sessionScope.user.userId.startsWith('C')}">
                             <a href="cart.jsp" class="dropdown-item">Giỏ hàng</a>

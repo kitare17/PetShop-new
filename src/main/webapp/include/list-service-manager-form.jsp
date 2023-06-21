@@ -21,7 +21,7 @@
           <div>
             <h5 class="text-uppercase mb-3">Massage</h5>
             <p>Quản lí lịch về massage</p>
-            <a class="text-primary text-uppercase" href="">Xem ngay<i class="bi bi-chevron-right"></i></a>
+            <a class="text-primary text-uppercase" href="manage-calendar-service?serviceID=S0001">Xem ngay<i class="bi bi-chevron-right"></i></a>
           </div>
         </div>
       </div>
