@@ -37,7 +37,7 @@
                 <td>${pet.productType}</td>
                 <td>${pet.getPriceString()}</td>
                 <td>${pet.productAmount}</td>
-                <td>${pet.status}</td>
+                <td>${(pet.status)==1?"Đang bán":"Đã bán"}</td>
                 <td><img style="width: 100%" src="${pet.listImg.get(0).url}" alt="${pet.productId}"></td>
                 <td> <a class="btn btn-success " href="updatepet?petID=${pet.productId}">Cập nhật</a> </td>
             </tr>

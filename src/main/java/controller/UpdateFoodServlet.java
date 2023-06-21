@@ -20,7 +20,8 @@ public class UpdateFoodServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String foodID=request.getParameter("foodID");
 
-        Food food=ProductRepository.getFood(foodID) ;
+        Food food=ProductRepository.getFoodInfor(foodID) ;
+        System.out.println(food);
         request.setAttribute("food",food);
         request.getRequestDispatcher("food-update.jsp").forward(request,response);
 
