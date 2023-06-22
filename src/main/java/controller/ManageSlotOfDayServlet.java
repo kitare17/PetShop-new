@@ -16,9 +16,12 @@ public class ManageSlotOfDayServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String day=request.getParameter("day");
     String serviceID=request.getParameter("serviceID");
+    String serviceName=ServiceRespository.getServiceName(serviceID);
     ArrayList listShift= ServiceRespository.getAllShiftByDay(serviceID,day);
     request.setAttribute("listShift",listShift);
     request.setAttribute("day",day);
+    request.setAttribute("serviceName",serviceName);
+    request.setAttribute("serviceID",serviceID);
     request.getRequestDispatcher("calendar-add.jsp").forward(request,response);
     }
 

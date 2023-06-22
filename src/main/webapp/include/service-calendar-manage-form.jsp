@@ -24,7 +24,7 @@
         dayMaxEvents: true, // allow "more" link when too many events
         dateClick: function(info) {
           // alert('Clicked on: ' + info.dateStr);
-      window.location.href = "slotdetail?day="+info.dateStr+"&serviceID=";
+      window.location.href = "slotdetail?day="+info.dateStr+"&serviceID=${serviceID}";
           // change the day's background color just for fun
           // info.dayEl.style.backgroundColor = 'red';
         },
@@ -80,15 +80,15 @@
   </style>
 </head>
 <body>
-<h1>Lịch trình của dịch vụ ${serviceID}</h1>
+<h1>Lịch trình của dịch vụ ${serviceName}</h1>
 <div id='calendar'></div>
-<c:forEach  items="${listCalendar}" var="c">
- ${c.shiftName}
-  ${c.setDay}T${c.startTime}
-  ${c.setDay}T${c.endTime}
+<%--<c:forEach  items="${listCalendar}" var="c">--%>
+<%-- ${c.shiftName}--%>
+<%--  ${c.setDay}T${c.startTime}--%>
+<%--  ${c.setDay}T${c.endTime}--%>
 
-</c:forEach>
-${date}
+<%--</c:forEach>--%>
+<%--${date}--%>
 
 </body>
 </html>

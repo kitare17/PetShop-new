@@ -21,7 +21,7 @@
           <div>
             <h5 class="text-uppercase mb-3">Massage</h5>
             <p>Quản lí lịch về massage</p>
-            <a class="text-primary text-uppercase" href="manage-calendar-service?serviceID=S0001">Xem ngay<i class="bi bi-chevron-right"></i></a>
+            <a class="text-primary text-uppercase" href="manage-calendar-service?serviceID=S0005">Xem ngay<i class="bi bi-chevron-right"></i></a>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
           <div>
             <h5 class="text-uppercase mb-3">Triệt sản</h5>
             <p>Quản lí lịch về triệt sản</p>
-            <a class="text-primary text-uppercase" href="">Xem ngay<i class="bi bi-chevron-right"></i></a>
+            <a class="text-primary text-uppercase" href="manage-calendar-service?serviceID=S0003">Xem ngay<i class="bi bi-chevron-right"></i></a>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@
           <div>
             <h5 class="text-uppercase mb-3">Cắt tỉa lông</h5>
             <p>Quản lí lịch tỉa lông</p>
-            <a class="text-primary text-uppercase" href="">Xem ngay<i class="bi bi-chevron-right"></i></a>
+            <a class="text-primary text-uppercase" href="manage-calendar-service?serviceID=S0002">Xem ngay<i class="bi bi-chevron-right"></i></a>
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@
           <div>
             <h5 class="text-uppercase mb-3">Vệ sinh tai</h5>
             <p>Quản lí lịch vệ sinh tai</p>
-            <a class="text-primary text-uppercase" href="">Xem ngay<i class="bi bi-chevron-right"></i></a>
+            <a class="text-primary text-uppercase" href="manage-calendar-service?serviceID=S0006">Xem ngay<i class="bi bi-chevron-right"></i></a>
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@
           <div>
             <h5 class="text-uppercase mb-3">Tắm rửa vệ sinh thú cưng</h5>
             <p>Quản lí lịch vệ sinh thú cưng</p>
-            <a class="text-primary text-uppercase" href="">Xem ngay<i class="bi bi-chevron-right"></i></a>
+            <a class="text-primary text-uppercase" href="manage-calendar-service?serviceID=S0001">Xem ngay<i class="bi bi-chevron-right"></i></a>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
           <div>
             <h5 class="text-uppercase mb-3">Tiêm phòng</h5>
             <p>Quản lí lịch tiêm phòng</p>
-            <a class="text-primary text-uppercase" href="">Xem ngay<i class="bi bi-chevron-right"></i></a>
+            <a class="text-primary text-uppercase" href="manage-calendar-service?serviceID=S0004">Xem ngay<i class="bi bi-chevron-right"></i></a>
           </div>
         </div>
       </div>

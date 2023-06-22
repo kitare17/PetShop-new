@@ -86,16 +86,35 @@ public class ServiceRespository {
         }
         return listCanlendar;
     }
+  public static String getServiceName(String serviceID){
+        String serviceName=null;
+      try {
+          Connection con = DBConnect.getConnection();
+          String query = " select ServiceName from tblService where ServiceID=?";
+          PreparedStatement stmt = con.prepareStatement(query);
+          stmt.setString(1,serviceID);
+          ResultSet rs = stmt.executeQuery();
 
+          while (rs.next()) {
+              serviceName=rs.getString(1);
+          }
+
+      } catch (Exception e) {
+          System.out.println("loi getServiceName() servicerespository");
+          e.printStackTrace();
+      }
+      return serviceName;
+  }
 
     public static void main(String[] args) {
-//        for (Shift s : getAllShiftByDay("S0001", "2023-06-20")) {
-//            System.out.println(s);
-//        }
-        for (Calendar c:getCalendarByMonthYear("S0001",6,2023)
-             ) {
-            System.out.println(c);
+        for (Shift s : getAllShiftByDay("S0001", "2023-06-20")) {
+            System.out.println(s);
         }
+//        for (Calendar c:getCalendarByMonthYear("S0001",6,2023)
+//             ) {
+//            System.out.println(c);
+//        }
+//        System.out.println(getServiceName("S0001"));
     }
 
 }

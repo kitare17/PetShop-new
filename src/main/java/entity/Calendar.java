@@ -10,6 +10,8 @@ public class Calendar {
     private int numberOfResponse;
     private String startTime;
     private String endTime;
+    private String serviceID;
+    private String serviceName;
 
     public Calendar() {
     }
@@ -60,6 +62,22 @@ public class Calendar {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public String getServiceID() {
+        return serviceID;
+    }
+
+    public void setServiceID(String serviceID) {
+        this.serviceID = serviceID;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
     }
 
     @Override
