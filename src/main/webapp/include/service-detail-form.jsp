@@ -124,6 +124,8 @@
 
             <h2>${service.serviceName}</h2>
             <p>${service.description}</p>
+            <p>${service.serviceID}</p>
+            <p>${service.listImg.get(0).getUrl()}</p>
 
             <h6>Thương hiệu: <a href="">Chời ơi dịch vụ ko có thương hiệu đâu =((</a></h6>
             <div class="d-flex">
@@ -131,7 +133,7 @@
                 <h1>${service.getPriceString()}</h1>
             </div>
             <div class="d-flex">
-                <h6 class="align-self-center mb-0">Đánh giá sản phẩm: </h6>
+                <h6 class="align-self-center mb-0">Đánh giá dịch vụ </h6>
                 <div class="rate align-self-auto">
                     <input type="radio" id="star5" name="rate" value="5" />
                     <label for="star5" title="text">5 stars</label>
@@ -153,7 +155,7 @@
 <%--            </div>--%>
             <hr>
 
-<%--            <form action="additem">--%>
+            <form action="manage-calendar-service">
 <%--                <div>--%>
 <%--                    <div class="shopee-input-quantity">--%>
 <%--                        <input type="button" class="add-sl shopee-button-outline" title="Bớt"--%>
@@ -173,14 +175,14 @@
 <%--                                       return false;">--%>
 <%--                    </div>--%>
 <%--                </div>--%>
-<%--                <div class="buttons">--%>
-<%--                    <div>--%>
-<%--                        <input name ="id" type = "text" hidden="" value = "${product.productId}">--%>
-<%--                        <input class="btn btn-primary" type="submit" value="Thêm vào giỏ hàng">--%>
-<%--                    </div>--%>
-<%--                    <h3>${message}</h3>--%>
-<%--                </div>--%>
-<%--            </form>--%>
+                <div class="buttons">
+                    <div>
+                        <input name ="serviceID" type = "text" hidden="" value = "${service.serviceID}">
+                        <input class="btn btn-primary" type="submit" value="Đặt ngay">
+                    </div>
+                    <h3>${message}</h3>
+                </div>
+            </form>
         </div>
 
     </div>
