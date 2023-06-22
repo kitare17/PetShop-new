@@ -9,6 +9,16 @@ public class Shift {
     private int numberOfResponse;
     private String day;
     private String serviceID;
+
+    public int getRealOfResponse() {
+        return realOfResponse;
+    }
+
+    public void setRealOfResponse(int realOfResponse) {
+        this.realOfResponse = realOfResponse;
+    }
+
+    private int realOfResponse;
     public Shift() {
     }
 
@@ -97,6 +107,7 @@ public class Shift {
                 ", numberOfResponse=" + numberOfResponse +
                 ", day='" + day + '\'' +
                 ", serviceID='" + serviceID + '\'' +
+                ", realOfResponse=" + realOfResponse +
                 '}';
     }
 }

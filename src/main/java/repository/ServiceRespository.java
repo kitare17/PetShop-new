@@ -105,16 +105,55 @@ public class ServiceRespository {
       }
       return serviceName;
   }
+    public static ArrayList<Shift> updateAmountShift(ArrayList<Shift> listShift){
+
+        for (Shift s: listShift) {
+            try {
+                Connection con = DBConnect.getConnection();
+                String query = " select ShiftID,ServiceID,SetDay,SUM(Amount) as Amount from tblServiceBill\n" +
+                        "where StatusBill='1'\n" +
+                        "group by ShiftID,ServiceID,SetDay\n" +
+                        "having  (ShiftID=? and ServiceID=? and SetDay=?  )";
+                PreparedStatement stmt = con.prepareStatement(query);
+                stmt.setString(1,s.getShiftID());
+                stmt.setString(2,s.getServiceID());
+                stmt.setString(3,s.getDay());
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                   s.setRealOfResponse(rs.getInt(4));
+                }
+
+            } catch (Exception e) {
+                System.out.println("loi UpdateAmountShift() servicerespository");
+                e.printStackTrace();
+            }
+        }
+
+        return listShift;
+    }
+
+
 
     public static void main(String[] args) {
-        for (Shift s : getAllShiftByDay("S0001", "2023-06-20")) {
-            System.out.println(s);
-        }
+//        for (Shift s : getAllShiftByDay("S0001", "2023-06-20")) {
+//            System.out.println(s);
+//        }
 //        for (Calendar c:getCalendarByMonthYear("S0001",6,2023)
 //             ) {
 //            System.out.println(c);
 //        }
 //        System.out.println(getServiceName("S0001"));
+        ArrayList<Shift> listShift= getAllShiftByDay("S0001","2023-06-01");
+        for (Shift s : listShift) {
+            System.out.println(s);
+        }
+        listShift=updateAmountShift(listShift);
+        for (Shift s : listShift) {
+            System.out.println(s);
+        }
+
     }
 
 }

@@ -26,7 +26,7 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Thông tin chung:</h5>
-                            <p class="card-text"> <strong>Số lượng khách đã đặt</strong>  <span class="badge bg-primary"> 0/${l.numberOfResponse}</span></p>
+                            <p class="card-text"> <strong>Số lượng khách đã đặt</strong>  <span class="badge bg-primary"> ${l.realOfResponse}/${l.numberOfResponse}</span></p>
                             <p class="card-text"> <strong>Trạng thái</strong>
                                 <c:if test="${l.numberOfResponse!=0}">
                                     <span class="badge bg-success"> Đã lên lịch</span>
@@ -41,7 +41,7 @@
                                 <p class="text-danger">* Lưu ý  cách ngày hôm nay ít nhất 2 ngày</p>
                             </c:if>
                             <c:if test="${l.numberOfResponse==0}">
-                                <a href="#" class="btn btn-primary">Lên lịch ngay</a>
+                                <a href="addshiftcalendar?shiftID=${l.shiftID}&serviceID=${serviceID}&day=${day}" class="btn btn-primary">Lên lịch ngay</a>
                                 <p class="text-danger">* Lưu ý  cách ngày hôm nay ít nhất 2 ngày</p>
                             </c:if>
 
