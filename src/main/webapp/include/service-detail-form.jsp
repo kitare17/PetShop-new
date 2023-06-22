@@ -155,7 +155,7 @@
 <%--            </div>--%>
             <hr>
 
-            <form action="manage-calendar-service">
+            <form action="get-calendar-service">
 <%--                <div>--%>
 <%--                    <div class="shopee-input-quantity">--%>
 <%--                        <input type="button" class="add-sl shopee-button-outline" title="Bớt"--%>
