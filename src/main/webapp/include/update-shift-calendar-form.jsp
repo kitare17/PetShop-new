@@ -11,11 +11,11 @@
 <div class="container">
 
   <div class="row ">
-    <form class="needs-validation mt-3" novalidate action="addshiftcalendar" method="post">
+    <form class="needs-validation mt-3" novalidate action="updateshiftcalendar" method="post">
 
       <div class="row">
         <div class="col-12" style="background-color:#7ab730;border-radius: 10px ">
-          <h2>Thêm ca mới</h2>
+          <h2>Cập nhật ca</h2>
         </div>
 
 
@@ -48,12 +48,12 @@
 
         <%--input số lương thú cưng--%>
         <div class="col-md-6 offset-3  mb-3">
-          <label for="numberOfResponses">Số lượng thú cưng đáp ứng</label>
+          <label for="numberOfResponses">Số lượng thú cưng đáp ứng (Lưu ý phải lớn hơn ${numberOfResponses} )</label>
           <div class="input-group">
-            <input type="number" min="1"    class="form-control" id="numberOfResponses" placeholder="Số lượng" name="numberOfResponses"
+            <input type="number" min="${numberOfResponses+1}"    class="form-control" id="numberOfResponses" placeholder="Số lượng" name="numberOfResponses"
                    aria-describedby="inputGroupPrepend"  required>
             <div class="invalid-feedback">
-             Số lượng từ 1 trở lên
+              Số lượng thú cưng đáp ứng phải lớn hơn số lượng cũ
             </div>
           </div>
         </div>
