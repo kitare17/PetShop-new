@@ -18,6 +18,7 @@ public class ManageSlotOfDayServlet extends HttpServlet {
     String serviceID=request.getParameter("serviceID");
     String serviceName=ServiceRespository.getServiceName(serviceID);
     ArrayList listShift= ServiceRespository.getAllShiftByDay(serviceID,day);
+    listShift=ServiceRespository.updateAmountShift(listShift);
     request.setAttribute("listShift",listShift);
     request.setAttribute("day",day);
     request.setAttribute("serviceName",serviceName);
