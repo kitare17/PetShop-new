@@ -2,6 +2,7 @@ package repository;
 
 import config.DBConnect;
 import entity.Calendar;
+import entity.ServiceBill;
 import entity.Shift;
 
 import java.sql.Connection;
@@ -183,7 +184,194 @@ public class ServiceRespository {
         }
         return true;
     }
+    public static ArrayList<ServiceBill> getAllServiceOrder() {
+        ArrayList<ServiceBill> listServiceBill= null;
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select * from tblServiceBill where StatusBill=0";
 
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet rs=stmt.executeQuery();
+            listServiceBill=new ArrayList<>();
+            while (rs.next()){
+                 String billID=rs.getString(1);
+                 String employeeID=rs.getString(2);
+                 String customerID=rs.getString(3);
+                 String dateCreate=rs.getString(4);
+                 String shiftID=rs.getString(5);
+                 String serviceID=rs.getString(6);
+                 String day=rs.getString(7);
+                 int status=rs.getInt(8);
+                 int amount=rs.getInt(9);
+                 ServiceBill serviceBill=new ServiceBill(billID,employeeID,customerID,dateCreate,shiftID,serviceID,day,status,amount);
+                 listServiceBill.add(serviceBill);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("loi getAllServiceOrder() servicerespository");
+            e.printStackTrace();
+            return null;
+        }
+        return listServiceBill;
+    }
+    public static ArrayList<ServiceBill> getAllServiceAcceptedOrder() {
+        ArrayList<ServiceBill> listServiceBill= null;
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select * from tblServiceBill where StatusBill=1";
+
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet rs=stmt.executeQuery();
+            listServiceBill=new ArrayList<>();
+            while (rs.next()){
+                String billID=rs.getString(1);
+                String employeeID=rs.getString(2);
+                String customerID=rs.getString(3);
+                String dateCreate=rs.getString(4);
+                String shiftID=rs.getString(5);
+                String serviceID=rs.getString(6);
+                String day=rs.getString(7);
+                int status=rs.getInt(8);
+                int amount=rs.getInt(9);
+                ServiceBill serviceBill=new ServiceBill(billID,employeeID,customerID,dateCreate,shiftID,serviceID,day,status,amount);
+                listServiceBill.add(serviceBill);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("loi getAllServiceOrder() servicerespository");
+            e.printStackTrace();
+            return null;
+        }
+        return listServiceBill;
+    }
+    public static ArrayList<ServiceBill> getAllServiceCancelOrder() {
+        ArrayList<ServiceBill> listServiceBill= null;
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select * from tblServiceBill where StatusBill=3";
+
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet rs=stmt.executeQuery();
+            listServiceBill=new ArrayList<>();
+            while (rs.next()){
+                String billID=rs.getString(1);
+                String employeeID=rs.getString(2);
+                String customerID=rs.getString(3);
+                String dateCreate=rs.getString(4);
+                String shiftID=rs.getString(5);
+                String serviceID=rs.getString(6);
+                String day=rs.getString(7);
+                int status=rs.getInt(8);
+                int amount=rs.getInt(9);
+                ServiceBill serviceBill=new ServiceBill(billID,employeeID,customerID,dateCreate,shiftID,serviceID,day,status,amount);
+                listServiceBill.add(serviceBill);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("loi getAllServiceOrder() servicerespository");
+            e.printStackTrace();
+            return null;
+        }
+        return listServiceBill;
+    }
+    public static ArrayList<ServiceBill> getAllServicePaidOrder() {
+        ArrayList<ServiceBill> listServiceBill= null;
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select * from tblServiceBill where StatusBill=2";
+
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet rs=stmt.executeQuery();
+            listServiceBill=new ArrayList<>();
+            while (rs.next()){
+                String billID=rs.getString(1);
+                String employeeID=rs.getString(2);
+                String customerID=rs.getString(3);
+                String dateCreate=rs.getString(4);
+                String shiftID=rs.getString(5);
+                String serviceID=rs.getString(6);
+                String day=rs.getString(7);
+                int status=rs.getInt(8);
+                int amount=rs.getInt(9);
+                ServiceBill serviceBill=new ServiceBill(billID,employeeID,customerID,dateCreate,shiftID,serviceID,day,status,amount);
+                listServiceBill.add(serviceBill);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("loi getAllServiceOrder() servicerespository");
+            e.printStackTrace();
+            return null;
+        }
+        return listServiceBill;
+    }
+
+    public static boolean acceptBill(String billID) {
+
+        try {
+            Connection con = DBConnect.getConnection();
+            String query =
+                    "update tblServiceBill\n" +
+                            "set StatusBill=1\n" +
+                            "where BillID=?";
+
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, billID);
+
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("loi acceptBill() servicerespository");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    public static boolean paidBill(String billID) {
+
+        try {
+            Connection con = DBConnect.getConnection();
+            String query =
+                    "update tblServiceBill\n" +
+                            "set StatusBill=2\n" +
+                            "where BillID=?";
+
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, billID);
+
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("loi paidBill() servicerespository");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    public static boolean cancelBill(String billID) {
+
+        try {
+            Connection con = DBConnect.getConnection();
+            String query =
+                    "update tblServiceBill\n" +
+                            "set StatusBill=3\n" +
+                            "where BillID=?";
+
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, billID);
+
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("loi cancelBill() servicerespository");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
     public static void main(String[] args) {
 //        for (Shift s : getAllShiftByDay("S0001", "2023-06-20")) {
 //            System.out.println(s);
@@ -193,15 +381,19 @@ public class ServiceRespository {
 //            System.out.println(c);
 //        }
 //        System.out.println(getServiceName("S0001"));
-        ArrayList<Shift> listShift = getAllShiftByDay("S0001", "2023-06-01");
-        for (Shift s : listShift) {
+//        ArrayList<Shift> listShift = getAllShiftByDay("S0001", "2023-06-01");
+//        for (Shift s : listShift) {
+//            System.out.println(s);
+//        }
+//        listShift = updateAmountShift(listShift);
+//        for (Shift s : listShift) {
+//            System.out.println(s);
+//        }
+        for (ServiceBill s: getAllServiceOrder()
+             ) {
             System.out.println(s);
-        }
-        listShift = updateAmountShift(listShift);
-        for (Shift s : listShift) {
-            System.out.println(s);
-        }
 
+        }
     }
 
 }
