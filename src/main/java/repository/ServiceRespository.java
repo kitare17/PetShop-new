@@ -133,6 +133,76 @@ public class ServiceRespository {
 
         return listShift;
     }
+    public static int getHandleNumberOfSlot(String serviceID, String shiftID,String setDay) {
+        int handleNum = 0;
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select NumberOfResponses from tblCalendar where ShiftID=? and ServiceID=? and SetDay=?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, shiftID);
+            stmt.setString(2, serviceID);
+            stmt.setString(3, setDay);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                handleNum = rs.getInt(1);
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("===========>Loi getHandleNumberOfSlot trong ServiceRepository");
+            e.printStackTrace();
+        }
+        return handleNum;
+    }
+    public static int getBookedNumberOfSlot(String serviceID, String shiftID,String setDay) {
+        int bookedNum = 0;
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select ShiftID,ServiceID,SetDay,SUM(Amount) as Amount from tblServiceBill\n" +
+                    "    where StatusBill='1' or StatusBill = '2'\n" +
+                    "     group by ShiftID,ServiceID,SetDay \n" +
+                    "  having  (ShiftID=? and ServiceID=? and SetDay=?)";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, shiftID);
+            stmt.setString(2, serviceID);
+            stmt.setString(3, setDay);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                bookedNum = rs.getInt(4);
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("===========>Loi getBookedNumberOfSlot trong ServiceRepository");
+            e.printStackTrace();
+        }
+        return bookedNum;
+    }
+
+    public static boolean createCheckout(String billID,String customerID,String dateCreate,String serviceID, String shiftID,String setDay,int ammount) {
+
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "insert into  tblServiceBill(BillID, CustomerID,DateCreate,ServiceID,ShiftID,SetDay,StatusBill,Amount) values (?,?,?,?,?,?,?,?)";
+
+//            String query = "values\n" +
+//                    "(?,NULL,?,?,'SH001','S0001','2023-06-13',0,12)";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, billID);
+            stmt.setString(2, customerID);
+            stmt.setString(3, dateCreate);
+            stmt.setString(4, serviceID);
+            stmt.setString(5, shiftID);
+            stmt.setString(6, setDay);
+            stmt.setInt(7, 1);
+            stmt.setInt(8,ammount);
+            stmt.executeUpdate();
+            con.close();
+        } catch (Exception e) {
+            System.out.println("===========>Loi createCheckout trong ServiceRepository");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
 
 
@@ -145,14 +215,19 @@ public class ServiceRespository {
 //            System.out.println(c);
 //        }
 //        System.out.println(getServiceName("S0001"));
-        ArrayList<Shift> listShift= getAllShiftByDay("S0001","2023-06-01");
-        for (Shift s : listShift) {
-            System.out.println(s);
-        }
-        listShift=updateAmountShift(listShift);
-        for (Shift s : listShift) {
-            System.out.println(s);
-        }
+//        x
+//        ArrayList<Shift> listShift= getAllShiftByDay("S0001","2023-06-01");
+//        for (Shift s : listShift) {
+//            System.out.println(s);
+//        }
+//        listShift=updateAmountShift(listShift);
+//        for (Shift s : listShift) {
+//            System.out.println(s);
+//        }
+//        String query = "insert into tblServiceBill\n" +
+//                    "values\n" +
+//                    "('WFQGC',NULL\t,'C0001','2023-06-01','SH001','S0001','2023-06-13',0,\t12)"
+//        createCheckout("WFQ2GC","C0001","2023-06-20","S0001","SH001","2023-06-13");
 
     }
 

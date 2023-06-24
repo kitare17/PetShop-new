@@ -9,6 +9,7 @@ public class MyRandom {
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     private static final int LENGTH = 4;
+    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     public static String getRandomCusID() {
         StringBuilder sb ;
@@ -66,5 +67,17 @@ public class MyRandom {
     public static void main(String[] args) {
         for (int i = 1; i <= 5; i++)
             System.out.println(getRandomOTP());
+    }
+    public static String getRandomServiceBillID() {
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder(20);
+
+        for (int i = 0; i < 20; i++) {
+            int randomIndex = random.nextInt(CHARACTERS.length());
+            char randomChar = CHARACTERS.charAt(randomIndex);
+            sb.append(randomChar);
+        }
+
+        return sb.toString();
     }
 }
