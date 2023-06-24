@@ -10,14 +10,16 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
-@WebServlet(name = "AddShiftCalendarServlet", value = "/addshiftcalendar")
-public class AddShiftCalendarServlet extends HttpServlet {
+@WebServlet(name = "UpdateShiftCalendarServlet", value = "/updateshiftcalendar")
+public class UpdateShiftCalendarServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String shiftID = request.getParameter("shiftID");
         String serviceID = request.getParameter("serviceID");
         String day = request.getParameter("day");
+        int numberOfResponses=0;
+        if (request.getParameter("numberOfResponses")!=null)
+            numberOfResponses=Integer.parseInt( request.getParameter("numberOfResponses"));
 
         String thongbao;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -27,22 +29,19 @@ public class AddShiftCalendarServlet extends HttpServlet {
         LocalDate ngayDatF = LocalDate.parse(ngayDat, formatter);
 
         long daysBetween = ChronoUnit.DAYS.between( homNay,ngayDatF);
-
-
-        //kiểm tra điều kiện
         if (daysBetween >= 2) {
-            System.out.println("ok");
-
 
             request.setAttribute("shiftID",shiftID);
             request.setAttribute("serviceID",serviceID);
             request.setAttribute("day",day);
-            request.getRequestDispatcher("addshiftcalendar.jsp").forward(request,response);
+            request.setAttribute("numberOfResponses",numberOfResponses);
+            request.getRequestDispatcher("updateshiftcalendar.jsp").forward(request,response);
         } else {
-            thongbao="Ngày đặt: ("+ngayDat + ") và Hôm nay (" + homNayS + ") phải cách nhau 2 ngày";
+            thongbao="Ngày đặt: ("+ngayDat + ") và Hôm nay (" + homNayS + ") phải cách nhau 2 ngày bạn không thể cập nhật";
             request.setAttribute("thongbao",thongbao);
             request.getRequestDispatcher("slotdetail?day="+day+"&serviceID="+serviceID).forward(request,response);
         }
+
 
 
 
@@ -50,11 +49,13 @@ public class AddShiftCalendarServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      String shiftID =request.getParameter("shiftID");
-      String serviceID=request.getParameter("serviceID");
-      String numberOfResponses=request.getParameter("numberOfResponses");
-      String setDay=request.getParameter("setDay");
-        ServiceRespository.addShiftCalendar(shiftID,serviceID,numberOfResponses,setDay);
-    response.sendRedirect("slotdetail?day="+setDay+"&serviceID="+serviceID);
+        String shiftID = request.getParameter("shiftID");
+        String serviceID = request.getParameter("serviceID");
+        String setDay = request.getParameter("setDay");
+        int numberOfResponses=0;
+        if (request.getParameter("numberOfResponses")!=null)
+            numberOfResponses=Integer.parseInt( request.getParameter("numberOfResponses"));
+        ServiceRespository.updateShiftCalendar(shiftID,serviceID,numberOfResponses,setDay);
+        response.sendRedirect("slotdetail?day="+setDay+"&serviceID="+serviceID);
     }
 }

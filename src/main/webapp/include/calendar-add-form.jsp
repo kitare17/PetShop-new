@@ -37,7 +37,7 @@
 
                             </p>
                             <c:if test="${l.numberOfResponse!=0}">
-                                <a href="#" class="btn btn-primary">Cập nhật</a>
+                                <a href="updateshiftcalendar?shiftID=${l.shiftID}&serviceID=${serviceID}&day=${day}&numberOfResponses=${l.numberOfResponse}" class="btn btn-primary">Cập nhật</a>
                                 <p class="text-danger">* Lưu ý  cách ngày hôm nay ít nhất 2 ngày</p>
                             </c:if>
                             <c:if test="${l.numberOfResponse==0}">
@@ -61,4 +61,5 @@
 
     </div>
 </div>
+<h3 class="text-danger text-center">${thongbao}</h3>
 
