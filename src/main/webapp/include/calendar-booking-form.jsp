@@ -37,7 +37,7 @@
 
                             </p>
                             <c:if test="${l.numberOfResponse!=0}">
-                                <a href="#" class="btn btn-primary">Đặt dịch vụ ngay</a>
+                                <a href="confirmbooking?ServiceID=${serviceID}&day=${day}&shiftID=${l.shiftID}" class="btn btn-primary">Đặt dịch vụ ngay</a>
                                 <p class="text-danger">* Lưu ý  cách ngày hôm nay ít nhất 2 ngày</p>
                             </c:if>
                             <c:if test="${l.numberOfResponse==0}">
