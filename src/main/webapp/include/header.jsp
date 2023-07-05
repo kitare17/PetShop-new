@@ -56,8 +56,8 @@
             <div class="d-inline-flex align-items-center">
                 <i class="bi bi-geo-alt fs-1 text-primary me-3"></i>
                 <div class="text-start">
-                    <h6 class="text-uppercase mb-1">Our Office</h6>
-                    <span>123 Street, Da Nang, Viet Nam</span>
+                    <h6 class="text-uppercase mb-1">Địa chỉ</h6>
+                    <span>Số 123, Đà Nẵng, Việt Nam</span>
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@
             <div class="d-inline-flex align-items-center">
                 <i class="bi bi-envelope-open fs-1 text-primary me-3"></i>
                 <div class="text-start">
-                    <h6 class="text-uppercase mb-1">Email Us</h6>
+                    <h6 class="text-uppercase mb-1">Địa chỉ email</h6>
                     <span>info@fpt.edu.vn</span>
                 </div>
             </div>
@@ -74,7 +74,7 @@
             <div class="d-inline-flex align-items-center">
                 <i class="bi bi-phone-vibrate fs-1 text-primary me-3"></i>
                 <div class="text-start">
-                    <h6 class="text-uppercase mb-1">Call Us</h6>
+                    <h6 class="text-uppercase mb-1">Số điện thoại liên hệ</h6>
                     <span>+012 345 6789</span>
                 </div>
             </div>
@@ -94,13 +94,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto py-0">
-            <a href="index.jsp" class="nav-item nav-link active">Home</a>
-            <a href="about.jsp" class="nav-item nav-link">About</a>
-            <a href="service.jsp" class="nav-item nav-link">Service</a>
-            <a href="product" class="nav-item nav-link">Product</a>
+            <a href="index.jsp" class="nav-item nav-link active">Trang chủ</a>
+            <a href="about.jsp" class="nav-item nav-link">Giới thiệu</a>
+            <a href="service.jsp" class="nav-item nav-link">Dịch vụ</a>
+            <a href="product" class="nav-item nav-link">Sản phẩm</a>
             <%--           --%>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tin tức</a>
                 <div class="dropdown-menu m-0">
                     <a href="testmonial.jsp" class="dropdown-item">Testimonial</a>
                     <a href="blog.jsp" class="dropdown-item">Blog Grid</a>
