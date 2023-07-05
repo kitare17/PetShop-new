@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
+    public  String discountCode;
+    private double discountPercent =0f;
     private List<Items> cart;
     DecimalFormat formatter = new DecimalFormat("#,###,###");
     private String orderedId;
@@ -86,6 +88,25 @@ public class Cart {
         return formatter.format(getThanhTien(phatsinh));
 
     }
+    public String getThanhTienStringDiscount(double phatsinh) {
+        if (cart.isEmpty()) {
+            return "0";
+        }
+        return formatter.format(getThanhTienDiscount(phatsinh));
+
+    }
+    public double getThanhTienDiscount(double phatsinh) {
+        double tong = 0;
+        for (Items item : cart) {
+            tong += item.getPrice();
+        }
+        double x = (tong*discountPercent) + phatsinh;
+        System.out.println(x);
+        System.out.println(x);
+        System.out.println(x);
+        System.out.println(x);
+        return x;
+    }
     public String getThanhTienStringAfterPurchase(double phatsinh) {
         if (cart.isEmpty()) {
             return "0";
@@ -151,5 +172,29 @@ public class Cart {
             }
             return "=========>CART : remove Thanh Cong removeItem(String id)<==========";
         }
+    }
+
+    public String getDiscountCode() {
+        return discountCode;
+    }
+
+    public void setDiscountCode(String discountCode) {
+        this.discountCode = discountCode;
+    }
+
+    public double getDiscountPercent() {
+        return discountPercent;
+    }
+
+    public void setDiscountPercent(double discountPercent) {
+        this.discountPercent = discountPercent;
+    }
+
+    public DecimalFormat getFormatter() {
+        return formatter;
+    }
+
+    public void setFormatter(DecimalFormat formatter) {
+        this.formatter = formatter;
     }
 }
