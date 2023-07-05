@@ -197,7 +197,7 @@ public class ServiceRespository {
             stmt.setString(4, serviceID);
             stmt.setString(5, shiftID);
             stmt.setString(6, setDay);
-            stmt.setInt(7, 1);
+            stmt.setInt(7, 0);
             stmt.setInt(8,ammount);
             stmt.executeUpdate();
             con.close();
@@ -478,4 +478,4 @@ public class ServiceRespository {
 
     }
 
-}
+}}

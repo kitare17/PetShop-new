@@ -115,7 +115,7 @@
     }
 
 </style>
-<div class="container-fluid">
+<div class="container-fluid mt-5">
     <div class="container d-flex justify-content-around">
         <div class="col-md-4">
             <img class="w-100" src="${service.listImg.get(0).getUrl()}" alt="asdsd">
@@ -124,10 +124,10 @@
 
             <h2>${service.serviceName}</h2>
             <p>${service.description}</p>
-            <p>${service.serviceID}</p>
-            <p>${service.listImg.get(0).getUrl()}</p>
+<%--            <p>${service.serviceID}</p>--%>
+<%--            <p>${service.listImg.get(0).getUrl()}</p>--%>
 
-            <h6>Thương hiệu: <a href="">Chời ơi dịch vụ ko có thương hiệu đâu =((</a></h6>
+            <h6>Thương hiệu: <a href="">FPT</a></h6>
             <div class="d-flex">
                 <h4 class="mb-3 pb-3">đ</h4>
                 <h1>${service.getPriceString()}</h1>
