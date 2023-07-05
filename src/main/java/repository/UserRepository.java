@@ -102,7 +102,24 @@ public class UserRepository {
             return false;
         }
     }
+    public static boolean checkExistEmail(String email){
+        try {
+            String query ="select * from tblAccount\n" +
+                    "where Email=? \n";
+            Connection con = DBConnect.getConnection();
+            PreparedStatement preSt = con.prepareStatement(query);
+            preSt.setString(1,email);
+            ResultSet rs=preSt.executeQuery();
+            boolean checkEmail= rs.next();
+            con.close();
+            return checkEmail;
 
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return false;
+        }
+    }
     public static boolean addEmployee(String userID, String firstname, String lastname, String address, String phone,String username,String password) {
 
         try {
@@ -141,14 +158,13 @@ public class UserRepository {
     }
 
 
-    public static boolean addCustomer(String userID, String firstname, String lastname, String address, String phone,String username,String password) {
+    public static boolean addCustomer(String userID, String firstname, String lastname, String address, String phone,String username,String password,String email) {
 
 
         try {
 
-            String query="\n" +
-                    "insert into tblCustomer values \n" +
-                    "(?,?,?,?,?)\n";
+            String query="insert into tblCustomer(CustomerID,FirstnameCus,LastnameCus,AddressCus,PhoneCus)\n" +
+                    "values(?,?,?,?,?)";
 
 
             Connection con = DBConnect.getConnection();
@@ -160,14 +176,17 @@ public class UserRepository {
             preSt.setString(5, phone);
             //insert to tblCustomer
             preSt.executeUpdate();
+            con.close();
+            con=DBConnect.getConnection();
             //inster to tblAccount
-            query="insert into tblAccount values\n" +
-                    "(?,?,?,1)";
-            preSt= con.prepareStatement(query);
+            query="insert into tblAccount (Username,PasswordAcc,UserID,StatusAcc,Email)\n" +
+                    "values(?,?,?,1,?)";
             preSt= con.prepareStatement(query);
             preSt.setString(1,username);
             preSt.setString(2,password);
             preSt.setString(3,userID);
+            preSt.setString(4,email);
+
             preSt.executeUpdate();
 
             con.close();
@@ -182,5 +201,6 @@ public class UserRepository {
     public static void main(String[] args) {
 //        User user=login("khoavl", "123456789");
 //        System.out.println(user);
+        System.out.println(checkExistEmail("hoctapak@gmail.com"));
     }
 }

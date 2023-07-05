@@ -5,7 +5,7 @@
   Time: 9:38 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <style>
     .rate {
         float: left;
@@ -13,12 +13,12 @@
         padding: 0 10px;
     }
 
-    .rate:not(:checked)>input {
+    .rate:not(:checked) > input {
         position: absolute;
         top: -9999px;
     }
 
-    .rate:not(:checked)>label {
+    .rate:not(:checked) > label {
         float: right;
         width: 1em;
         overflow: hidden;
@@ -28,27 +28,26 @@
         color: #ccc;
     }
 
-    .rate:not(:checked)>label:before {
+    .rate:not(:checked) > label:before {
         content: '★ ';
     }
 
-    .rate>input:checked~label {
+    .rate > input:checked ~ label {
         color: #ffc700;
     }
 
-    .rate:not(:checked)>label:hover,
-    .rate:not(:checked)>label:hover~label {
+    .rate:not(:checked) > label:hover,
+    .rate:not(:checked) > label:hover ~ label {
         color: #deb217;
     }
 
-    .rate>input:checked+label:hover,
-    .rate>input:checked+label:hover~label,
-    .rate>input:checked~label:hover,
-    .rate>input:checked~label:hover~label,
-    .rate>label:hover~input:checked~label {
+    .rate > input:checked + label:hover,
+    .rate > input:checked + label:hover ~ label,
+    .rate > input:checked ~ label:hover,
+    .rate > input:checked ~ label:hover ~ label,
+    .rate > label:hover ~ input:checked ~ label {
         color: #c59b08;
     }
-
 
 
     .shopee-input-quantity {
@@ -124,8 +123,8 @@
 
             <h2>${service.serviceName}</h2>
             <p>${service.description}</p>
-<%--            <p>${service.serviceID}</p>--%>
-<%--            <p>${service.listImg.get(0).getUrl()}</p>--%>
+            <%--            <p>${service.serviceID}</p>--%>
+            <%--            <p>${service.listImg.get(0).getUrl()}</p>--%>
 
             <h6>Thương hiệu: <a href="">FPT</a></h6>
             <div class="d-flex">
@@ -135,53 +134,61 @@
             <div class="d-flex">
                 <h6 class="align-self-center mb-0">Đánh giá dịch vụ </h6>
                 <div class="rate align-self-auto">
-                    <input type="radio" id="star5" name="rate" value="5" />
+                    <input type="radio" id="star5" name="rate" value="5"/>
                     <label for="star5" title="text">5 stars</label>
-                    <input type="radio" id="star4" name="rate" value="4" />
+                    <input type="radio" id="star4" name="rate" value="4"/>
                     <label for="star4" title="text">4 stars</label>
-                    <input type="radio" id="star3" name="rate" value="3" />
+                    <input type="radio" id="star3" name="rate" value="3"/>
                     <label for="star3" title="text">3 stars</label>
-                    <input type="radio" id="star2" name="rate" value="2" />
+                    <input type="radio" id="star2" name="rate" value="2"/>
                     <label for="star2" title="text">2 stars</label>
-                    <input type="radio" id="star1" name="rate" value="1" />
+                    <input type="radio" id="star1" name="rate" value="1"/>
                     <label for="star1" title="text">1 star</label>
                 </div>
             </div>
-<%--            <div><i class=""></i> Vận chuyển tới: <select class="form-select w-25" name="" id="">--%>
-<%--                <option value="hcm">TP.Hồ Chí Minh</option>--%>
-<%--                <option value="dn">Đà Nẵng</option>--%>
-<%--                <option value="hn">Hà Nội</option>--%>
-<%--            </select>--%>
-<%--            </div>--%>
+            <%--            <div><i class=""></i> Vận chuyển tới: <select class="form-select w-25" name="" id="">--%>
+            <%--                <option value="hcm">TP.Hồ Chí Minh</option>--%>
+            <%--                <option value="dn">Đà Nẵng</option>--%>
+            <%--                <option value="hn">Hà Nội</option>--%>
+            <%--            </select>--%>
+            <%--            </div>--%>
             <hr>
 
             <form action="get-calendar-service">
-<%--                <div>--%>
-<%--                    <div class="shopee-input-quantity">--%>
-<%--                        <input type="button" class="add-sl shopee-button-outline" title="Bớt"--%>
-<%--                               onclick="var qty_el = document.getElementById('qty');--%>
-<%--                                       var qty = qty_el.value;--%>
-<%--                                       if (!isNaN(qty) && qty >1)--%>
-<%--                                           qty_el.value--;--%>
-<%--                                       return false;">--%>
+                <%--                <div>--%>
+                <%--                    <div class="shopee-input-quantity">--%>
+                <%--                        <input type="button" class="add-sl shopee-button-outline" title="Bớt"--%>
+                <%--                               onclick="var qty_el = document.getElementById('qty');--%>
+                <%--                                       var qty = qty_el.value;--%>
+                <%--                                       if (!isNaN(qty) && qty >1)--%>
+                <%--                                           qty_el.value--;--%>
+                <%--                                       return false;">--%>
 
-<%--                        <input aria-label="Number" name="ammount" id="qty" type="text" size="1"--%>
-<%--                               class="soluong_12 shopee-button-outline shopee-button-outline-mid" value="1" readonly>--%>
-<%--                        <input type="button" class="sub-sl shopee-button-outline" title="Thêm"--%>
-<%--                               onclick="var qty_el = document.getElementById('qty');--%>
-<%--                                       var qty = qty_el.value;--%>
-<%--                                       if (!isNaN(qty))--%>
-<%--                                           qty_el.value++;--%>
-<%--                                       return false;">--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-                <div class="buttons">
-                    <div>
-                        <input name ="serviceID" type = "text" hidden="" value = "${service.serviceID}">
-                        <input class="btn btn-primary" type="submit" value="Đặt ngay">
+                <%--                        <input aria-label="Number" name="ammount" id="qty" type="text" size="1"--%>
+                <%--                               class="soluong_12 shopee-button-outline shopee-button-outline-mid" value="1" readonly>--%>
+                <%--                        <input type="button" class="sub-sl shopee-button-outline" title="Thêm"--%>
+                <%--                               onclick="var qty_el = document.getElementById('qty');--%>
+                <%--                                       var qty = qty_el.value;--%>
+                <%--                                       if (!isNaN(qty))--%>
+                <%--                                           qty_el.value++;--%>
+                <%--                                       return false;">--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
+
+                <c:if test="${sessionScope.user.userId.startsWith('C')}">
+                    <div class="buttons">
+                        <div>
+                            <input name="serviceID" type="text" hidden="" value="${service.serviceID}">
+                            <input class="btn btn-primary" type="submit" value="Đặt ngay">
+                        </div>
+                        <h3>${message}</h3>
                     </div>
-                    <h3>${message}</h3>
-                </div>
+                </c:if>
+                <c:if test="${sessionScope.user==null}">
+
+                                <a href="login.jsp" class="btn btn-primary">Đặt ngay</a>
+
+                </c:if>
             </form>
         </div>
 

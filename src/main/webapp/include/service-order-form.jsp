@@ -16,6 +16,7 @@
     <p>Nhân viên có thể xem được danh sách đặt dịch vụ ở đây</p>
     <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm">
     <br>
+    <h5 class="text-danger">${thongbao}</h5>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -43,7 +44,7 @@
                 <td>${order.day}</td>
                 <td>${order.amount}</td>
                 <td>${order.status==0?"Đang chờ":""}</td>
-                <td><a href="acceptservicebill?billID=${order.billID}" class="btn btn-success">Xác nhận</a></td>
+                <td><a href="acceptservicebill?billID=${order.billID}&serviceID=${order.serviceID}&shiftID=${order.shiftID}&setDay=${order.day}&numberOfPet=${order.amount}" class="btn btn-success">Xác nhận</a></td>
                 <td><a href="cancelservicebill?billID=${order.billID}" class="btn btn-danger">Hủy</a></td>
 
             </tr>
