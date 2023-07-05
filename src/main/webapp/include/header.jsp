@@ -108,7 +108,7 @@
                 </div>
             </div>
             <c:if test="${sessionScope.user==null}">
-                <a href="login.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Log in <i
+                <a href="login.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng nhập<i
                         class="bi bi-arrow-right"></i></a>
             </c:if>
             <c:if test="${sessionScope.user!=null}">
@@ -116,7 +116,7 @@
                     <a href="#" class="nav-link dropdown-toggle bg-primary text-white px-5 ms-lg-5"
                        data-bs-toggle="dropdown">${sessionScope.user.firstname} ${sessionScope.user.lastname}</a>
                     <div class="dropdown-menu m-0">
-                        <a href="profile" class="dropdown-item">Your information</a>
+                        <a href="profile" class="dropdown-item">Quản lí thông tin cá nhân</a>
                             <%--                        <c:if test="${sessionScope.user.userRole.equals('admin')}">--%>
                             <%--                            <a href="admin.jsp" class="dropdown-item">Admin</a>--%>
                             <%--                        </c:if>--%>
@@ -126,6 +126,7 @@
                             <a href="order-list-manager" class="dropdown-item">Quản lí đơn hàng</a>
                             <a href="list-service-manager.jsp"  class="dropdown-item">Quản lí dịch vụ</a>
                             <a href="getserviceorder"  class="dropdown-item">Quản lí đơn dịch vụ</a>
+                            <a href="statistics"  class="dropdown-item">Thống kê bán hàng</a>
                         </c:if>
                         <c:if test="${sessionScope.user.userId.startsWith('C')}">
                             <a href="cart.jsp" class="dropdown-item">Giỏ hàng</a>

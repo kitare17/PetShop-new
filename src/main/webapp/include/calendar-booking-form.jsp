@@ -26,7 +26,7 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Thông tin chung:</h5>
-                            <p class="card-text"> <strong>Số lượng khách đã đặt</strong>  <span class="badge bg-primary"> 0/${l.numberOfResponse}</span></p>
+                            <p class="card-text"> <strong>Số lượng khách đã đặt</strong>  <span class="badge bg-primary"> ${l.realOfResponse}/${l.numberOfResponse}</span></p>
                             <p class="card-text"> <strong>Trạng thái</strong>
                                 <c:if test="${l.numberOfResponse!=0}">
                                     <span class="badge bg-success"> Đã lên lịch</span>

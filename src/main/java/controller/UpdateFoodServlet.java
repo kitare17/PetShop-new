@@ -1,18 +1,14 @@
 package controller;
 
 import entity.Food;
-import entity.Image;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import repository.AdminRepository;
 import repository.ProductRepository;
-import service.MyRandom;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 @WebServlet(name = "UpdateFoodServlet", value = "/updatefood")
 public class UpdateFoodServlet extends HttpServlet {

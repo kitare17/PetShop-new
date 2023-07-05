@@ -16,8 +16,6 @@ public class GetServiceOrderServlet extends HttpServlet {
         ArrayList<ServiceBill>  listServiceOrder= ServiceRespository.getAllServiceOrder();
         request.setAttribute("listServiceOrder",listServiceOrder);
         request.getRequestDispatcher("serviceorder.jsp").forward(request,response);
-
-
     }
 
     @Override
