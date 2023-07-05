@@ -215,7 +215,8 @@
 
     <div class="row">
       <div class="col-12" style="background-color:#7ab730;border-radius: 10px ">
-        <h2>Xác nhận dặt dịch vụ ${ServiceID} ${servicePrice} ${max}</h2>
+<%--        <h2>Xác nhận dặt dịch vụ ${ServiceID} ${servicePrice} ${max}</h2>--%>
+        <h2>Xác nhận dặt dịch vụ ngày ${setDay}</h2>
       </div>
       <%--input fistname--%>
       <div class="col-md-6 offset-3 mb-3">
@@ -266,9 +267,20 @@
           </div>
         </div>
 <%--input pet--%>
-        <div class="form-group">
-          <label for="numberInput">Nhập số lượng pet</label>
-          <input type="number" name="ammount" class="form-control" id="numberInput" max="${max}" oninput="calculate()">
+<%--        <div class="form-group">--%>
+<%--          <label for="numberInput">Nhập số lượng pet</label>--%>
+<%--          <input type="number" name="ammount" class="form-control" id="numberInput" max="${max}" oninput="calculate()">--%>
+<%--        </div>--%>
+
+        <div class="col-md-6 offset-3  mb-3">
+          <label for="numberInput">Số lượng thú cưng đáp ứng (Lưu ý phải bé hơn ${max} )</label>
+          <div class="input-group">
+            <input type="number" min="1"  max = "${max}"   class="form-control" id="numberInput" placeholder="Số lượng" name="ammount"
+                   aria-describedby="inputGroupPrepend"  required oninput="calculate()">
+            <div class="invalid-feedback">
+              Số lượng thú cưng đáp ứng không đủ
+            </div>
+          </div>
         </div>
 
       </div>
@@ -312,8 +324,28 @@
 <script>
   function calculate() {
     var userInput = document.getElementById("numberInput").value;
-    var result = userInput * parseFloat(${servicePrice});
+    var result = userInput * parseFloat(${servicePrice}) * 1000;
     document.getElementById("result1").innerHTML = result + " đ";
     document.getElementById("result2").innerHTML = result + " đ";
   }
+</script>
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
 </script>

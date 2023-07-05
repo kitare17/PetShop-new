@@ -53,7 +53,6 @@ public class CreateCheckoutServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("ddddddddddddddddddddddddddddddddddddddddddddit me ");
         HttpSession session=request.getSession();
         User user=(User) session.getAttribute("user");
         String serviceid= request.getParameter("ServiceID");
