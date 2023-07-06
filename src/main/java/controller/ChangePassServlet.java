@@ -4,6 +4,7 @@ import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import repository.UserRepository;
 
 import java.io.IOException;
 
@@ -21,6 +22,14 @@ public class ChangePassServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String userID = user.getUserId();
-        System.out.println(oldPass + " " + newPass + " " + userID);
+        int thongbao2=1;
+
+       if(UserRepository.checkOldPass(userID,oldPass))
+           UserRepository.changePass(userID, newPass);
+       else
+          thongbao2=0;
+        System.out.println("thongbao2 ne"+thongbao2);
+
+      response.sendRedirect("profile?thongbao2="+thongbao2);
     }
 }
