@@ -46,6 +46,8 @@
       font-size: 13px;
       font-family: 'Nunito', sans-serif;
       color: #384047;
+      background-color: #0d6efd;
+
     }
 
     form {
