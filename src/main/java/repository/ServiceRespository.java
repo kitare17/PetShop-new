@@ -182,11 +182,11 @@ public class ServiceRespository {
         return bookedNum;
     }
 
-    public static boolean createCheckout(String billID,String customerID,String dateCreate,String serviceID, String shiftID,String setDay,int ammount) {
+    public static boolean createCheckout(String billID,String customerID,String dateCreate,String serviceID, String shiftID,String setDay,int ammount,String priceAtPurchase) {
 
         try {
             Connection con = DBConnect.getConnection();
-            String query = "insert into  tblServiceBill(BillID, CustomerID,DateCreate,ServiceID,ShiftID,SetDay,StatusBill,Amount) values (?,?,?,?,?,?,?,?)";
+            String query = "insert into  tblServiceBill(BillID, CustomerID,DateCreate,ServiceID,ShiftID,SetDay,StatusBill,Amount,PriceAtPurchase) values (?,?,?,?,?,?,?,?,?)";
 
 //            String query = "values\n" +
 //                    "(?,NULL,?,?,'SH001','S0001','2023-06-13',0,12)";
@@ -199,6 +199,7 @@ public class ServiceRespository {
             stmt.setString(6, setDay);
             stmt.setInt(7, 0);
             stmt.setInt(8,ammount);
+            stmt.setString(9,priceAtPurchase.replace(",","."));
             stmt.executeUpdate();
             con.close();
         } catch (Exception e) {
