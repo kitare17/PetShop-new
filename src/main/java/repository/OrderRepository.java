@@ -227,7 +227,8 @@ public class OrderRepository {
         try {
            listOrder =new ArrayList<>();
             Connection con = DBConnect.getConnection();
-            String query = "select * from tblBill where StatusBill=N'Đang xử lý'";
+            String query = "select * from tblBill where StatusBill=N'Đang xử lý'\n" +
+                    "order by DateCreate    ";
             PreparedStatement stmt = con.prepareStatement(query);
             ResultSet rs=stmt.executeQuery();
             while(rs.next()){
@@ -257,12 +258,49 @@ public class OrderRepository {
         }
         return listOrder;
     }
+    public static  ArrayList<OrderAccept> getAllOrderPaid(){
+        ArrayList<OrderAccept>listOrder;
+        try {
+            listOrder =new ArrayList<>();
+            Connection con = DBConnect.getConnection();
+            String query = "select * from tblBill where StatusBill=N'Đã thanh toán'\n" +
+                    "order by DateCreate desc";
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet rs=stmt.executeQuery();
+            while(rs.next()){
+                String orderID=rs.getString(1);
+                String employeeID=rs.getString(2);
+                String username=rs.getString(3);
+                String  address=rs.getString(4);
+                String date=rs.getString(5);
+                String preferentialId=rs.getString(6);
+                String status=rs.getString(7);
+                OrderAccept orderAccept=new OrderAccept();
+                orderAccept.setIdOrder(orderID);
+                orderAccept.setUsername(username);
+                orderAccept.setAddress(address);
+                orderAccept.setDate(date);
+                orderAccept.setEmployeeID(employeeID);
+                orderAccept.setOrderStatus(status);
+                orderAccept.setDiscountId(preferentialId);
+                listOrder.add(orderAccept);
+            }
+
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : getAllOrderPaid()<=============");
+            return null;
+        }
+        return listOrder;
+    }
     public static  ArrayList<OrderAccept> getAllOrderAccepted(){
         ArrayList<OrderAccept>listOrder;
         try {
             listOrder =new ArrayList<>();
             Connection con = DBConnect.getConnection();
-            String query = "select * from tblBill where StatusBill=N'Đã xác nhận'";
+            String query = "select * from tblBill where StatusBill=N'Đã xác nhận'\n" +
+                    "order by DateCreate";
             PreparedStatement stmt = con.prepareStatement(query);
             ResultSet rs=stmt.executeQuery();
             while(rs.next()){
@@ -297,7 +335,8 @@ public class OrderRepository {
         try {
             listOrder =new ArrayList<>();
             Connection con = DBConnect.getConnection();
-            String query = "select * from tblBill where StatusBill=N'Đã hủy'";
+            String query = "select * from tblBill where StatusBill=N'Đã hủy'\n" +
+                    "order by DateCreate desc";
             PreparedStatement stmt = con.prepareStatement(query);
             ResultSet rs=stmt.executeQuery();
             while(rs.next()){
@@ -383,6 +422,22 @@ public class OrderRepository {
             System.out.println("==========>ERROR : getDiscountCodeByOrderID()<=============");
         }
         return discountCode;
+    }
+    public static boolean paidOrder(String orderId,String employeeID){
+
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "update tblBill set StatusBill=N'Đã thanh toán',employeeID=?  where BillID=?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, employeeID);
+            stmt.setString(2, orderId);
+            stmt.executeUpdate();
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : cancelOrder()<=============");
+            return false;
+        }
+        return true;
     }
 //    public static void main(String[] args) {
 //        System.out.println(getDiscountCodeByOrderID("p83RWai9WM"));

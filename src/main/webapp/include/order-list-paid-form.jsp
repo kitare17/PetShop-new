@@ -6,14 +6,14 @@
 
 <nav class="nav nav-pills nav-justified">
   <a class="nav-item nav-link " href="order-list-manager">Đơn hàng đang chờ</a>
-  <a class="nav-item nav-link" href="list-order-accepted">Đơn hàng đã xác nhận</a>
-  <a class="nav-item nav-link " href="order-list-paid">Đơn hàng đã thanh toán</a>
-  <a class="nav-item nav-link active" href="#">Đơn hàng đã hủy</a>
+  <a class="nav-item nav-link " href="list-order-accepted">Đơn hàng đã xác nhận</a>
+  <a class="nav-item nav-link active" href="#">Đơn hàng đã thanh toán</a>
+  <a class="nav-item nav-link  " href="list-order-cancel">Đơn hàng đã hủy</a>
 
 </nav>
 <div class="container mt-3">
-  <h2>Quản lí danh sách đặt hàng bị hủy</h2>
-  <p>Nhân viên có thể xem được danh sách đặt hàng bị hủy ở đây</p>
+  <h2>Quản lí danh sách đơn đã thanh toán</h2>
+  <p>Nhân viên có thể xem được danh sách đơn đã thanh toán ở đây</p>
   <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm">
   <br>
   <table class="table table-bordered">
@@ -26,7 +26,6 @@
       <th>Ngày đặt</th>
       <th>Mã giảm giá</th>
       <th>Trạng thái</th>
-
     </tr>
     </thead>
     <tbody id="myTable">
