@@ -43,7 +43,7 @@ public class OrderRepository {
             stmt.setString(2, user.getUserId());
             stmt.setString(3, user.getAddress());
             stmt.setString(4, Isvalid.getCurrentDate());
-            stmt.setString(5, null);
+            stmt.setString(5, cart.getDiscountCode());
             stmt.setString(6, "Đang xử lý");
             stmt.executeUpdate();
             con.close();
@@ -348,8 +348,44 @@ public class OrderRepository {
         }
         return price;
     }
+    public static double getDiscountPercent(String discountID) {
+        double quantity = 0f;
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select Quantity from tblPreferential where Preferential =?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, discountID);
+            ResultSet results = stmt.executeQuery();
+            if (results.next()) {
+                quantity = results.getDouble(1);
+                System.out.println("=>>>>>>>>>>>>>>>>>>.." + quantity);
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : getDiscountPercent()<=============");
+        }
+        return quantity;
+    }
+    public static String getDiscountCodeByOrderID(String orderid) {
+        String discountCode = null;
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select PreferentialID from tblBill where BillID =?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, orderid);
+            ResultSet results = stmt.executeQuery();
+            if (results.next()) {
+                discountCode = results.getString(1);
+                System.out.println("=>>>>>>>>>>>>>>>>>>.." + discountCode);
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : getDiscountCodeByOrderID()<=============");
+        }
+        return discountCode;
+    }
 //    public static void main(String[] args) {
-//        System.out.println(getPriceOrdered("3GXRKMy01w","F0003"));
+//        System.out.println(getDiscountCodeByOrderID("p83RWai9WM"));
 //
 //    }
 }

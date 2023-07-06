@@ -272,7 +272,7 @@
 <%--          <input type="number" name="ammount" class="form-control" id="numberInput" max="${max}" oninput="calculate()">--%>
 <%--        </div>--%>
 
-        <div class="col-md-6 offset-3  mb-3">
+        <div class="col-md-6  mb-3">
           <label for="numberInput">Số lượng thú cưng đáp ứng (Lưu ý phải bé hơn ${max} )</label>
           <div class="input-group">
             <input type="number" min="1"  max = "${max}"   class="form-control" id="numberInput" placeholder="Số lượng" name="ammount"
@@ -309,6 +309,7 @@
               <div class="cart-summary">
                 <div class="cart-content">
                   <h1>Thanh toán dịch vụ</h1>
+                    <p>Giá phục vụ mỗi con : ${servicePrice}đ</p>
                   <p>Tạm tính  <span id="result1"></span></p>
                   <p>Chi phí khác  <span>0đ</span></p>
                   <h2>Thành tiền  <span id="result2"></span></h2>

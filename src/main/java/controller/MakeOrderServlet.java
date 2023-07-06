@@ -21,6 +21,7 @@ public class MakeOrderServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         Cart cart = (Cart) session.getAttribute("cart");
         String orderId = OrderRepository.createOrder(cart,user);
+        cart.setDiscountCode(null);
         cart.removeAll();
         request.getRequestDispatcher("getordereddetail?orderId="+orderId).forward(request, response);
     }

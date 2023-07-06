@@ -28,6 +28,8 @@ public class GetOrderHistory extends HttpServlet {
             orderedCart.setOrderedId(orderId);
             orderedCart.setOrderStatus(OrderRepository.getOrderStatus(orderId));
             orderedCart.setDate(OrderRepository.getOrderDate(orderId));
+            orderedCart.setDiscountCode(OrderRepository.getDiscountCodeByOrderID(orderId));
+            orderedCart.setDiscountPercent(OrderRepository.getDiscountPercent(orderedCart.getDiscountCode()));
             listOrdered.add(orderedCart);
         }
         request.setAttribute("listOrdered", listOrdered);
