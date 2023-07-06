@@ -198,7 +198,10 @@
       background-color: white;
       border: 1px solid #7AB730;
     }
-
+    #fadeBtn {
+        opacity: 0.5; /* Apply fade effect */
+        pointer-events: none; /* Disable clicking */
+    }
 
     <c:if test="${sessionScope.user==null}">
     <% response.sendRedirect("login.jsp");%>
@@ -209,10 +212,11 @@
       <div class="col-lg-8">
         <div class="cart-page-inner">
   <form class="needs-validation" novalidate action="createcheckout" method="post">
+<%--      input ban thong tin o day--%>
     <input type="hidden" name="ServiceID" value="${ServiceID}">
     <input type="hidden" name="setDay" value="${setDay}">
     <input type="hidden" name="shiftID" value="${shiftID}">
-
+      <input type="hidden" name="priceAtPurchase" value="${servicePrice}">
     <div class="row">
       <div class="col-12" style="background-color:#7ab730;border-radius: 10px ">
 <%--        <h2>Xác nhận dặt dịch vụ ${ServiceID} ${servicePrice} ${max}</h2>--%>
@@ -286,12 +290,22 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-3 offset-3">
-        <button class="btn btn-primary" type="submit">Xác nhận</button>
-        <pc style="color: green">${thongbao}</pc>
-      </div>
-
+        <c:if test="${thongbao ==null}">
+            <div class="col-3 offset-3">
+                <button class="btn btn-primary" type="submit">Xác nhận</button>
+            </div>
+        </c:if>
+        <c:if test="${thongbao !=null}" >
+            <div id="fadeBtn" class="col-3 offset-3">
+                <button class="btn btn-primary" type="submit">Xác nhận</button>
+            </div>
+        </c:if>
     </div>
+      <div class = "row">
+          <div class="offset-3 col">
+              <pc style="color: green">${thongbao}</pc>
+          </div>
+      </div>
 
   </form>
         </div>

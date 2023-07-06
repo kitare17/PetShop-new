@@ -23,29 +23,30 @@ public class CreateCheckoutServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session=request.getSession();
-        User user=(User) session.getAttribute("user");
-        String serviceid= request.getParameter("ServiceID");
-        String setDay= request.getParameter("setDay");
-        String shiftID= request.getParameter("shiftID");
-        int  ammount =Integer.parseInt(request.getParameter("ammount")) ;
-        String userId = user.getUserId();
-        String billID = MyRandom.getRandomServiceBillID();
-        String thongbao;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate homNay = LocalDate.now();//Lấy thời gian hôm nay
-        String homNayS = homNay.format(formatter);
-        LocalDate ngayDatF = LocalDate.parse(setDay, formatter);
-        long daysBetween = ChronoUnit.DAYS.between( homNay,ngayDatF);
-        if (daysBetween >= 2) {
-            ServiceRespository.createCheckout(billID,userId,homNayS,serviceid,shiftID,setDay,ammount);
-            request.getRequestDispatcher("checkout.jsp").forward(request,response);
-
-        } else {
-            thongbao="Ngày đặt: ("+setDay + ") và Hôm nay (" + homNayS + ") phải cách nhau 2 ngày";
-            System.out.println(thongbao);
-            request.getRequestDispatcher("checkout.jsp").forward(request,response);
-        }
+//        HttpSession session=request.getSession();
+//        User user=(User) session.getAttribute("user");
+//        String serviceid= request.getParameter("ServiceID");
+//        String setDay= request.getParameter("setDay");
+//        double priceAtPurchase = Double.parseDouble(request.getParameter("priceAtPurchase"));
+//        String shiftID= request.getParameter("shiftID");
+//        int  ammount =Integer.parseInt(request.getParameter("ammount")) ;
+//        String userId = user.getUserId();
+//        String billID = MyRandom.getRandomServiceBillID();
+//        String thongbao;
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        LocalDate homNay = LocalDate.now();//Lấy thời gian hôm nay
+//        String homNayS = homNay.format(formatter);
+//        LocalDate ngayDatF = LocalDate.parse(setDay, formatter);
+//        long daysBetween = ChronoUnit.DAYS.between( homNay,ngayDatF);
+//        if (daysBetween >= 2) {
+//            ServiceRespository.createCheckout(billID,userId,homNayS,serviceid,shiftID,setDay,ammount,priceAtPurchase);
+//            request.getRequestDispatcher("checkout.jsp").forward(request,response);
+//
+//        } else {
+//            thongbao="Ngày đặt: ("+setDay + ") và Hôm nay (" + homNayS + ") phải cách nhau 2 ngày";
+//            System.out.println(thongbao);
+//            request.getRequestDispatcher("checkout.jsp").forward(request,response);
+//        }
 
 
 
@@ -58,6 +59,7 @@ public class CreateCheckoutServlet extends HttpServlet {
         String serviceid= request.getParameter("ServiceID");
         String setDay= request.getParameter("setDay");
         String shiftID= request.getParameter("shiftID");
+        String priceAtPurchase = request.getParameter("priceAtPurchase");
         int  ammount =Integer.parseInt(request.getParameter("ammount")) ;
         String userId = user.getUserId();
         String billID = MyRandom.getRandomServiceBillID();
@@ -68,13 +70,13 @@ public class CreateCheckoutServlet extends HttpServlet {
         LocalDate ngayDatF = LocalDate.parse(setDay, formatter);
         long daysBetween = ChronoUnit.DAYS.between( homNay,ngayDatF);
         if (daysBetween >= 2) {
-            thongbao = "đặt thành công";
+            thongbao = "đặt thành công, <a href = \"get-calendar-service?serviceID="+ serviceid+"\">bấm vào đây để quay lại</a>";
             request.setAttribute("thongbao",thongbao);
-            ServiceRespository.createCheckout(billID,userId,homNayS,serviceid,shiftID,setDay,ammount);
+            ServiceRespository.createCheckout(billID,userId,homNayS,serviceid,shiftID,setDay,ammount,priceAtPurchase);
             request.getRequestDispatcher("checkout.jsp").forward(request,response);
 
         } else {
-            thongbao="Ngày đặt: ("+setDay + ") và Hôm nay (" + homNayS + ") phải cách nhau 2 ngày";
+            thongbao="Ngày đặt: ("+setDay + ") và Hôm nay (" + homNayS + ") phải cách nhau 2 ngày, <a href = \"get-calendar-service?serviceID="+ serviceid+ "\">bấm vào đây để quay lại</a>";
             request.setAttribute("thongbao",thongbao);
             System.out.println(thongbao);
             request.getRequestDispatcher("checkout.jsp").forward(request,response);
