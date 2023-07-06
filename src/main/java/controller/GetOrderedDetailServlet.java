@@ -22,6 +22,9 @@ public class GetOrderedDetailServlet extends HttpServlet {
         String orderStatus = OrderRepository.getOrderStatus(orderId);
         orderedCart.setCart(ordered);
         orderedCart.setOrderedId(orderId);
+        orderedCart.setDiscountCode(OrderRepository.getDiscountCodeByOrderID(orderId));
+        orderedCart.setDiscountPercent(OrderRepository.getDiscountPercent(orderedCart.getDiscountCode()));
+        System.out.println("mã giam của đơn đã đặt  " + orderedCart.getDiscountCode());
         request.setAttribute("orderId", orderId);
         request.setAttribute("orderStatus", orderStatus);
         request.setAttribute("orderedCart", orderedCart);

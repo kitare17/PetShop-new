@@ -41,10 +41,18 @@
                                             </c:forEach>
                                             
                                         </td>
-                                        <td width="15%">${i.getThanhTienStringAfterPurchase(30000)}</td>
+                                            <td width="15%">
+                                                <c:if test="${i.discountCode == null}">
+                                                    ${i.getThanhTienStringAfterPurchase(30000)}
+                                                </c:if>
+                                                <c:if test="${i.discountCode != null}">
+                                                    <del>${i.getThanhTienStringAfterPurchase(30000)}</del> ${i.getThanhTienStringAfterPurchaseDiscount(30000)}
+                                                </c:if>
+                                            </td>
                                         <td width="15%">
                                             ${i.orderStatus}</td>
                                     </tr>
+                                    ${orderedCart.getThanhTienStringAfterPurchaseDiscount(30000)}
                                 </c:forEach>
                             </tbody>
                         </table>

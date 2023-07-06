@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
-    public  String discountCode;
+    private String discountCode;
     private double discountPercent =0f;
     private List<Items> cart;
     DecimalFormat formatter = new DecimalFormat("#,###,###");
@@ -81,6 +81,13 @@ public class Cart {
         }
         return tong + phatsinh;
     }
+    public double getThanhTienAfterPurchaseDiscount(double phatsinh) {
+        double tong = 0;
+        for (Items item : cart) {
+            tong += item.getPriceAfterPurchase(orderedId);
+        }
+        return (tong + phatsinh) - (tong*discountPercent);
+    }
     public String getThanhTienString(double phatsinh) {
         if (cart.isEmpty()) {
             return "0";
@@ -100,7 +107,7 @@ public class Cart {
         for (Items item : cart) {
             tong += item.getPrice();
         }
-        double x = (tong*discountPercent) + phatsinh;
+        double x = (tong - tong *discountPercent) + phatsinh;
         System.out.println(x);
         System.out.println(x);
         System.out.println(x);
@@ -112,6 +119,13 @@ public class Cart {
             return "0";
         }
         return formatter.format(getThanhTienAfterPurchase(phatsinh));
+
+    }
+    public String getThanhTienStringAfterPurchaseDiscount(double phatsinh) {
+        if (cart.isEmpty()) {
+            return "0";
+        }
+        return formatter.format(getThanhTienAfterPurchaseDiscount(phatsinh));
 
     }
 
@@ -197,4 +211,5 @@ public class Cart {
     public void setFormatter(DecimalFormat formatter) {
         this.formatter = formatter;
     }
+
 }

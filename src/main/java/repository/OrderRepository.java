@@ -366,8 +366,26 @@ public class OrderRepository {
         }
         return quantity;
     }
+    public static String getDiscountCodeByOrderID(String orderid) {
+        String discountCode = null;
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select PreferentialID from tblBill where BillID =?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, orderid);
+            ResultSet results = stmt.executeQuery();
+            if (results.next()) {
+                discountCode = results.getString(1);
+                System.out.println("=>>>>>>>>>>>>>>>>>>.." + discountCode);
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : getDiscountCodeByOrderID()<=============");
+        }
+        return discountCode;
+    }
 //    public static void main(String[] args) {
-//        System.out.println(getDiscountPercent("aaaaaaaaaa"));
+//        System.out.println(getDiscountCodeByOrderID("p83RWai9WM"));
 //
 //    }
 }

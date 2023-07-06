@@ -59,7 +59,13 @@
                         </div>
                         <div class="w-50 border-top pt-2 mt-3 d-flex justify-content-between">  
                             <span>Tổng cộng:</span>
-                            <strong style="font-size: x-large;">${orderedCart.getThanhTienStringAfterPurchase(30000)}</strong>
+                            <c:if test="${orderedCart.discountCode == null}">
+                                <strong style="font-size: x-large;">${orderedCart.getThanhTienStringAfterPurchase(30000)}</strong>
+                            </c:if>
+                            <c:if test="${orderedCart.discountCode != null}">
+                                <strong style="font-size: x-large;"><del>${orderedCart.getThanhTienStringAfterPurchase(30000)} </del> ${orderedCart.getThanhTienStringAfterPurchaseDiscount(30000)}</strong>
+
+                            </c:if>
                         </div>
                     </div>
                 </div>
