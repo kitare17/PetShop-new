@@ -1,4 +1,5 @@
 package repository;
+
 import config.DBConnect;
 import entity.*;
 import service.Isvalid;
@@ -8,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
 public class OrderRepository {
     public static String getOrderId() {
         try {
@@ -70,7 +72,7 @@ public class OrderRepository {
                 stmt.setString(1, orderId);
                 stmt.setString(2, i.getProduct().getProductId());
                 stmt.setInt(3, i.getAmmout());
-                stmt.setDouble(4,i.getPrice());
+                stmt.setDouble(4, i.getPrice());
                 stmt.executeUpdate();
                 con.close();
             } catch (Exception e) {
@@ -81,7 +83,8 @@ public class OrderRepository {
         }
         return true;
     }
-///bugggggggggggggggggggggggggggggggggggggggggggggg
+
+    ///bugggggggggggggggggggggggggggggggggggggggggggggg
     public static ArrayList<Items> getOrder(String OrderId) {
         try {
             ArrayList<Items> orderedList = new ArrayList<>();
@@ -180,7 +183,7 @@ public class OrderRepository {
             stmt.setString(1, orderId);
             ResultSet results = stmt.executeQuery();
             if (results.next()) {
-                date =  results.getString(1);
+                date = results.getString(1);
             }
             con.close();
         } catch (Exception e) {
@@ -188,17 +191,18 @@ public class OrderRepository {
         }
         return date;
     }
-    public static boolean acceptOrder(String orderId,String employeeID){
+
+    public static boolean acceptOrder(String orderId, String employeeID) {
 
         try {
             Connection con = DBConnect.getConnection();
             String query = "update tblBill set StatusBill=N'Đã xác nhận',EmployeeID=? where BillID=?";
             PreparedStatement stmt = con.prepareStatement(query);
-            String accept="Đã xác nhận";
+            String accept = "Đã xác nhận";
             stmt.setString(1, employeeID);
 
             stmt.setString(2, orderId);
-          stmt.executeUpdate();
+            stmt.executeUpdate();
             con.close();
         } catch (Exception e) {
             System.out.println("==========>ERROR : acceptOrder()<=============");
@@ -206,7 +210,8 @@ public class OrderRepository {
         }
         return true;
     }
-    public static boolean cancelOrder(String orderId,String employeeID){
+
+    public static boolean cancelOrder(String orderId, String employeeID) {
 
         try {
             Connection con = DBConnect.getConnection();
@@ -222,24 +227,25 @@ public class OrderRepository {
         }
         return true;
     }
-    public static  ArrayList<OrderAccept> getAllOrder(){
-        ArrayList<OrderAccept>listOrder;
+
+    public static ArrayList<OrderAccept> getAllOrder() {
+        ArrayList<OrderAccept> listOrder;
         try {
-           listOrder =new ArrayList<>();
+            listOrder = new ArrayList<>();
             Connection con = DBConnect.getConnection();
             String query = "select * from tblBill where StatusBill=N'Đang xử lý'\n" +
                     "order by DateCreate    ";
             PreparedStatement stmt = con.prepareStatement(query);
-            ResultSet rs=stmt.executeQuery();
-            while(rs.next()){
-                String orderID=rs.getString(1);
-                String employeeID=rs.getString(2);
-                String username=rs.getString(3);
-                String  address=rs.getString(4);
-                String date=rs.getString(5);
-                String preferentialId=rs.getString(6);
-                String status=rs.getString(7);
-                OrderAccept orderAccept=new OrderAccept();
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String orderID = rs.getString(1);
+                String employeeID = rs.getString(2);
+                String username = rs.getString(3);
+                String address = rs.getString(4);
+                String date = rs.getString(5);
+                String preferentialId = rs.getString(6);
+                String status = rs.getString(7);
+                OrderAccept orderAccept = new OrderAccept();
                 orderAccept.setIdOrder(orderID);
                 orderAccept.setUsername(username);
                 orderAccept.setAddress(address);
@@ -258,24 +264,25 @@ public class OrderRepository {
         }
         return listOrder;
     }
-    public static  ArrayList<OrderAccept> getAllOrderPaid(){
-        ArrayList<OrderAccept>listOrder;
+
+    public static ArrayList<OrderAccept> getAllOrderPaid() {
+        ArrayList<OrderAccept> listOrder;
         try {
-            listOrder =new ArrayList<>();
+            listOrder = new ArrayList<>();
             Connection con = DBConnect.getConnection();
             String query = "select * from tblBill where StatusBill=N'Đã thanh toán'\n" +
                     "order by DateCreate desc";
             PreparedStatement stmt = con.prepareStatement(query);
-            ResultSet rs=stmt.executeQuery();
-            while(rs.next()){
-                String orderID=rs.getString(1);
-                String employeeID=rs.getString(2);
-                String username=rs.getString(3);
-                String  address=rs.getString(4);
-                String date=rs.getString(5);
-                String preferentialId=rs.getString(6);
-                String status=rs.getString(7);
-                OrderAccept orderAccept=new OrderAccept();
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String orderID = rs.getString(1);
+                String employeeID = rs.getString(2);
+                String username = rs.getString(3);
+                String address = rs.getString(4);
+                String date = rs.getString(5);
+                String preferentialId = rs.getString(6);
+                String status = rs.getString(7);
+                OrderAccept orderAccept = new OrderAccept();
                 orderAccept.setIdOrder(orderID);
                 orderAccept.setUsername(username);
                 orderAccept.setAddress(address);
@@ -294,24 +301,25 @@ public class OrderRepository {
         }
         return listOrder;
     }
-    public static  ArrayList<OrderAccept> getAllOrderAccepted(){
-        ArrayList<OrderAccept>listOrder;
+
+    public static ArrayList<OrderAccept> getAllOrderAccepted() {
+        ArrayList<OrderAccept> listOrder;
         try {
-            listOrder =new ArrayList<>();
+            listOrder = new ArrayList<>();
             Connection con = DBConnect.getConnection();
             String query = "select * from tblBill where StatusBill=N'Đã xác nhận'\n" +
                     "order by DateCreate";
             PreparedStatement stmt = con.prepareStatement(query);
-            ResultSet rs=stmt.executeQuery();
-            while(rs.next()){
-                String orderID=rs.getString(1);
-                String employeeID=rs.getString(2);
-                String username=rs.getString(3);
-                String  address=rs.getString(4);
-                String date=rs.getString(5);
-                String preferentialId=rs.getString(6);
-                String status=rs.getString(7);
-                OrderAccept orderAccept=new OrderAccept();
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String orderID = rs.getString(1);
+                String employeeID = rs.getString(2);
+                String username = rs.getString(3);
+                String address = rs.getString(4);
+                String date = rs.getString(5);
+                String preferentialId = rs.getString(6);
+                String status = rs.getString(7);
+                OrderAccept orderAccept = new OrderAccept();
                 orderAccept.setIdOrder(orderID);
                 orderAccept.setUsername(username);
                 orderAccept.setAddress(address);
@@ -330,24 +338,25 @@ public class OrderRepository {
         }
         return listOrder;
     }
-    public static  ArrayList<OrderAccept> getAllOrderCancel(){
-        ArrayList<OrderAccept>listOrder;
+
+    public static ArrayList<OrderAccept> getAllOrderCancel() {
+        ArrayList<OrderAccept> listOrder;
         try {
-            listOrder =new ArrayList<>();
+            listOrder = new ArrayList<>();
             Connection con = DBConnect.getConnection();
             String query = "select * from tblBill where StatusBill=N'Đã hủy'\n" +
                     "order by DateCreate desc";
             PreparedStatement stmt = con.prepareStatement(query);
-            ResultSet rs=stmt.executeQuery();
-            while(rs.next()){
-                String orderID=rs.getString(1);
-                String employeeID=rs.getString(2);
-                String username=rs.getString(3);
-                String  address=rs.getString(4);
-                String date=rs.getString(5);
-                String preferentialId=rs.getString(6);
-                String status=rs.getString(7);
-                OrderAccept orderAccept=new OrderAccept();
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String orderID = rs.getString(1);
+                String employeeID = rs.getString(2);
+                String username = rs.getString(3);
+                String address = rs.getString(4);
+                String date = rs.getString(5);
+                String preferentialId = rs.getString(6);
+                String status = rs.getString(7);
+                OrderAccept orderAccept = new OrderAccept();
                 orderAccept.setIdOrder(orderID);
                 orderAccept.setUsername(username);
                 orderAccept.setAddress(address);
@@ -366,10 +375,11 @@ public class OrderRepository {
         }
         return listOrder;
     }
-    public static double getPriceOrdered(String orderId,String productId) {
+
+    public static double getPriceOrdered(String orderId, String productId) {
         System.out.println("cho nay ne" + orderId);
         System.out.println("cho nay ne" + productId);
-        double price = 0 ;
+        double price = 0;
         try {
             Connection con = DBConnect.getConnection();
             String query = "select PriceAtPuchase from tblOrderDetails where ProductID=? and BillID =?";
@@ -387,6 +397,7 @@ public class OrderRepository {
         }
         return price;
     }
+
     public static double getDiscountPercent(String discountID) {
         double quantity = 0f;
         try {
@@ -405,6 +416,7 @@ public class OrderRepository {
         }
         return quantity;
     }
+
     public static String getDiscountCodeByOrderID(String orderid) {
         String discountCode = null;
         try {
@@ -423,7 +435,11 @@ public class OrderRepository {
         }
         return discountCode;
     }
-    public static boolean paidOrder(String orderId,String employeeID){
+
+
+
+
+    public static boolean paidOrder(String orderId, String employeeID) {
 
         try {
             Connection con = DBConnect.getConnection();
@@ -439,10 +455,36 @@ public class OrderRepository {
         }
         return true;
     }
-//    public static void main(String[] args) {
-//        System.out.println(getDiscountCodeByOrderID("p83RWai9WM"));
-//
-//    }
+
+    public static boolean checkValidStatusOfPet(String orderId) {
+
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select b.BillID,p.PetID,p.StatusPet from tblBill b\n" +
+                    "join tblOrderDetails o on o.BillID=b.BillID\n" +
+                    "join tblPet p on o.ProductID=p.PetID\n" +
+                    "where b.BillID=?";
+            PreparedStatement stmt = con.prepareStatement(query);
+
+            stmt.setString(1, orderId);
+            ResultSet results = stmt.executeQuery();
+            if (results.next()) {
+                if (results.getInt(3) == 0) return false;
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : checkValidStatusOfPet()<=============");
+            return false;
+        }
+        return true;
+    }
+
+
+
+    public static void main(String[] args) {
+        System.out.println(checkValidStatusOfPet("LN05pAJrDn"));
+
+    }
 }
 
 

@@ -44,7 +44,7 @@
                 <div class="col-md-6 offset-3 mb-3">
                     <label for="petPrice">Giá thú cưng</label>
                     <div class="input-group">
-                        <input type="text" pattern="^(?:\d+|\d*\.\d+)$" class="form-control" id="petPrice" placeholder="Giá thú cưng" name="petPrice" value="${pet.productPrice}"
+                        <input type="text" pattern="^(?:\d+|\d*\.\d+)$" class="form-control" id="petPrice" placeholder="Giá thú cưng" name="petPrice" value="${pet.getPriceToDecimal()}"
                                aria-describedby="inputGroupPrepend"  required>
                         <div class="invalid-feedback">
                             Giá tiền chỉ bao gồm chữ số
@@ -62,8 +62,8 @@
 
                 <div class="col-md-6 offset-3 mb-3">
                     <label for="status" class="form-label">Trạng thái</label>
-                    <select class="form-select" id="status" name="status">
-                        <option value="0" ${(pet.status.equals("0")?"selected":" ")}>Ngừng bán</option>
+                    <select class="form-select" id="status" name="status" >
+                        <option value="0" ${(pet.status.equals("0")?"selected":" ")}>Đã bán</option>
                         <option value="1" ${(pet.status.equals("1")?"selected":" ")}>Đang bán</option>
                     </select>
                 </div>
@@ -82,6 +82,14 @@
 
 
 <!-- Contact End -->
+<script>
+    // Lấy giá trị từ phần tử option
+    var defaultValue ="${pet.status}";
+
+    // Đặt giá trị mặc định cho phần tử select
+    document.getElementById("status").value = defaultValue;
+</script>
+
 
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields

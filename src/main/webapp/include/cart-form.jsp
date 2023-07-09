@@ -246,7 +246,7 @@
                                 <tr>
                                     <td>
                                         <div class="img">
-                                            <img src="img/product/${item.product.productId}.jpg" alt="Image">
+                                            <img src="${item.product.getListImg().get(0).url}" alt="Image">
                                             <p>${item.product.productName}</p>
                                         </div>
                                     </td>

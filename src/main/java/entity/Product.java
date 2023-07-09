@@ -4,7 +4,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Product {
-    DecimalFormat formatter = new DecimalFormat("#,###,###");
+    DecimalFormat formatter = new DecimalFormat("#,###,###.##");
+
     protected String productId;
     protected String productName;
     protected String productType;
@@ -99,7 +100,13 @@ public class Product {
     public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
-
+    public String getPriceToDecimal(){
+        DecimalFormat decimalFormat = new DecimalFormat("#,###,###.##");
+        String formattedValue = decimalFormat.format(productPrice);
+       formattedValue= formattedValue.replace(".","");
+       formattedValue= formattedValue.replace(",",".");
+        return  formattedValue;
+    }
     @Override
     public String toString() {
         return "Product{" + "productId=" + productId + ", productName=" + productName + ", productType=" + productType + ", productPrice=" + productPrice + ", productAmount=" + productAmount + '}';

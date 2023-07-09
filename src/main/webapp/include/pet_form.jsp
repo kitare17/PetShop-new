@@ -76,7 +76,7 @@
             <c:forEach var="pet" items="${listPet}">
                 <div style="height: 350px;margin: 80px 0px" class="pb-5  col-4 " >
                     <div class="product-item owl-item position-relative bg-light d-flex flex-column text-center">
-                        <img class="img-fluid mb-4 w-100" src="img/product/${pet.productId}.jpg" alt="">
+                        <img class="img-fluid mb-4 w-100" src="${pet.getListImg().get(0).url}" alt="">
                         <h6 class="text-uppercase">${pet.productName}</h6>
                         <h5 class="text-primary mb-0">${pet.getPriceString()}</h5>
                         <div class="btn-action d-flex justify-content-center">

@@ -16,6 +16,7 @@
     <p>Nhân viên có thể xem được danh sách đặt hàng ở đây</p>
     <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm">
     <br>
+    <h3 class="text-center text-danger" >${thongbao}</h3>
     <table class="table table-bordered">
         <thead>
         <tr>

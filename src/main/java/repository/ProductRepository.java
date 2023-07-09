@@ -73,13 +73,38 @@ public class ProductRepository {
         }
         return listPet;
     }
+    public static ArrayList<Pet> getListPetAva() {
+        ArrayList<Pet> listPet = new ArrayList<Pet>();
+        try {
+            String query = "select * from tblPet where StatusPet=1";
+            Connection con = DBConnect.getConnection();
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet results = stmt.executeQuery();
+            while (results.next()) {
+                String productId = results.getString(1);
+                String productName = results.getString(2);
+                String productType = results.getString(3);
+                double productPrice = results.getDouble(4);
+                int productAmount = 1;
+                int productStatus = results.getInt(5);
+                ArrayList<Image> images = getListPetImage(productId);
+
+                Pet pet = new Pet(productId, productName, productType, productPrice, productAmount, images, productStatus);
+                listPet.add(pet);
+            }
+        } catch (Exception e) {
+            System.err.println("Loi database method listPet class ProductRepository");
+        }
+        return listPet;
+    }
     public static ArrayList<Pet> getListPetPage(String page) {
         ArrayList<Pet> listPet = new ArrayList<Pet>();
         try {
             String query = "select * from tblPet\n" +
-                    " order by PetID\n" +
-                    " OFFSET (? - 1) * 9 ROWS \n" +
-                    " FETCH NEXT 9 ROWS ONLY";
+                    "where StatusPet=1\n" +
+                    "order by PetID\n" +
+                    "OFFSET (? - 1) * 9 ROWS \n" +
+                    "FETCH NEXT 9 ROWS ONLY";
             Connection con = DBConnect.getConnection();
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setString(1,page);
