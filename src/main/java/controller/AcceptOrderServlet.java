@@ -18,10 +18,18 @@ public class AcceptOrderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id= request.getParameter("id");
         System.out.println(id);
-        HttpSession session=request.getSession();
-        User user=(User) session.getAttribute("user");
-        OrderRepository.acceptOrder(id,user.getUserId());
-        response.sendRedirect("order-list-manager");
+
+        if(!OrderRepository.checkValidStatusOfPet(id)){
+
+            response.sendRedirect("order-list-manager?thongbao=0");
+        }
+        else{
+            HttpSession session=request.getSession();
+            User user=(User) session.getAttribute("user");
+            OrderRepository.acceptOrder(id,user.getUserId());
+            response.sendRedirect("order-list-manager?thongbao=1");
+        }
+
     }
 
     @Override

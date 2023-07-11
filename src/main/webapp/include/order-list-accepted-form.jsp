@@ -7,6 +7,7 @@
 <nav class="nav nav-pills nav-justified">
     <a class="nav-item nav-link " href="order-list-manager">Đơn hàng đang chờ</a>
     <a class="nav-item nav-link active" href="#">Đơn hàng đã xác nhận</a>
+    <a class="nav-item nav-link " href="order-list-paid">Đơn hàng đã thanh toán</a>
     <a class="nav-item nav-link  " href="list-order-cancel">Đơn hàng đã hủy</a>
 
 </nav>
@@ -25,21 +26,23 @@
             <th>Ngày đặt</th>
             <th>Mã giảm giá</th>
             <th>Trạng thái</th>
-
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody id="myTable">
 
         <c:forEach var="order" items="${listOrder}">
             <tr>
-                <td>${order.idOrder}</td>
+                <td><a href="getordereddetailemp?orderId=${order.idOrder}">${order.idOrder}</a></td>
                 <td>${order.employeeID}</td>
                 <td>${order.username}</td>
                 <td>${order.address}</td>
                 <td>${order.date}</td>
                 <td>${order.discountId}</td>
                 <td>${order.orderStatus}</td>
-
+                <td><a href="paidorder?id=${order.idOrder}" class="btn btn-success">Xác nhận thanh toán</a></td>
+                <td><a href="cancelorder?id=${order.idOrder}" class="btn btn-danger">Hủy</a></td>
 
             </tr>
 

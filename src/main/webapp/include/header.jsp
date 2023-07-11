@@ -95,7 +95,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto py-0">
             <a href="index.jsp" class="nav-item nav-link active">Trang chủ</a>
-            <a href="about.jsp" class="nav-item nav-link">Giới thiệu</a>
+<%--            <a href="about.jsp" class="nav-item nav-link">Giới thiệu</a>--%>
             <a href="service.jsp" class="nav-item nav-link">Dịch vụ</a>
             <a href="product" class="nav-item nav-link">Sản phẩm</a>
             <%--           --%>

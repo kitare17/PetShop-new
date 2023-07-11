@@ -11,7 +11,11 @@ import jakarta.servlet.http.HttpSession;
 import repository.OrderRepository;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 @WebServlet(name = "GetOrderHistory", value = "/getorderhistory")
 public class GetOrderHistory extends HttpServlet {
@@ -32,6 +36,25 @@ public class GetOrderHistory extends HttpServlet {
             orderedCart.setDiscountPercent(OrderRepository.getDiscountPercent(orderedCart.getDiscountCode()));
             listOrdered.add(orderedCart);
         }
+        Collections.sort(listOrdered, new Comparator<Cart>() {
+
+            @Override
+            public int compare(Cart o1, Cart o2) {
+                String dateString1 = o1.getDate();
+                String dateString2 = o2.getDate();
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate localDate1 = LocalDate.parse(dateString1, formatter);
+                LocalDate localDate2 = LocalDate.parse(dateString2, formatter);
+                return  (-1)*localDate1.compareTo(localDate2);
+
+
+            }
+
+        });
+
+
+
         request.setAttribute("listOrdered", listOrdered);
         request.getRequestDispatcher("orderhistory.jsp").forward(request, response);
 

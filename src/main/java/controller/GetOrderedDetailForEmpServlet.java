@@ -2,18 +2,16 @@ package controller;
 
 import entity.Cart;
 import entity.Items;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
 import repository.OrderRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "GetOrderedDetail", value = "/getordereddetail")
-public class GetOrderedDetailServlet extends HttpServlet {
+@WebServlet(name = "GetOrderedDetailForEmpServlet", value = "/getordereddetailemp")
+public class GetOrderedDetailForEmpServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String orderId = request.getParameter("orderId");
@@ -24,10 +22,11 @@ public class GetOrderedDetailServlet extends HttpServlet {
         orderedCart.setOrderedId(orderId);
         orderedCart.setDiscountCode(OrderRepository.getDiscountCodeByOrderID(orderId));
         orderedCart.setDiscountPercent(OrderRepository.getDiscountPercent(orderedCart.getDiscountCode()));
+        System.out.println("mã giam của đơn đã đặt  " + orderedCart.getDiscountCode());
         request.setAttribute("orderId", orderId);
         request.setAttribute("orderStatus", orderStatus);
         request.setAttribute("orderedCart", orderedCart);
-        request.getRequestDispatcher("ordered.jsp").forward(request, response);
+        request.getRequestDispatcher("history_order_for_emp.jsp").forward(request, response);
     }
 
     @Override

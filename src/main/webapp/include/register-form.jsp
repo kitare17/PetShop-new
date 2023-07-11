@@ -4,7 +4,7 @@
     Author     : Admin
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!-- Contact Start -->
 <div class="container-fluid pt-5">
     <div class="container">
@@ -16,10 +16,10 @@
             <div class="col-lg-7">
                 <h1>${message}</h1>
 
-                <form class="needs-validation" novalidate action="register" method="post" >
+                <form class="needs-validation" novalidate action="register" method="post">
 
                     <div class="row">
-                        <div class="col-12" style="background-color:#7ab730;border-radius: 10px " >
+                        <div class="col-12" style="background-color:#7ab730;border-radius: 10px ">
                             <h2>Đăng kí thành viên mới</h2>
                         </div>
 
@@ -28,10 +28,12 @@
                         <div class="col-md-6 offset-3 mb-3">
                             <label for="username">Username</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="username" placeholder="Username" name="username"
-                                       aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z][a-zA-Z0-9]{7,20}$" required>
+                                <input type="text" class="form-control" id="username" placeholder="Username"
+                                       name="username"
+                                       aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z][a-zA-Z0-9]{7,20}$"
+                                       required>
                                 <div class="invalid-feedback">
-                                   Username bắt đầu bằng chữ cái  và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
+                                    Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
                                 </div>
                             </div>
                         </div>
@@ -39,7 +41,8 @@
                         <div class="col-md-6 offset-3 mb-3">
                             <label for="password">Mật khẩu</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="password" placeholder="Mật khẩu" name="password"
+                                <input type="password" class="form-control" id="password" placeholder="Mật khẩu"
+                                       name="password"
                                        aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z0-9]{7,32}$" required>
                                 <div class="invalid-feedback">
                                     Mật khẩu chứa số hoặc chữ cái độ dài từ 7 đến 32 kí tự
@@ -51,7 +54,8 @@
                         <div class="col-md-6 offset-3 mb-3">
                             <label for="re-password">Nhập mật khẩu</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="re-password" placeholder="Nhập lại mật khẩu" name="re-password"
+                                <input type="password" class="form-control" id="re-password"
+                                       placeholder="Nhập lại mật khẩu" name="re-password"
                                        aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z0-9]{7,32}$" required>
                                 <div class="invalid-feedback">
                                     Mật khẩu không trùng nhau
@@ -60,10 +64,7 @@
                         </div>
 
 
-
-
-
-                    <%--input fistname--%>
+                        <%--input fistname--%>
                         <div class="col-md-6 offset-3 mb-3">
                             <label for="firstname">Họ</label>
                             <div class="input-group">
@@ -90,8 +91,10 @@
                         <div class="col-md-6 offset-3 ol mb-3">
                             <label for="address">Địa chỉ</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="address" placeholder="Địa chỉ" name="address"
-                                       aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z0-9\s#-_,./()]{1,100}$" required>
+                                <input type="text" class="form-control" id="address" placeholder="Địa chỉ"
+                                       name="address"
+                                       aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z0-9\s#-_,./()]{1,100}$"
+                                       required>
                                 <div class="invalid-feedback">
                                     Địa chỉ có độ dài 100 kí tự
                                 </div>
@@ -100,12 +103,22 @@
 
                         <%--        input phone--%>
                         <div class="col-md-6 offset-3 mb-3">
-                            <label for="address">Điện thoại</label>
+                            <label for="phone">Điện thoại</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="phone" placeholder="Điện thoại" name="phone"
                                        aria-describedby="inputGroupPrepend" pattern="^[0-9]{10}$" required>
                                 <div class="invalid-feedback">
                                     Số điện thoại có dộ dài 10 kí tự
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 offset-3 mb-3">
+                            <label for="email">Email</label>
+                            <div class="input-group">
+                                <input type="email" class="form-control" id="email" placeholder="Email" name="email"
+                                       aria-describedby="inputGroupPrepend"  required>
+                                <div class="invalid-feedback">
+                                    Địa chỉ email không hợp lệ
                                 </div>
                             </div>
                         </div>
@@ -120,6 +133,7 @@
                     </div>
 
                 </form>
+                <h3 class="text-danger">${thongbao}</h3>
             </div>
             <div class="col-lg-5">
                 <div class="bg-light mb-5 p-5">
@@ -156,7 +170,6 @@
     </div>
 
 
-
 </div>
 <!-- Contact End -->
 
@@ -186,7 +199,7 @@
     const rePasswordField = document.getElementById("re-password");
 
     // Thêm sự kiện khi thay đổi giá trị của trường re-password
-    rePasswordField.addEventListener("input", function() {
+    rePasswordField.addEventListener("input", function () {
         // Kiểm tra xem giá trị của 2 trường có giống nhau hay không
         if (passwordField.value !== rePasswordField.value) {
             // Nếu không giống nhau, hiển thị thông báo lỗi
@@ -198,7 +211,7 @@
     });
 
     // Thêm sự kiện submit cho form
-    document.querySelector("form").addEventListener("submit", function(event) {
+    document.querySelector("form").addEventListener("submit", function (event) {
         // Kiểm tra xem giá trị của 2 trường có giống nhau hay không
         if (passwordField.value !== rePasswordField.value) {
             // Nếu không giống nhau, ngăn chặn form được submit

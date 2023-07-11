@@ -21,7 +21,7 @@ public class ProductShowServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
-        ArrayList<Pet> listPet = ProductRepository.getListPet();
+        ArrayList<Pet> listPet = ProductRepository.getListPetAva();
         ArrayList<Food> listFood = ProductRepository.getListFood();
         ArrayList<Pet> subListPet = new ArrayList<Pet>();
         ArrayList<Food> subListFood = new  ArrayList<Food>();
@@ -29,12 +29,12 @@ public class ProductShowServlet extends HttpServlet {
             subListFood.add(listFood.get(i));
             subListPet.add(listPet.get(i));
         }
-        for (Object a: listFood) {
-            System.out.println(a.toString());
-        }
-        for (Object a: listPet) {
-            System.out.println(a.toString());
-        }
+//        for (Object a: listFood) {
+//            System.out.println(a.toString());
+//        }
+//        for (Object a: listPet) {
+//            System.out.println(a.toString());
+//        }
 
 
         request.setAttribute("listPet", subListPet);

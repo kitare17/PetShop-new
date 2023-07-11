@@ -7,6 +7,7 @@
 <nav class="nav nav-pills nav-justified">
     <a class="nav-item nav-link active" href="#">Đơn hàng đang chờ</a>
     <a class="nav-item nav-link" href="list-order-accepted">Đơn hàng đã xác nhận</a>
+    <a class="nav-item nav-link " href="order-list-paid">Đơn hàng đã thanh toán</a>
     <a class="nav-item nav-link  " href="list-order-cancel">Đơn hàng đã hủy</a>
 
 </nav>
@@ -15,6 +16,7 @@
     <p>Nhân viên có thể xem được danh sách đặt hàng ở đây</p>
     <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm">
     <br>
+    <h3 class="text-center text-danger" >${thongbao}</h3>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -33,7 +35,7 @@
 
         <c:forEach var="order" items="${listOrder}">
             <tr>
-                <td>${order.idOrder}</td>
+                <td><a href="getordereddetailemp?orderId=${order.idOrder}">${order.idOrder}</a></td>
 
                 <td>${order.username}</td>
                 <td>${order.address}</td>

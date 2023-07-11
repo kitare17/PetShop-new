@@ -9,15 +9,13 @@ import repository.OrderRepository;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "ListOrderAcceptedServlet", value = "/list-order-accepted")
-public class ListOrderAcceptedServlet extends HttpServlet {
+@WebServlet(name = "ListOrderPaidServlet", value = "/order-list-paid")
+public class ListOrderPaidServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ArrayList<OrderAccept> listOrder = OrderRepository.getAllOrderAccepted();
-
-
+        ArrayList<OrderAccept> listOrder = OrderRepository.getAllOrderPaid();
         request.setAttribute("listOrder",listOrder);
-        request.getRequestDispatcher("order-list-accepted.jsp").forward(request,response);
+        request.getRequestDispatcher("order-list-paid.jsp").forward(request,response);
     }
 
     @Override
