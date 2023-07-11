@@ -352,7 +352,7 @@ public class OrderRepository {
         double quantity = 0f;
         try {
             Connection con = DBConnect.getConnection();
-            String query = "select Quantity from tblPreferential where Preferential =?";
+            String query = "select Rate from tblPreferential where Preferential =?";
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setString(1, discountID);
             ResultSet results = stmt.executeQuery();
