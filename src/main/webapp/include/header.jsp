@@ -132,6 +132,11 @@
                             <a href="cart.jsp" class="dropdown-item">Giỏ hàng</a>
                             <a href="getorderhistory" class="dropdown-item">Lịch sử đặt hàng</a>
                         </c:if>
+                        <c:if test="${sessionScope.user.userId.startsWith('A')}">
+                            <a href="manage-emp-account" class="dropdown-item">Quản lí tài khoản nhân viên</a>
+                            <a href="manage-cus-account" class="dropdown-item">Quản lí tài khoản khách hàng</a>
+                            <a href="statistics"  class="dropdown-item">Thống kê bán hàng</a>
+                        </c:if>
 
                         <a href="logout" class="dropdown-item text-danger">Đăng xuất</a>
                     </div>

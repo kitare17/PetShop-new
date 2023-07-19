@@ -27,7 +27,7 @@
                    aria-describedby="inputGroupPrepend"  required>
             <h3>${shiftID}</h3>
             <div class="invalid-feedback">
-              Tối đa từ 1-50 ký tự
+
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@
                    aria-describedby="inputGroupPrepend"  required>
             <h3>${serviceID}</h3>
             <div class="invalid-feedback">
-              Giá tiền chỉ bao gồm chữ số
+
             </div>
           </div>
         </div>
@@ -50,10 +50,10 @@
         <div class="col-md-6 offset-3  mb-3">
           <label for="numberOfResponses">Số lượng thú cưng đáp ứng</label>
           <div class="input-group">
-            <input type="number" min="1"    class="form-control" id="numberOfResponses" placeholder="Số lượng" name="numberOfResponses"
+            <input type="number" min="1"  max="200"  class="form-control" id="numberOfResponses" placeholder="Số lượng" name="numberOfResponses"
                    aria-describedby="inputGroupPrepend"  required>
             <div class="invalid-feedback">
-             Số lượng từ 1 trở lên
+             Số lượng từ 1 trở lên và tối đa 200
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@
                    aria-describedby="inputGroupPrepend"  required>
             <h3>${day}</h3>
             <div class="invalid-feedback">
-              Số lượng từ 1 trở lên
+
             </div>
           </div>
         </div>

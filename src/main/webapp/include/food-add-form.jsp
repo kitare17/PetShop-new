@@ -35,7 +35,7 @@
                 <div class="col-md-6 offset-3 mb-3">
                     <label for="foodPrice">Giá thức ăn</label>
                     <div class="input-group">
-                        <input type="text" pattern="^(?:\d+|\d*\.\d+)$" class="form-control" id="foodPrice" placeholder="Giá thức ăn" name="foodPrice"
+                        <input type="text" pattern="^\d{1,8}(.\d{1,2})?$" class="form-control" id="foodPrice" placeholder="Giá thức ăn" name="foodPrice"
                                aria-describedby="inputGroupPrepend"  required>
                         <div class="invalid-feedback">
                             Giá tiền chỉ bao gồm chữ số

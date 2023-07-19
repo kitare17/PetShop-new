@@ -35,7 +35,6 @@
                         <input type="hidden" class="form-control" id="foodID" placeholder="Id thức ăn" name="productId"
                                aria-describedby="inputGroupPrepend" value="${productId}" required>
                         <div class="invalid-feedback">
-                            Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
                         </div>
                     </div>
                 </div>
@@ -44,10 +43,10 @@
                     <label for="urlImage">Url ảnh</label>
                     <div class="input-group">
                         <input type="text" class="form-control" id="urlImage" placeholder="Nhập url ảnh"
-                               name="urlImage"
+                               name="urlImage" pattern="^.{1,700}$"
                                aria-describedby="inputGroupPrepend" required>
                         <div class="invalid-feedback">
-                            Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
+                            Trường này là bắt buộc và nhập tối đa 700 kí tụ
                         </div>
                     </div>
                 </div>

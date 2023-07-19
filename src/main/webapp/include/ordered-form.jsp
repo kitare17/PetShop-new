@@ -37,7 +37,7 @@
                     <div class="border-bottom">
                         <div class="d-flex">
                             <div class="p-1">
-                                <img width="60px" height="60px" src="img/product/${i.product.productId}.jpg" alt="">
+                                <img width="60px" height="60px" src="${i.product.getListImg().get(0).url}" alt="">
                             </div>
                             <div class="p-1">
                                 <strong>${i.product.productName}</strong>

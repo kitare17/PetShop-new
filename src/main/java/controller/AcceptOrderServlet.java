@@ -27,6 +27,7 @@ public class AcceptOrderServlet extends HttpServlet {
             HttpSession session=request.getSession();
             User user=(User) session.getAttribute("user");
             OrderRepository.acceptOrder(id,user.getUserId());
+            OrderRepository.acceptedPet(id);
             response.sendRedirect("order-list-manager?thongbao=1");
         }
 

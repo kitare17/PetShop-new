@@ -112,11 +112,35 @@ public class AuthenticationRepository {
 
 
     }
+
+    public static  int getStatusAcc(String username){
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select StatusAcc from tblAccount\n" +
+                    "where  Username=?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, username);
+
+            ResultSet rs=stmt.executeQuery();
+            if(rs.next()){
+                return  rs.getInt(1);
+            }
+
+
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Loi method getStatusAcc(Cart cart,String orderId) trong OrderRepository.java ");
+           return 0;
+        }
+
+        return 0;
+    }
     public static void main(String[] args) {
         //Test Verify
 //       System.out.println(Verify("khoanguvai","123456789"));
 //        System.out.println(Verify("Khoangungoc","khoangungoc"));
 //        System.out.println(Verify("QuangE","123456789"));
-        System.out.println(getUsernameByEmail("hoctapak@gmail.com"));
+        System.out.println(getStatusAcc("QuangE2"));
     }
 }

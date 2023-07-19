@@ -69,8 +69,19 @@
 <div class="container-fluid d-none d-lg-block pt-5 " style="margin-bottom: 200px">
     <div class="container">
         <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-            <h6 class="text-primary text-uppercase">Pets</h6>
-            <h1 class="display-5 text-uppercase mb-0">A FRIEND FOR YOUR LIFE</h1>
+            <h6 class="text-primary text-uppercase">Thú cưng</h6>
+            <h1 class="display-5 text-uppercase mb-0">Lựa chọn người bạn đồng hành của bạn</h1>
+        </div>
+        <div class=" ">
+            <form class="" action="pet" method="get">
+
+                <select style="padding: 8px; border-radius: 10px; outline: none" class="input-group w-25 mt-5 " name="type">
+                    <option class="" value="all">All</option>
+                    <option value="dog">Dog</option>
+                    <option value="cat">Cat</option>
+                </select>
+                <input class="btn btn-primary h5 m-2" type="submit" value="Filter">
+            </form>
         </div>
         <div class="row">
             <c:forEach var="pet" items="${listPet}">

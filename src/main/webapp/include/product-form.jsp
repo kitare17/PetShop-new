@@ -13,8 +13,8 @@
 <div class="container-fluid d-none d-lg-block pt-5">
   <div class="container">
     <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-      <h6 class="text-primary text-uppercase">Pet's Food</h6>
-      <h1 class="display-5 text-uppercase mb-0">PRODUCTS FOR YOUR BEST FRIENDS</h1>
+      <h6 class="text-primary text-uppercase">Thức ăn </h6>
+      <h1 class="display-5 text-uppercase mb-0">Thức ăn cho thú cưng</h1>
     </div>
     <div class="row g-5 d-flex flex-row owl-carousel product-carousel">
       <c:forEach var="food" items="${listFood}">
@@ -33,15 +33,15 @@
     </div>
   </div>
 </div>
-<div class="d-flex justify-content-center "><a href="food" style="margin-bottom: 50px" class="btn btn-primary p-2">See more</a></div>
+<div class="d-flex justify-content-center "><a href="food" style="margin-bottom: 50px" class="btn btn-primary p-2">Xem thêm</a></div>
 
 
 
 <div class="container-fluid d-none d-lg-block pt-5">
   <div class="container">
     <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-      <h6 class="text-primary text-uppercase">Pets</h6>
-      <h1 class="display-5 text-uppercase mb-0">A FRIEND FOR YOUR LIFE</h1>
+      <h6 class="text-primary text-uppercase">Thú cưng</h6>
+      <h1 class="display-5 text-uppercase mb-0">Lựa chọn người bạn đồng hành của bạn</h1>
     </div>
 
 
@@ -74,4 +74,4 @@
     </div>
   </div>
 </div>
-<div class="d-flex justify-content-center "><a  href="pet" style="margin-bottom: 50px" class="btn btn-primary p-2">See more</a></div>
+<div class="d-flex justify-content-center "><a  href="pet" style="margin-bottom: 50px" class="btn btn-primary p-2">Xem thêm</a></div>

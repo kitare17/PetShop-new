@@ -28,6 +28,8 @@ public class GetCalendarServiceForCustServlet extends HttpServlet {
                 +(today.getDayOfMonth()>=10?today.getDayOfMonth():"0"+""+today.getDayOfMonth());
         ArrayList<Calendar> listCalendar= ServiceRespository.getCalendarByMonthYear(serviceID,month,year);
 //        System.out.println(listCalendar.get(0));
+        String serviceName=ServiceRespository.getServiceName(serviceID);
+        request.setAttribute("serviceName",serviceName);
         request.setAttribute("listCalendar",listCalendar);
         request.setAttribute("date",date);
         request.setAttribute("serviceID",serviceID);

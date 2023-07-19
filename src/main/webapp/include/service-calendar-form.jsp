@@ -9,6 +9,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<style>
+  .fc-event-time{
+    display:none;
+  }
+</style>
 <head>
   <meta charset='utf-8' />
   <script src='./dist/index.global.js'></script>
@@ -80,7 +85,7 @@
   </style>
 </head>
 <body>
-<h1>Lịch trình của dịch vụ ${serviceName}</h1>
+<h1 class="text-center">Lịch trình của dịch vụ ${serviceName}</h1>
 <div id='calendar'></div>
 <%--<c:forEach  items="${listCalendar}" var="c">--%>
 <%-- ${c.shiftName}--%>

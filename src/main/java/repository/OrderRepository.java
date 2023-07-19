@@ -97,6 +97,16 @@ public class OrderRepository {
                 Items item = new Items();
                 item.setAmmout(results.getInt(3));
                 item.setProduct(getProductById(results.getString(2)));
+                //lay id product
+                String productID=results.getString(2);
+                if(productID.startsWith("P"))
+                {
+                    item.getProduct().setListImg(ProductRepository.getListPetImage(productID));
+                }
+                else if(productID.startsWith("F"))
+                {
+                    item.getProduct().setListImg(ProductRepository.getListFoodImage(productID));
+                }
                 orderedList.add(item);
             }
             con.close();
@@ -479,7 +489,29 @@ public class OrderRepository {
         return true;
     }
 
+   public static boolean acceptedPet(String billID){
+       try {
+           Connection con = DBConnect.getConnection();
+           String query = "update tblPet \n" +
+                   "set StatusPet=0\n" +
+                   "where PetID in\n" +
+                   "(\n" +
+                   "select ProductID\n" +
+                   "from tblOrderDetails\n" +
+                   "where BillID=? and ProductID like 'P%'\n" +
+                   ")";
+           PreparedStatement stmt = con.prepareStatement(query);
 
+           stmt.setString(1, billID);
+           stmt.executeUpdate();
+
+           con.close();
+       } catch (Exception e) {
+           System.out.println("==========>ERROR : acceptedPet()<=============");
+           return false;
+       }
+       return true;
+   }
 
     public static void main(String[] args) {
         System.out.println(checkValidStatusOfPet("LN05pAJrDn"));

@@ -24,19 +24,26 @@ public class LoginServlet extends HttpServlet {
         System.out.println(username+" "+password);
         User user=(User) AuthenticationRepository.Verify(username,password);
         System.out.println(user);
-        if(user!=null){
-            Cookie userCookies=new Cookie("username", username);
-            Cookie passCookies=new Cookie("password", password);
-            userCookies.setMaxAge(60*60*24);
-            passCookies.setMaxAge(60*60*24);
-            response.addCookie(userCookies);
-            response.addCookie(passCookies);
-            HttpSession session=request.getSession();
-            session.setAttribute("user", user);
-            session.setAttribute("cart", new Cart());
-            System.out.println("Đăng nhập thành công");
-            response.sendRedirect("index.jsp");
 
+        if(user!=null){
+               if(AuthenticationRepository.getStatusAcc(username)==0)
+
+               {
+                   request.setAttribute("thongbao", "Tài khoản hiện bị khóa vui lòng liên hệ với Admin");
+                   request.getRequestDispatcher("login.jsp").forward(request, response);
+               }else {
+                   Cookie userCookies = new Cookie("username", username);
+                   Cookie passCookies = new Cookie("password", password);
+                   userCookies.setMaxAge(60 * 60 * 24);
+                   passCookies.setMaxAge(60 * 60 * 24);
+                   response.addCookie(userCookies);
+                   response.addCookie(passCookies);
+                   HttpSession session = request.getSession();
+                   session.setAttribute("user", user);
+                   session.setAttribute("cart", new Cart());
+                   System.out.println("Đăng nhập thành công");
+                   response.sendRedirect("index.jsp");
+               }
         }
         else{
             request.setAttribute("thongbao", "Thông tin đăng nhập không chính xác");

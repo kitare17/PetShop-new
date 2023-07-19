@@ -23,7 +23,6 @@
             <input type="hidden" class="form-control" id="foodID" placeholder="Id thức ăn" name="productId"
                    aria-describedby="inputGroupPrepend"  value="${productId}" required>
             <div class="invalid-feedback">
-              Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
             </div>
           </div>
         </div>
@@ -43,10 +42,10 @@
         <div class="col-md-6 offset-3 mb-3 mt-3">
           <label for="importAmount">Số lượng thức ăn  </label>
           <div class="input-group">
-            <input  type="number" class="form-control" min="1" max="9999999" id="importAmount" placeholder="Số lượng thức ăn" name="importAmount"
+            <input  type="number" class="form-control" min="1" max="999999" id="importAmount" placeholder="Số lượng thức ăn" name="importAmount"
                    aria-describedby="inputGroupPrepend"  required>
             <div class="invalid-feedback">
-              Không bao gồm chữ cái
+              Không bao gồm chữ cái, tối đa 999,999 và trường này là bắt buộc
             </div>
           </div>
         </div>

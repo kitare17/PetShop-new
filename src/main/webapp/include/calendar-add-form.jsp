@@ -10,7 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<h1 class="m-5">Thông tin chung về dịch vụ ${serviceName} đặt ngày ${day} ${serviceID}</h1>
+<h1 class="m-5 text-center">Thông tin chung về dịch vụ ${serviceName} đặt ngày ${day} ${serviceID}</h1>
 <div class="container">
     <div class="row">
 
@@ -26,7 +26,9 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Thông tin chung:</h5>
-                            <p class="card-text"> <strong>Số lượng khách đã đặt</strong>  <span class="badge bg-primary"> ${l.realOfResponse}/${l.numberOfResponse}</span></p>
+                            <p class="card-text"> <strong>Số lượng thú cưng đã đặt</strong>  <span class="badge bg-primary"> ${l.realOfResponse}/${l.numberOfResponse}</span></p>
+                            <p class="card-text"> <strong>Thời gian</strong>  <span class="badge" style="background-color: #0d6efd">${l.getTimeToString()} </span></p>
+
                             <p class="card-text"> <strong>Trạng thái</strong>
                                 <c:if test="${l.numberOfResponse!=0}">
                                     <span class="badge bg-success"> Đã lên lịch</span>

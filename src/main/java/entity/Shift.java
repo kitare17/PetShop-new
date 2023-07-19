@@ -19,7 +19,6 @@ public class Shift {
         this.realOfResponse = realOfResponse;
     }
 
-
     public Shift() {
     }
 
@@ -96,7 +95,9 @@ public class Shift {
     public void setServiceID(String serviceID) {
         this.serviceID = serviceID;
     }
-
+    public String getTimeToString(){
+        return shiftStartTime.substring(0,5)+" - "+shiftEndTime.substring(0,5);
+    }
     @Override
     public String toString() {
         return "Shift{" +

@@ -20,8 +20,8 @@
 <div class="container-fluid d-none d-lg-block pt-5 mb-5">
     <div class="container">
         <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-            <h6 class="text-primary text-uppercase">Pet's Food</h6>
-            <h1 class="display-5 text-uppercase mb-0">PRODUCTS FOR YOUR BEST FRIENDS</h1>
+            <h6 class="text-primary text-uppercase">Thức ăn</h6>
+            <h1 class="display-5 text-uppercase mb-0">Thức ăn cho thú cưng</h1>
         </div>
        <div class="row">
            <c:forEach var="food" items="${listFood}">

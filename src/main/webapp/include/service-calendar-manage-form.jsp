@@ -10,6 +10,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <style>
+    .fc-event-time{
+      display:none;
+    }
+  </style>
   <meta charset='utf-8' />
   <script src='./dist/index.global.js'></script>
   <script>
@@ -80,7 +85,7 @@
   </style>
 </head>
 <body>
-<h1>Lịch trình của dịch vụ ${serviceName}</h1>
+<h1 class="text-center mt-5">Lịch trình của dịch vụ ${serviceName}</h1>
 <div id='calendar'></div>
 <%--<c:forEach  items="${listCalendar}" var="c">--%>
 <%-- ${c.shiftName}--%>

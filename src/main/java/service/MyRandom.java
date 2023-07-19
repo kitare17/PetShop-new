@@ -24,7 +24,19 @@ public class MyRandom {
         while(UserRepository.checkExistID(sb.toString()));
         return sb.toString();
     }
+    public static String getRandomEmpID() {
+        StringBuilder sb ;
+        do {
+            sb = new StringBuilder();
+            sb.append("E");
 
+            for (int i = 1; i <= LENGTH; i++) {
+                sb.append(new Random().nextInt(10));
+            }
+        }
+        while(UserRepository.checkExistID(sb.toString()));
+        return sb.toString();
+    }
 
     public static String getRandomPetID(){
         StringBuilder sb ;
