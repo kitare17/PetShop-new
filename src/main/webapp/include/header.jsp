@@ -99,14 +99,14 @@
             <a href="service.jsp" class="nav-item nav-link">Dịch vụ</a>
             <a href="product" class="nav-item nav-link">Sản phẩm</a>
             <%--           --%>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tin tức</a>
-                <div class="dropdown-menu m-0">
-                    <a href="testmonial.jsp" class="dropdown-item">Testimonial</a>
-                    <a href="blog.jsp" class="dropdown-item">Blog Grid</a>
-                    <a href="detail.jsp" class="dropdown-item">Blog Detail</a>
-                </div>
-            </div>
+<%--            <div class="nav-item dropdown">--%>
+<%--                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tin tức</a>--%>
+<%--                <div class="dropdown-menu m-0">--%>
+<%--                    <a href="testmonial.jsp" class="dropdown-item">Testimonial</a>--%>
+<%--                    <a href="blog.jsp" class="dropdown-item">Blog Grid</a>--%>
+<%--                    <a href="detail.jsp" class="dropdown-item">Blog Detail</a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
             <c:if test="${sessionScope.user==null}">
                 <a href="login.jsp" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng nhập<i
                         class="bi bi-arrow-right"></i></a>
@@ -131,6 +131,7 @@
                         <c:if test="${sessionScope.user.userId.startsWith('C')}">
                             <a href="cart.jsp" class="dropdown-item">Giỏ hàng</a>
                             <a href="getorderhistory" class="dropdown-item">Lịch sử đặt hàng</a>
+                            <a href="getbookinghistory" class="dropdown-item">Lịch sử đặt dịch vụ</a>
                         </c:if>
                         <c:if test="${sessionScope.user.userId.startsWith('A')}">
                             <a href="manage-emp-account" class="dropdown-item">Quản lí tài khoản nhân viên</a>

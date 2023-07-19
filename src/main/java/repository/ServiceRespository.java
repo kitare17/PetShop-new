@@ -3,6 +3,7 @@ package repository;
 import config.DBConnect;
 import entity.Calendar;
 import entity.ServiceBill;
+import entity.ServiceBooked;
 import entity.Shift;
 
 import java.sql.Connection;
@@ -443,7 +444,45 @@ public class ServiceRespository {
         }
         return true;
     }
+
+    public static ArrayList<ServiceBooked> getBookingHistory(String userId) {
+        ArrayList<ServiceBooked> listBooking = new ArrayList<>();
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select b.BillID,se.ServiceName,b.DateCreate,b.SetDay,s.ShiftStartTime,s.ShiftEndTime,b.Amount,b.PriceAtPurchase,b.StatusBill from tblServiceBill b\n" +
+                    "join tblShift s on b.ShiftID = s.ShiftID \n" +
+                    "join tblService se on b.ServiceID = se.ServiceID\n" +
+                    "where b.CustomerID = ?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, userId);
+            ResultSet results = stmt.executeQuery();
+            while (results.next()) {
+//                listOrderId.add(results.getString(1));
+                String billId = results.getString(1);
+                String serviceName = results.getString(2);
+                String dateCreate = results.getString(3);
+                String setDay = results.getString(4);
+                String startTime = results.getString(5);
+                String endTime = results.getString(6);
+                int ammount = results.getInt(7);
+                String priceAtPurchase = results.getString(8);
+                int status = results.getInt(9);
+                ServiceBooked booked = new ServiceBooked(billId,serviceName,dateCreate,setDay,startTime,endTime,ammount,priceAtPurchase,status);
+                listBooking.add(booked);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("==========>ERROR :  getBookingHistory(String userId) Service repository<=============");
+        }
+        return listBooking;
+    }
     public static void main(String[] args) {
+//        getBookingHistory("C6862").toString();
+        System.out.println("ccccc");
+        for (ServiceBooked b: getBookingHistory("C6862")) {
+            System.out.println(b.toString());
+        }
 //        for (Shift s : getAllShiftByDay("S0001", "2023-06-20")) {
 //            System.out.println(s);
 //        }
@@ -473,10 +512,10 @@ public class ServiceRespository {
 //        for (Shift s : listShift) {
 //            System.out.println(s);
 //        }
-        for (ServiceBill s: getAllServiceOrder()
-             ) {
-            System.out.println(s);
-
-    }
+//        for (ServiceBill s: getAllServiceOrder()
+//             ) {
+//            System.out.println(s);
+//
+//    }
 
 }}
