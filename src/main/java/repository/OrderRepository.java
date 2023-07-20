@@ -572,8 +572,65 @@ public static int getRemainingAmount(String foodID){
 
     }
 
+
+    public static ArrayList<Preferential>  getListDiscount(){
+
+        ArrayList<Preferential> listP;
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select * from tblPreferential";
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet rs= stmt.executeQuery();
+            listP=new ArrayList<Preferential>();
+            while (rs.next()){
+                String id = rs.getString(1);
+                String preferentialName = rs.getString(2);
+                String startDay = rs.getString(3);
+                String endDay = rs.getString(4);
+                double rate = rs.getDouble(5);
+                Preferential newP=new Preferential( id,  preferentialName,  startDay,  endDay,  rate);
+                listP.add(newP);
+            }
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : getListDiscount()<=============");
+            return null;
+        }
+        return listP;
+
+
+    }
+
+    public static boolean createDiscount(Preferential p){
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "insert into tblPreferential\n" +
+                    "(Preferential,PreferentialName,StartDay,EndDay,Rate)\n" +
+                    "values (?,?,?,?,?)";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1,p.getId());
+            stmt.setString(2,p.getPreferentialName());
+            stmt.setString(3,p.getStartDay());
+            stmt.setString(4,p.getEndDay());
+            stmt.setDouble(5,p.getRate()/100);
+stmt.executeUpdate();
+
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : checkValidAmountOfPet()<=============");
+            return false;
+        }
+        return true;
+
+
+    }
     public static void main(String[] args) {
-        System.out.println(checkValidAmountOfPet("EI8oZMNV7l"));
+        for (Preferential p: getListDiscount()
+             ) {
+            System.out.println(p);
+        }
 
     }
 }

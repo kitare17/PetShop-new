@@ -127,6 +127,7 @@
                             <a href="list-service-manager.jsp"  class="dropdown-item">Quản lí lịch dịch vụ</a>
                             <a href="getserviceorder"  class="dropdown-item">Quản lí đơn dịch vụ</a>
                             <a href="statistics"  class="dropdown-item">Thống kê bán hàng</a>
+                            <a href="listdiscount"  class="dropdown-item">Quản lí mã giảm giá</a>
                         </c:if>
                         <c:if test="${sessionScope.user.userId.startsWith('C')}">
                             <a href="cart.jsp" class="dropdown-item">Giỏ hàng</a>

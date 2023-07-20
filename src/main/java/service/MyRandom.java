@@ -3,6 +3,7 @@ package service;
 import repository.ProductRepository;
 import repository.UserRepository;
 
+import java.util.Locale;
 import java.util.Random;
 
 public class MyRandom {
@@ -77,8 +78,7 @@ public class MyRandom {
         return sb.toString();
     }
     public static void main(String[] args) {
-        for (int i = 1; i <= 5; i++)
-            System.out.println(getRandomOTP());
+        System.out.println(getRandomDiscount());
     }
     public static String getRandomServiceBillID() {
         Random random = new Random();
@@ -88,6 +88,18 @@ public class MyRandom {
             int randomIndex = random.nextInt(CHARACTERS.length());
             char randomChar = CHARACTERS.charAt(randomIndex);
             sb.append(randomChar);
+        }
+
+        return sb.toString();
+    }
+    public static String getRandomDiscount() {
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder(10);
+
+        for (int i = 0; i < 10; i++) {
+            int randomIndex = random.nextInt(CHARACTERS.length());
+            char randomChar = CHARACTERS.charAt(randomIndex);
+            sb.append((randomChar+"").toUpperCase());
         }
 
         return sb.toString();
