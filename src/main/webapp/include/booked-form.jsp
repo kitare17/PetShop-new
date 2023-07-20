@@ -38,14 +38,14 @@
                     <c:forEach items="${listOrdered}" var="i">
                         <tr>
 <%--                            getPriceAtPurchaseReal()--%>
-                            <td><a href="getbookeddetail?billID=${i.billID}&serviceName=${i.serviceName}&ammount=${i.ammount}&priceAtPurchase=${i.getPriceAtPurchaseReal()}&status=${i.status}">${i.billID}</a></td>
+                            <td><a href="getbookeddetail?billID=${i.billID}&serviceName=${i.serviceName}&ammount=${i.ammount}&priceAtPurchase=${i.priceAtPurchase}&status=${i.getStatusString()}">${i.billID}</a></td>
                             <td>${i.serviceName}</td>
                             <td>${i.dateCreate}</td>
                             <td>${i.setDay}</td>
                             <td>${i.getTimeToString()}</td>
                             <td>${i.ammount}</td>
-                            <td>${i.getPriceAtPurchaseReal()}</td>
-                            <td>${i.status}</td>
+                            <td>${i.priceAtPurchase}</td>
+                            <td>${i.getStatusString()}</td>
 
 
                         </tr>

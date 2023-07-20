@@ -76,6 +76,19 @@ public class Service {
     public void setStatus(int status) {
         this.status = status;
     }
+    public String getStatusString() {
+        if (this.status == 0 ) {
+            return "Đang chờ";
+        } else if (this.status == 1) {
+            return "Đã thanh toán";
+        } else if (this.status == 2) {
+            return "Đã thanh toán";
+        } else if (this.status == 3) {
+            return "Đã hủy";
+        } else {
+            return "Lỗi";
+        }
+    }
     public String getPriceString() {
         return formatter.format(servicePrice);
 

@@ -88,8 +88,6 @@ public class ServiceBooked {
         this.status = status;
     }
 
-    public ServiceBooked() {
-    }
 
     public ServiceBooked(String billID, String serviceName, String dateCreate, String setDay, String startTime, String endTime, int ammount, String priceAtPurchase, int status) {
         this.billID = billID;
@@ -116,6 +114,19 @@ public class ServiceBooked {
                 ", priceAtPurchase='" + priceAtPurchase + '\'' +
                 ", status=" + status +
                 '}';
+    }
+    public String getStatusString() {
+        if (this.status == 0 ) {
+            return "Đang chờ";
+        } else if (this.status == 1) {
+            return "Đã thanh toán";
+        } else if (this.status == 2) {
+            return "Đã thanh toán";
+        } else if (this.status == 3) {
+            return "Đã hủy";
+        } else {
+            return "Lỗi";
+        }
     }
     public String getTimeToString(){
         return startTime.substring(0,5)+" - "+endTime.substring(0,5);
