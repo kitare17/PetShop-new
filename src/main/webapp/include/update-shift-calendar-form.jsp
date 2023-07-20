@@ -48,12 +48,12 @@
 
         <%--input số lương thú cưng--%>
         <div class="col-md-6 offset-3  mb-3">
-          <label for="numberOfResponses">Số lượng thú cưng đáp ứng (Lưu ý phải lớn hơn ${numberOfResponses} )</label>
+          <label for="numberOfResponses">Số lượng thú cưng đáp ứng (Lưu ý phải lớn hơn ${numberOfResponses} và bé hơn 200)</label>
           <div class="input-group">
-            <input type="number" min="${numberOfResponses+1}"    class="form-control" id="numberOfResponses" placeholder="Số lượng" name="numberOfResponses"
+            <input type="number" min="${numberOfResponses+1}" max="200"   class="form-control" id="numberOfResponses" placeholder="Số lượng" name="numberOfResponses"
                    aria-describedby="inputGroupPrepend"  required>
             <div class="invalid-feedback">
-              Số lượng thú cưng đáp ứng phải lớn hơn số lượng cũ
+              Số lượng thú cưng đáp ứng phải lớn hơn số lượng cũ và không quá 200
             </div>
           </div>
         </div>

@@ -23,6 +23,7 @@
     box-shadow: 1px 1px 40px 5px rgb(185, 185, 185);
     overflow: hidden;
     background-image: linear-gradient(to top right, #f9a743, #f9db5f);
+
 }
 @media screen and (max-height: 500px) {
     .center {

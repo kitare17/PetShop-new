@@ -8,10 +8,7 @@
 <!-- Contact Start -->
 <div class="container-fluid pt-5">
     <div class="container">
-        <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-            <h6 class="text-primary text-uppercase">Contact Us</h6>
-            <h1 class="display-5 text-uppercase mb-0">Sign up</h1>
-        </div>
+
         <div class="row g-5">
             <div class="col-lg-7">
                 <h1>${message}</h1>
@@ -26,7 +23,7 @@
 
                         <%--input username--%>
                         <div class="col-md-6 offset-3 mb-3">
-                            <label for="username">Username</label>
+                            <label for="username">Username<span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="username" placeholder="Username"
                                        name="username"
@@ -39,7 +36,7 @@
                         </div>
                         <%--input password--%>
                         <div class="col-md-6 offset-3 mb-3">
-                            <label for="password">Mật khẩu</label>
+                            <label for="password">Mật khẩu<span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input type="password" class="form-control" id="password" placeholder="Mật khẩu"
                                        name="password"
@@ -52,7 +49,7 @@
 
                         <%--input re-password--%>
                         <div class="col-md-6 offset-3 mb-3">
-                            <label for="re-password">Nhập mật khẩu</label>
+                            <label for="re-password">Nhập mật khẩu<span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input type="password" class="form-control" id="re-password"
                                        placeholder="Nhập lại mật khẩu" name="re-password"
@@ -66,10 +63,10 @@
 
                         <%--input fistname--%>
                         <div class="col-md-6 offset-3 mb-3">
-                            <label for="firstname">Họ</label>
+                            <label for="firstname">Họ<span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="firstname" placeholder="Họ" name="firstname"
-                                       aria-describedby="inputGroupPrepend" pattern="^[A-Za-z ]{1,50}$" required>
+                                       aria-describedby="inputGroupPrepend" pattern="^[\p{Lu}\p{Ll}\sA-Za-záàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]{1,50}$" required>
                                 <div class="invalid-feedback">
                                     Họ chứa từ 1 đến 50 kí tự
                                 </div>
@@ -77,10 +74,10 @@
                         </div>
                         <%-- input lastname--%>
                         <div class="col-md-6 offset-3 mb-3">
-                            <label for="lastname">Tên</label>
+                            <label for="lastname">Tên<span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="lastname" placeholder="Tên" name="lastname"
-                                       aria-describedby="inputGroupPrepend" pattern="^[A-Za-z ]{1,50}$" required>
+                                       aria-describedby="inputGroupPrepend" pattern="^[\p{Lu}\p{Ll}\sA-Za-záàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]{1,50}$" required>
                                 <div class="invalid-feedback">
                                     Tên chứa từ 1 đến 50 kí tự
                                 </div>
@@ -89,7 +86,7 @@
 
                         <%--        input address--%>
                         <div class="col-md-6 offset-3 ol mb-3">
-                            <label for="address">Địa chỉ</label>
+                            <label for="address">Địa chỉ<span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="address" placeholder="Địa chỉ"
                                        name="address"
@@ -103,7 +100,7 @@
 
                         <%--        input phone--%>
                         <div class="col-md-6 offset-3 mb-3">
-                            <label for="phone">Điện thoại</label>
+                            <label for="phone">Điện thoại<span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="phone" placeholder="Điện thoại" name="phone"
                                        aria-describedby="inputGroupPrepend" pattern="^[0-9]{10}$" required>
@@ -113,7 +110,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 offset-3 mb-3">
-                            <label for="email">Email</label>
+                            <label for="email">Email<span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input type="email" class="form-control" id="email" placeholder="Email" name="email"
                                        aria-describedby="inputGroupPrepend"  required>

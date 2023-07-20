@@ -17,7 +17,7 @@ public class ListImportedFoodServlet extends HttpServlet {
         ArrayList<ImportedFood> listImportedFood= ProductRepository.getListImportedFood(foodID);
         request.setAttribute("listImportedFood",listImportedFood);
         request.setAttribute("productId",foodID);
-        request.getRequestDispatcher("food-list-import").forward(request,response);
+        request.getRequestDispatcher("food-import-list.jsp").forward(request,response);
     }
 
     @Override
