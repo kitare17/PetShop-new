@@ -339,7 +339,7 @@
 <script>
   function calculate() {
     var userInput = document.getElementById("numberInput").value;
-    var result = userInput * parseFloat(${servicePrice}) * 1000;
+    var result = userInput * parseFloat(${servicePrice});
     document.getElementById("result1").innerHTML = result + " đ";
     document.getElementById("result2").innerHTML = result + " đ";
   }

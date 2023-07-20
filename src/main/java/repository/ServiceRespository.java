@@ -200,7 +200,8 @@ public class ServiceRespository {
             stmt.setString(6, setDay);
             stmt.setInt(7, 0);
             stmt.setInt(8,ammount);
-            stmt.setString(9,priceAtPurchase.replace(",","."));
+
+            stmt.setString(9, String.valueOf(Double.parseDouble(priceAtPurchase) * ammount));
             stmt.executeUpdate();
             con.close();
         } catch (Exception e) {

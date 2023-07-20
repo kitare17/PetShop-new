@@ -31,7 +31,7 @@ public class ConfirmBookingServlet extends HttpServlet {
         request.setAttribute("shiftID",shiftID );
         request.setAttribute("handleNum",handleNum );
         request.setAttribute("bookedNum",bookedNum );
-        request.setAttribute("servicePrice",s.getPriceString());
+        request.setAttribute("servicePrice", s.getServicePrice());
         request.setAttribute("max",max);
 
 //        System.out.println(id);
