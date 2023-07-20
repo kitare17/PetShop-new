@@ -19,7 +19,7 @@ public class AcceptOrderServlet extends HttpServlet {
         String id= request.getParameter("id");
         System.out.println(id);
 
-        if(!OrderRepository.checkValidStatusOfPet(id)){
+        if(!OrderRepository.checkValidStatusOfPet(id) || !OrderRepository.checkValidAmountOfPet(id)){
 
             response.sendRedirect("order-list-manager?thongbao=0");
         }

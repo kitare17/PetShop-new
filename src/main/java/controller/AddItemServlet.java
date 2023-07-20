@@ -37,14 +37,35 @@ public class AddItemServlet extends HttpServlet {
                 System.out.println("=============>Loi if else check matching <===============");
             }
             Cart cart = (Cart) session.getAttribute("cart");
+            boolean checkPet=true;
+            for (Items item: cart.getCart()
+                 ) {
+             if(item.getProduct().getProductId().startsWith("P")){
+                 if(item.getProduct().getProductId().equals(id)) checkPet=false;
+             }
+
+            }
             Items item = new Items(p, Integer.parseInt(ammout));
-            System.out.println(cart.addItems(item));
-            System.out.println(cart);
-            request.setAttribute("product", p);
-            request.setAttribute("message", "Thêm sản phẩm thành công");
-            response.setCharacterEncoding("UTF-8");
-            session.setAttribute("cart", cart);
-            request.getRequestDispatcher("product-detail.jsp").forward(request, response);
+            if(checkPet){
+                System.out.println(cart.addItems(item));
+                System.out.println(cart);
+                request.setAttribute("product", p);
+                request.setAttribute("message", "Thêm sản phẩm thành công");
+                response.setCharacterEncoding("UTF-8");
+                session.setAttribute("cart", cart);
+                request.getRequestDispatcher("product-detail.jsp").forward(request, response);
+
+            }else
+            {
+                request.setAttribute("product", p);
+                request.setAttribute("message", "Thú cưng này đã có trong giỏ hàng");
+                response.setCharacterEncoding("UTF-8");
+
+                request.getRequestDispatcher("product-detail.jsp").forward(request, response);
+            }
+
+
+
         } catch (Exception e) {
             System.out.println("=============>Loi AdditemServlet <===============");
             e.printStackTrace();

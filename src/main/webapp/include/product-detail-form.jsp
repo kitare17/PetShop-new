@@ -162,7 +162,9 @@
             <c:if test="${sessionScope.user.userId.startsWith('C')}">
 
                 <form action="additem">
-                    <div>
+
+
+                    <div  class="${product.productId.startsWith('P')?"d-none":""}"  >
                         <div class="shopee-input-quantity">
                             <input type="button" class="add-sl shopee-button-outline" title="Bớt"
                                    onclick="var qty_el = document.getElementById('qty');
@@ -182,6 +184,9 @@
                                        return false;">
                         </div>
                     </div>
+
+
+
                     <div class="buttons">
                         <div>
                             <input name="id" type="text" hidden="" value="${product.productId}">

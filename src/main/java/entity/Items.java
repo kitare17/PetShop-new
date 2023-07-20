@@ -57,4 +57,13 @@ public class Items {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Items{" +
+                "product=" + product +
+                ", ammout=" + ammout +
+                ", formatter=" + formatter +
+                '}';
+    }
 }

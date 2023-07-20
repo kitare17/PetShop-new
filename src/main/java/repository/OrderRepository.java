@@ -512,9 +512,68 @@ public class OrderRepository {
        }
        return true;
    }
+public static int getRemainingAmount(String foodID){
+        int amount=0;
+    try {
+        Connection con = DBConnect.getConnection();
+        String query = "select y.FoodID, y.SumAmount,z.SellAmount from \n" +
+                "(\n" +
+                "select imp.FoodID ,Sum(imp.Amount) as SumAmount  from tblImported imp\n" +
+                "group by imp.FoodID\n" +
+                ") y\n" +
+                "left join (\n" +
+                "select odr.ProductID,sum(odr.AmountProduct) as SellAmount from tblOrderDetails odr\n" +
+                "join tblBill on tblBill.BillID=odr.BillID\n" +
+                "where (StatusBill=N'Đã xác nhận' or StatusBill=N'Đã thanh toán')\n" +
+                "group by odr.ProductID\n" +
+                "\n" +
+                ")z on y.FoodID=z.ProductID \n" +
+                "where FoodID=?";
+        PreparedStatement stmt = con.prepareStatement(query);
+        stmt.setString(1, foodID);
+         ResultSet rs= stmt.executeQuery();
+         if(rs.next()){
+             int sumAmount=rs.getInt(2);
+             int sellAmount=rs.getInt(3);
+             amount=sumAmount-sellAmount;
+         }
+
+        con.close();
+    } catch (Exception e) {
+        System.out.println("==========>ERROR : getRemainingAmount()<=============");
+        return amount;
+    }
+    return amount;
+}
+    public static boolean checkValidAmountOfPet(String billID){
+
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select b.BillID,f.FoodID,od.AmountProduct from tblBill b \n" +
+                    "join tblOrderDetails od on od.BillID=b.BillID \n" +
+                    "join tblFood f on f.FoodID= od.ProductID\n" +
+                    "where b.BillID=?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, billID);
+            ResultSet rs= stmt.executeQuery();
+            while (rs.next()){
+                int remainingAmount=getRemainingAmount(rs.getString(2));
+                int amount=rs.getInt(3);
+                if(remainingAmount-amount<0) return false;
+            }
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : checkValidAmountOfPet()<=============");
+            return false;
+        }
+        return true;
+
+
+    }
 
     public static void main(String[] args) {
-        System.out.println(checkValidStatusOfPet("LN05pAJrDn"));
+        System.out.println(checkValidAmountOfPet("EI8oZMNV7l"));
 
     }
 }
