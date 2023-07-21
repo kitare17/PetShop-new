@@ -136,9 +136,6 @@ public class ServiceBooked {
 
         double realPrice = doubePrice * ammount;
         String price =  Double.toString(realPrice);
-        for (int i = 0 ; i < 1000; i ++) {
-            System.out.println(price);
-        }
         return price;
     }
 }

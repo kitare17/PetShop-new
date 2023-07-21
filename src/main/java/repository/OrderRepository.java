@@ -46,7 +46,12 @@ public class OrderRepository {
             stmt.setString(3, user.getAddress());
             stmt.setString(4, Isvalid.getCurrentDate());
             stmt.setString(5, cart.getDiscountCode());
-            stmt.setString(6, "Đang xử lý");
+            if (cart.getPaymentType() == 0 ) {
+                stmt.setString(6, "Đang xử lý-COD");
+
+            } else {
+                stmt.setString(6, "Đang xử lý-CK");
+            }
             stmt.executeUpdate();
             con.close();
             createOrderDetail(cart, orderID);

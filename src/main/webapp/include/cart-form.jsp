@@ -299,6 +299,32 @@
                             <div class="cart-summary">
                                 <div class="cart-content">
                                     <h1>Thanh toán đơn hàng</h1>
+
+                                    <form id="myForm" class="form-inline" action="payment" >
+                                        <div class="form-group mr-2">
+                                            <label for="paymentMethod">Chọn hình thức thanh toán</label>
+                                        </div>
+<%--                                        test="${sessionScope.cart.discountCode != null}"--%>
+<%--                                        ${sessionScope.cart.cart}"--%>
+                                        <c:if test="${sessionScope.cart.getPaymentType() == 0}">
+                                            <div class="form-group">
+                                                <select class="form-control" name="paymentMethod" id="paymentMethod"  onchange="this.form.submit()">
+                                                    <option value="0">Thanh toán khi nhận hàng</option>
+                                                    <option value="1">Chuyển khoản</option>
+                                                </select>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${sessionScope.cart.getPaymentType() != 0}">
+                                            <div class="form-group">
+                                                <select class="form-control" name="paymentMethod" id="paymentMethod"  onchange="this.form.submit()">
+                                                    <option value="1">Chuyển khoản</option>
+                                                    <option value="0">Thanh toán khi nhận hàng</option>
+                                                </select>
+                                            </div>
+                                        </c:if>
+<%--                                        <button type="submit" class="btn btn-primary">Gửi</button>--%>
+                                    </form>
+
                                     <p>Tạm tính: <span>${sessionScope.cart.getThanhTienString(0)}</span></p>
                                     <p>Tiền ship: <span>30000 ${discountPercent}</span></p>
                                     <c:if test="${sessionScope.cart.discountCode == null}">

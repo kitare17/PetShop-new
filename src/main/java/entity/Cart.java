@@ -19,6 +19,8 @@ public class Cart {
         return orderedId;
     }
 
+    private int paymentType = 0; //0 la COD , 1 la CK
+
     public void setOrderedId(String orderedId) {
         this.orderedId = orderedId;
     }
@@ -202,6 +204,14 @@ public class Cart {
 
     public void setDiscountPercent(double discountPercent) {
         this.discountPercent = discountPercent;
+    }
+
+    public int getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(int paymentType) {
+        this.paymentType = paymentType;
     }
 
     public DecimalFormat getFormatter() {
