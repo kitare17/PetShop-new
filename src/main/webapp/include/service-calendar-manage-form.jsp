@@ -86,7 +86,17 @@
 </head>
 <body>
 <h1 class="text-center mt-5">Lịch trình của dịch vụ ${serviceName}</h1>
-<div id='calendar'></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10"><div id='calendar'></div></div>
+    <div class="col-md-2 mt-5">
+      <h5 ><i  class="fa fa-circle text-danger" aria-hidden="true"> </i>Ca 1 bắt đầu từ 7:00 đến 9:00</h5>
+      <h5><i class="fa fa-circle text-danger" aria-hidden="true"></i>Ca 2 bắt đầu từ 9:30 đến 11:30</h5>
+      <h5><i class="fa fa-circle text-danger" aria-hidden="true"></i>Ca 3 bắt đầu từ 12:00 đến 14:00</h5>
+      <h5><i class="fa fa-circle text-danger" aria-hidden="true"></i>Ca 4 bắt đầu từ 14:30 đến 16:30</h5>
+    </div>
+  </div>
+</div>
 <%--<c:forEach  items="${listCalendar}" var="c">--%>
 <%-- ${c.shiftName}--%>
 <%--  ${c.setDay}T${c.startTime}--%>

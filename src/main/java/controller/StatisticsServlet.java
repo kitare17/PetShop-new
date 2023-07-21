@@ -1,5 +1,6 @@
 package controller;
 
+import entity.Revenue;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -20,6 +21,13 @@ public class StatisticsServlet extends HttpServlet {
         int numberOfPetsLeft = StatisticsRepository.getNumberOfPetsLeft();
 
         double orderRevenue=StatisticsRepository.getOrderRevenue();
+        double serviceRevenue=StatisticsRepository.getServiceRevenueByYear();
+
+
+
+
+        ArrayList<Revenue> listOderRevenues= StatisticsRepository.getOrderRevenueEachMonths();
+        ArrayList<Revenue> listServiceRevenues= StatisticsRepository.getServiceRevenueEachMonths();
         DecimalFormat formatter = new DecimalFormat("#,###,###");
         System.out.println(  formatter.format(orderRevenue));
         ArrayList listFood=StatisticsRepository.getListRankOfFood();
@@ -28,6 +36,9 @@ public class StatisticsServlet extends HttpServlet {
         request.setAttribute("numberOfPetsLeft", numberOfPetsLeft);
         request.setAttribute("orderRevenue",   formatter.format(orderRevenue));
         request.setAttribute("listFood",listFood);
+        request.setAttribute("serviceRevenue",formatter.format(serviceRevenue));
+        request.setAttribute("listOderRevenues",listOderRevenues);
+        request.setAttribute("listServiceRevenues",listServiceRevenues);
         request.getRequestDispatcher("statisticspage.jsp").forward(request,response);
 
         //request.setAttribute();

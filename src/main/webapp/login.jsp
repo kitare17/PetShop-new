@@ -98,7 +98,8 @@
                 </form>
                 
                 <%-- sua cai nay--%>
-                ${thongbao}
+                <h4 class="bg-warning  text-danger " style="text-align: center;background-color: red;padding: 2px 2px; font-size: 16px;margin:2px 0px "> ${thongbao}</h4>
+
                 <div class="social-buttons">
                     <h3>Bạn chưa có tài khoản? <a href="register.jsp">Đăng kí ngay</a></h3>
                 </div>
