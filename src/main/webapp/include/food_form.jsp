@@ -42,7 +42,7 @@
        </div>
     </div>
 </div>
-<div class="container" style="margin-top: 100px;font-size: larger" >
+<div class="container" style="margin-top: 200px;font-size: larger" >
     <div class="row ">
         <div class="col-12 d-flex justify-content-center">
             <c:forEach var="i" begin="1" end="${maxPage}">

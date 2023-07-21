@@ -2,6 +2,7 @@ package controller;
 
 import entity.Cart;
 import entity.Items;
+import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -26,6 +27,9 @@ public class GetOrderedDetailForEmpServlet extends HttpServlet {
         request.setAttribute("orderId", orderId);
         request.setAttribute("orderStatus", orderStatus);
         request.setAttribute("orderedCart", orderedCart);
+        User user =OrderRepository.getCustomerByBillID(orderId);
+        request.setAttribute("user",user);
+
         request.getRequestDispatcher("history_order_for_emp.jsp").forward(request, response);
     }
 

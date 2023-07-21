@@ -37,7 +37,7 @@ public class StatisticsRepository {
 
         try {
             Connection con = DBConnect.getConnection();
-            String query = "select count(1) from tblBill t where  t.StatusBill=N'Đang xử lý'";
+            String query = "select count(1) from tblBill t where  t.StatusBill like N'Đang%'";
 
             PreparedStatement stmt = con.prepareStatement(query);
             ResultSet resultSet = stmt.executeQuery();

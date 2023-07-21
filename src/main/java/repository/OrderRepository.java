@@ -46,7 +46,7 @@ public class OrderRepository {
             stmt.setString(3, user.getAddress());
             stmt.setString(4, Isvalid.getCurrentDate());
             stmt.setString(5, cart.getDiscountCode());
-            if (cart.getPaymentType() == 0 ) {
+            if (cart.getPaymentType() == 0) {
                 stmt.setString(6, "Đang xử lý-COD");
 
             } else {
@@ -103,13 +103,10 @@ public class OrderRepository {
                 item.setAmmout(results.getInt(3));
                 item.setProduct(getProductById(results.getString(2)));
                 //lay id product
-                String productID=results.getString(2);
-                if(productID.startsWith("P"))
-                {
+                String productID = results.getString(2);
+                if (productID.startsWith("P")) {
                     item.getProduct().setListImg(ProductRepository.getListPetImage(productID));
-                }
-                else if(productID.startsWith("F"))
-                {
+                } else if (productID.startsWith("F")) {
                     item.getProduct().setListImg(ProductRepository.getListFoodImage(productID));
                 }
                 orderedList.add(item);
@@ -248,7 +245,7 @@ public class OrderRepository {
         try {
             listOrder = new ArrayList<>();
             Connection con = DBConnect.getConnection();
-            String query = "select * from tblBill where StatusBill=N'Đang xử lý'\n" +
+            String query = "select * from tblBill where StatusBill like N'Đang%'\n" +
                     "order by DateCreate    ";
             PreparedStatement stmt = con.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
@@ -452,8 +449,6 @@ public class OrderRepository {
     }
 
 
-
-
     public static boolean paidOrder(String orderId, String employeeID) {
 
         try {
@@ -494,63 +489,65 @@ public class OrderRepository {
         return true;
     }
 
-   public static boolean acceptedPet(String billID){
-       try {
-           Connection con = DBConnect.getConnection();
-           String query = "update tblPet \n" +
-                   "set StatusPet=0\n" +
-                   "where PetID in\n" +
-                   "(\n" +
-                   "select ProductID\n" +
-                   "from tblOrderDetails\n" +
-                   "where BillID=? and ProductID like 'P%'\n" +
-                   ")";
-           PreparedStatement stmt = con.prepareStatement(query);
+    public static boolean acceptedPet(String billID) {
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "update tblPet \n" +
+                    "set StatusPet=0\n" +
+                    "where PetID in\n" +
+                    "(\n" +
+                    "select ProductID\n" +
+                    "from tblOrderDetails\n" +
+                    "where BillID=? and ProductID like 'P%'\n" +
+                    ")";
+            PreparedStatement stmt = con.prepareStatement(query);
 
-           stmt.setString(1, billID);
-           stmt.executeUpdate();
+            stmt.setString(1, billID);
+            stmt.executeUpdate();
 
-           con.close();
-       } catch (Exception e) {
-           System.out.println("==========>ERROR : acceptedPet()<=============");
-           return false;
-       }
-       return true;
-   }
-public static int getRemainingAmount(String foodID){
-        int amount=0;
-    try {
-        Connection con = DBConnect.getConnection();
-        String query = "select y.FoodID, y.SumAmount,z.SellAmount from \n" +
-                "(\n" +
-                "select imp.FoodID ,Sum(imp.Amount) as SumAmount  from tblImported imp\n" +
-                "group by imp.FoodID\n" +
-                ") y\n" +
-                "left join (\n" +
-                "select odr.ProductID,sum(odr.AmountProduct) as SellAmount from tblOrderDetails odr\n" +
-                "join tblBill on tblBill.BillID=odr.BillID\n" +
-                "where (StatusBill=N'Đã xác nhận' or StatusBill=N'Đã thanh toán')\n" +
-                "group by odr.ProductID\n" +
-                "\n" +
-                ")z on y.FoodID=z.ProductID \n" +
-                "where FoodID=?";
-        PreparedStatement stmt = con.prepareStatement(query);
-        stmt.setString(1, foodID);
-         ResultSet rs= stmt.executeQuery();
-         if(rs.next()){
-             int sumAmount=rs.getInt(2);
-             int sellAmount=rs.getInt(3);
-             amount=sumAmount-sellAmount;
-         }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : acceptedPet()<=============");
+            return false;
+        }
+        return true;
+    }
 
-        con.close();
-    } catch (Exception e) {
-        System.out.println("==========>ERROR : getRemainingAmount()<=============");
+    public static int getRemainingAmount(String foodID) {
+        int amount = 0;
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select y.FoodID, y.SumAmount,z.SellAmount from \n" +
+                    "(\n" +
+                    "select imp.FoodID ,Sum(imp.Amount) as SumAmount  from tblImported imp\n" +
+                    "group by imp.FoodID\n" +
+                    ") y\n" +
+                    "left join (\n" +
+                    "select odr.ProductID,sum(odr.AmountProduct) as SellAmount from tblOrderDetails odr\n" +
+                    "join tblBill on tblBill.BillID=odr.BillID\n" +
+                    "where (StatusBill=N'Đã xác nhận' or StatusBill=N'Đã thanh toán')\n" +
+                    "group by odr.ProductID\n" +
+                    "\n" +
+                    ")z on y.FoodID=z.ProductID \n" +
+                    "where FoodID=?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, foodID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                int sumAmount = rs.getInt(2);
+                int sellAmount = rs.getInt(3);
+                amount = sumAmount - sellAmount;
+            }
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : getRemainingAmount()<=============");
+            return amount;
+        }
         return amount;
     }
-    return amount;
-}
-    public static boolean checkValidAmountOfPet(String billID){
+
+    public static boolean checkValidAmountOfPet(String billID) {
 
         try {
             Connection con = DBConnect.getConnection();
@@ -560,11 +557,11 @@ public static int getRemainingAmount(String foodID){
                     "where b.BillID=?";
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setString(1, billID);
-            ResultSet rs= stmt.executeQuery();
-            while (rs.next()){
-                int remainingAmount=getRemainingAmount(rs.getString(2));
-                int amount=rs.getInt(3);
-                if(remainingAmount-amount<0) return false;
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int remainingAmount = getRemainingAmount(rs.getString(2));
+                int amount = rs.getInt(3);
+                if (remainingAmount - amount < 0) return false;
             }
 
             con.close();
@@ -578,22 +575,22 @@ public static int getRemainingAmount(String foodID){
     }
 
 
-    public static ArrayList<Preferential>  getListDiscount(){
+    public static ArrayList<Preferential> getListDiscount() {
 
         ArrayList<Preferential> listP;
         try {
             Connection con = DBConnect.getConnection();
             String query = "select * from tblPreferential";
             PreparedStatement stmt = con.prepareStatement(query);
-            ResultSet rs= stmt.executeQuery();
-            listP=new ArrayList<Preferential>();
-            while (rs.next()){
+            ResultSet rs = stmt.executeQuery();
+            listP = new ArrayList<Preferential>();
+            while (rs.next()) {
                 String id = rs.getString(1);
                 String preferentialName = rs.getString(2);
                 String startDay = rs.getString(3);
                 String endDay = rs.getString(4);
                 double rate = rs.getDouble(5);
-                Preferential newP=new Preferential( id,  preferentialName,  startDay,  endDay,  rate);
+                Preferential newP = new Preferential(id, preferentialName, startDay, endDay, rate);
                 listP.add(newP);
             }
 
@@ -607,19 +604,19 @@ public static int getRemainingAmount(String foodID){
 
     }
 
-    public static boolean createDiscount(Preferential p){
+    public static boolean createDiscount(Preferential p) {
         try {
             Connection con = DBConnect.getConnection();
             String query = "insert into tblPreferential\n" +
                     "(Preferential,PreferentialName,StartDay,EndDay,Rate)\n" +
                     "values (?,?,?,?,?)";
             PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setString(1,p.getId());
-            stmt.setString(2,p.getPreferentialName());
-            stmt.setString(3,p.getStartDay());
-            stmt.setString(4,p.getEndDay());
-            stmt.setDouble(5,p.getRate()/100);
-stmt.executeUpdate();
+            stmt.setString(1, p.getId());
+            stmt.setString(2, p.getPreferentialName());
+            stmt.setString(3, p.getStartDay());
+            stmt.setString(4, p.getEndDay());
+            stmt.setDouble(5, p.getRate() / 100);
+            stmt.executeUpdate();
 
 
             con.close();
@@ -631,9 +628,35 @@ stmt.executeUpdate();
 
 
     }
+    public static User getCustomerByBillID(String billID) {
+        User user=null;
+
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select tblCustomer.* from tblBill\n" +
+                    "join tblCustomer on tblBill.CustomerID=tblCustomer.CustomerID\n" +
+                    "where BillID=?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, billID);
+            ResultSet rs=stmt.executeQuery();
+            if(rs.next()){
+                user=new User(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
+            }
+
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println("==========>ERROR : checkValidAmountOfPet()<=============");
+            return null;
+        }
+        return user;
+
+
+    }
+
     public static void main(String[] args) {
-        for (Preferential p: getListDiscount()
-             ) {
+        for (Preferential p : getListDiscount()
+        ) {
             System.out.println(p);
         }
 
