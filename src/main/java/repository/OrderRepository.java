@@ -389,8 +389,7 @@ public class OrderRepository {
     }
 
     public static double getPriceOrdered(String orderId, String productId) {
-        System.out.println("cho nay ne" + orderId);
-        System.out.println("cho nay ne" + productId);
+       
         double price = 0;
         try {
             Connection con = DBConnect.getConnection();

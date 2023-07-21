@@ -37,7 +37,7 @@ public class DBConnect {
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
         String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=" + dbName + ";encrypt=false";
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        System.out.println("Kết nối database");
+//        System.out.println("Kết nối database");
         return DriverManager.getConnection(url, userID, password);
     }
 

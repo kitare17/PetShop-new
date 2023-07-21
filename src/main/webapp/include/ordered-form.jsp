@@ -27,7 +27,7 @@
             <div class="mt-5 text-center">
                 <p class="">Khách vui lòng đồng kiểm với bưu tá khi nhận hàng và quay video để đảm bảo nhận hàng đầy
                     đủ.</p>
-                <p>Đơn hàng của quý khách đã được gửi cho hãng vận chuyển Viettel Post</p>
+                <p>Đơn hàng của quý khách sẽ được gửi cho hãng vận chuyển Viettel Post</p>
                 <p class="text-danger">Mã đơn hàng: ${orderId}</p>
             </div>
             <div class="d-flex justify-content-around">

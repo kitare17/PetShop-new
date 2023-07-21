@@ -19,10 +19,11 @@
             <div class="d-flex justify-content-center">
                 <h2 class="text-primary m-1 p-0">Tình trạng đơn hàng của bạn: </h2>
                 <h2 class="text-danger m-1 p-0">
-                    <c:if test="${status==0}">Đang chờ</c:if>
-                    <c:if test="${status==1}">Đã xác nhận</c:if>
-                    <c:if test="${status==2}">Đã thanh toán</c:if>
-                    <c:if test="${status==3}">Đã hủy</c:if>
+                    ${status}
+<%--                    <c:if test="${status==0}">Đang chờ</c:if>--%>
+<%--                    <c:if test="${status==1}">Đã xác nhận</c:if>--%>
+<%--                    <c:if test="${status==2}">Đã thanh toán</c:if>--%>
+<%--                    <c:if test="${status==3}">Đã hủy</c:if>--%>
 
 
                     </h2>

@@ -136,11 +136,36 @@ public class AuthenticationRepository {
 
         return 0;
     }
+    public static  boolean checkExistEmail(String email){
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select * from tblAccount\n" +
+                    "where Email=?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, email);
+
+            ResultSet rs=stmt.executeQuery();
+            if(rs.next()){
+              return true;
+            }
+
+
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Loi method checkExistEmail trong OrderRepository.java ");
+            return false;
+        }
+
+        return false;
+    }
+
+
     public static void main(String[] args) {
         //Test Verify
 //       System.out.println(Verify("khoanguvai","123456789"));
 //        System.out.println(Verify("Khoangungoc","khoangungoc"));
 //        System.out.println(Verify("QuangE","123456789"));
-        System.out.println(getStatusAcc("QuangE2"));
+        System.out.println(checkExistEmail("e@gmail.com"));
     }
 }

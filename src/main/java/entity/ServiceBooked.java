@@ -115,11 +115,16 @@ public class ServiceBooked {
                 ", status=" + status +
                 '}';
     }
+
+//    0: đang chờ
+//1: đã xác nhận
+//2: đã thanh toán
+//3: đã hủy
     public String getStatusString() {
         if (this.status == 0 ) {
-            return "Đang chờ";
+            return "Đang xử lý";
         } else if (this.status == 1) {
-            return "Đã thanh toán";
+            return "Đã xác nhận";
         } else if (this.status == 2) {
             return "Đã thanh toán";
         } else if (this.status == 3) {

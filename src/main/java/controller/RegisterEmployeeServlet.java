@@ -27,7 +27,7 @@ public class RegisterEmployeeServlet extends HttpServlet {
         //check exist username
         if(UserRepository.checkExistUsername(username)){
             request.setAttribute("thongbao","Tên đăng nhập đã tồn tại");
-            request.getRequestDispatcher("register.jsp").forward(request,response);
+            request.getRequestDispatcher("registeremployee.jsp").forward(request,response);
         }else if(UserRepository.checkExistEmail(email)){
             request.setAttribute("thongbao","Email này đã đăng kí vui lòng nhập email khác");
             request.getRequestDispatcher("registeremployee.jsp").forward(request,response);
