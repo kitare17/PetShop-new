@@ -28,7 +28,7 @@
                         class=" fa-solid fa-user"></i></div>
                 <div class="detail">
                     <div>${numberOfUsers}</div>
-                    <div>Số tài khoản đã đăng kí</div>
+                    <div>Số tài khoản khách hàng đã đăng kí</div>
                 </div>
             </div>
             <div class="d-flex pet-sold m-1">
@@ -42,7 +42,7 @@
                 <div style="background-color: rgb(255, 108, 133);" class="icon"><i
                         class="fa-solid fa-hand-holding-heart"></i></div>
                 <div class="detail">
-                    <div>120</div>
+                    <div>${serviceRevenue}</div>
                     <div>Tổng doanh thu từ dịch vụ</div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
 
 </div>
 
-<div class="container mt-3"  style="background-color: #f3f3f3">
+<div class="container mt-3" style="background-color: #f3f3f3">
     <h2>Danh sách thức ăn bán chạy trong tháng</h2>
     <p>Đây là danh sách các mặt hàng thức ăn bán chạy trong tháng</p>
 
@@ -94,7 +94,7 @@
         </thead>
         <tbody id="myTable">
 
-        <c:forEach var="food" items="${listFood}" >
+        <c:forEach var="food" items="${listFood}">
             <tr>
                 <td>${listFood.indexOf(food)+1}</td>
                 <td>${food.productId}</td>
@@ -121,7 +121,12 @@
             labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
             datasets: [{
                 label: 'Doanh thu bán hàng trong tháng',
-                data: [1200000000, 1200000000, 1200000000, 1200000000, 1200000000, 1200000000, 1200000000, 1200000000, 1200000000, 1200000000, 1200000000, 1200000000],
+                data: [
+                    <c:forEach var="r" items="${listOderRevenues}" >
+                    ${r.money},
+                    </c:forEach>
+
+                ],
                 borderWidth: 1
             }]
         },
@@ -144,9 +149,13 @@
             labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
             datasets: [{
                 label: 'Doanh thu dịch vụ trong tháng',
-                data: [1200000000, 1200000000, 1200000000, 1200000000, 1200000000, 1200000000, 1200000000, 1200000000, 1200000000, 1200000000, 1200000000, 1200000000],
+                data: [
+                    <c:forEach var="r" items="${listServiceRevenues}" >
+                    ${r.money},
+                    </c:forEach>
+                ],
                 borderWidth: 1,
-                color:'FF4848',
+                color: 'FF4848',
                 borderColor: '#FF4848',
                 backgroundColor: '#D84444'
             }]

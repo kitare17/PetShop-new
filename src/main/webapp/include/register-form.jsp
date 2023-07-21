@@ -90,10 +90,10 @@
                             <div class="input-group">
                                 <input type="text" class="form-control" id="address" placeholder="Địa chỉ"
                                        name="address"
-                                       aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z0-9\s#-_,./()]{1,100}$"
+                                       aria-describedby="inputGroupPrepend" pattern="^.{1,100}$"
                                        required>
                                 <div class="invalid-feedback">
-                                    Địa chỉ có độ dài 100 kí tự
+                                    Địa chỉ có độ dài tối đa 100 kí tự
                                 </div>
                             </div>
                         </div>

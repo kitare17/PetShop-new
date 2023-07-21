@@ -20,10 +20,14 @@ public class MakeOrderServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         Cart cart = (Cart) session.getAttribute("cart");
-        String orderId = OrderRepository.createOrder(cart,user);
-        cart.setDiscountCode(null);
-        cart.removeAll();
-        request.getRequestDispatcher("getordereddetail?orderId="+orderId).forward(request, response);
+        if(cart.getCart().size()==0) response.sendRedirect("cart.jsp");
+        else{
+            String orderId = OrderRepository.createOrder(cart,user);
+            cart.setDiscountCode(null);
+            cart.removeAll();
+            request.getRequestDispatcher("getordereddetail?orderId="+orderId).forward(request, response);
+        }
+
     }
 
     @Override

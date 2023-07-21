@@ -299,10 +299,10 @@
                             <div class="cart-summary">
                                 <div class="cart-content">
                                     <h1>Thanh toán đơn hàng</h1>
-                                    <p>Tạm tính<span>${sessionScope.cart.getThanhTienString(0)}</span></p>
-                                    <p>Tiền ship<span>30000 ${discountPercent}</span></p>
+                                    <p>Tạm tính: <span>${sessionScope.cart.getThanhTienString(0)}</span></p>
+                                    <p>Tiền ship: <span>30000 ${discountPercent}</span></p>
                                     <c:if test="${sessionScope.cart.discountCode == null}">
-                                        <h2>Tổng cộng<span>${sessionScope.cart.getThanhTienString(30000)}</span></h2>
+                                        <h2>Tổng cộng: <span>${sessionScope.cart.getThanhTienString(30000)}</span></h2>
                                     </c:if>
                                     <c:if test="${sessionScope.cart.discountCode != null}">
                                         <h2>Tổng cộng<span><del>${sessionScope.cart.getThanhTienString(30000)}</del>  ${sessionScope.cart.getThanhTienStringDiscount(30000)}</span></h2>

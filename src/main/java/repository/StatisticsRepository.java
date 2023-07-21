@@ -2,6 +2,7 @@ package repository;
 
 import config.DBConnect;
 import entity.Food;
+import entity.Revenue;
 import org.glassfish.jersey.internal.inject.ForeignDescriptor;
 
 import java.sql.Connection;
@@ -76,9 +77,13 @@ public class StatisticsRepository {
 
         try {
             Connection con = DBConnect.getConnection();
-            String query = "select  SUM(PriceAtPuchase) from tblBill b\n" +
-                    "\tjoin tblOrderDetails o on o.BillID=b.BillID\n" +
-                    "\t where b.StatusBill=N'Đã thanh toán' and  YEAR(b.DateCreate)=2023";
+            String query = "select SUM(x.PriceAtPuchase*(1-rate))\n" +
+                    "from(\n" +
+                    "select od.BillID,od.PriceAtPuchase,isnull(p.Rate,0) as rate from tblOrderDetails od\n" +
+                    "join tblBill b on b.BillID=od.BillID\n" +
+                    "left join tblPreferential p on b.PreferentialID=p.Preferential \n" +
+                    "where  b.StatusBill=N'Đã thanh toán' and YEAR(b.DateCreate)=2023\n" +
+                    ") x";
 
             PreparedStatement stmt = con.prepareStatement(query);
             ResultSet resultSet = stmt.executeQuery();
@@ -130,13 +135,103 @@ public class StatisticsRepository {
         }
         return listFood;
     }
+    public static  ArrayList<Revenue> getOrderRevenueEachMonths () {
+        ArrayList<Revenue> listRevenues=new ArrayList<>();
+        for(int i=1;i<=12;i++) listRevenues.add(new Revenue(i+"",0));
 
-    public static void main(String[] args) {
-  ArrayList<Food> list=getListRankOfFood();
-        for (Food food:
-           list) {
-            System.out.println(list.indexOf(food)+1+food.getProductName()+food.getProductId()+food.getProductAmount());
+
+        for ( Revenue r: listRevenues
+             ) {
+            try {
+                Connection con = DBConnect.getConnection();
+                String query = "select SUM(x.PriceAtPuchase*(1-rate))\n" +
+                        "from(\n" +
+                        "select od.BillID,od.PriceAtPuchase,isnull(p.Rate,0) as rate from tblOrderDetails od\n" +
+                        "join tblBill b on b.BillID=od.BillID\n" +
+                        "left join tblPreferential p on b.PreferentialID=p.Preferential \n" +
+                        "where  b.StatusBill=N'Đã thanh toán' and YEAR(b.DateCreate)=2023 and MONTH(b.DateCreate)=?\n" +
+                        ") x";
+
+                PreparedStatement stmt = con.prepareStatement(query);
+                stmt.setString(1,r.getMonth());
+                ResultSet resultSet = stmt.executeQuery();
+
+
+                if (resultSet.next()){
+                    r.setMoney(resultSet.getDouble(1));
+                }
+
+
+
+            } catch (Exception e) {
+                System.out.println("loi acceptBill() getOrderRevenueEachMonths");
+                e.printStackTrace();
+
+            }
+
         }
 
+        return listRevenues;
+    }
+    public static double getServiceRevenueByYear() {
+
+        try {
+            Connection con = DBConnect.getConnection();
+            String query = "select sum(sb.PriceAtPurchase) from tblServiceBill sb\n" +
+                    "where sb.StatusBill=2 \n" +
+                    "and YEAR(SetDay)=2023";
+
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet resultSet = stmt.executeQuery();
+            if (resultSet.next())
+                return resultSet.getDouble(1);
+
+
+        } catch (Exception e) {
+            System.out.println("loi acceptBill() getServiceRevenueByYear");
+            e.printStackTrace();
+            return 0;
+        }
+        return 0;
+    }
+    public static  ArrayList<Revenue> getServiceRevenueEachMonths () {
+        ArrayList<Revenue> listRevenues=new ArrayList<>();
+        for(int i=1;i<=12;i++) listRevenues.add(new Revenue(i+"",0));
+
+
+        for ( Revenue r: listRevenues
+        ) {
+            try {
+                Connection con = DBConnect.getConnection();
+                String query = "select sum(sb.PriceAtPurchase) from tblServiceBill sb\n" +
+                        "where sb.StatusBill=2 \n" +
+                        "and YEAR(SetDay)=2023 and MONTH(SetDay)=?";
+
+                PreparedStatement stmt = con.prepareStatement(query);
+                stmt.setString(1,r.getMonth());
+                ResultSet resultSet = stmt.executeQuery();
+
+
+                if (resultSet.next()){
+                    r.setMoney(resultSet.getDouble(1));
+                }
+
+
+
+            } catch (Exception e) {
+                System.out.println("loi acceptBill() getOrderRevenueEachMonths");
+                e.printStackTrace();
+
+            }
+
+        }
+
+        return listRevenues;
+    }
+    public static void main(String[] args) {
+        for (Revenue e:
+             getServiceRevenueEachMonths()) {
+            System.out.println(e);
+        }
     }
 }
