@@ -1,0 +1,143 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<nav class="nav nav-pills nav-justified">
+    <a class="nav-item nav-link active" href="#">Đơn hàng đang chờ</a>
+    <a class="nav-item nav-link" href="getserviceacceptedorder">Đơn hàng đã xác nhận</a>
+    <a class="nav-item nav-link" href="getservicepaidorder">Đơn hàng đã thanh toán</a>
+    <a class="nav-item nav-link  "href="getservicecancelorder">Đơn hàng đã hủy</a>
+
+</nav>
+<style>
+    #pagination {
+        margin-top: 10px;
+    }
+
+    .paging-button {
+        display: inline-block;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        background-color: #f7f7f7;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .paging-button.active {
+        background-color: #ccc;
+    }
+
+</style>
+<div class="container mt-3">
+    <h2>Quản lí danh sách đặt dịch vụ</h2>
+    <p>Nhân viên có thể xem được danh sách đặt dịch vụ ở đây</p>
+    <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm">
+    <br>
+    <h5 class="text-danger">${thongbao}</h5>
+    <table class="table table-bordered" id="data-table">
+        <thead>
+        <tr>
+            <th>Mã số đơn dịch vụ</th>
+            <th>ID khách hàng</th>
+            <th>Ngày tạo đơn</th>
+            <th>Mã dịch vụ</th>
+            <th>Mã ca</th>
+            <th>Ngày đặt</th>
+            <th>Số lượng thú cưng</th>>
+            <th>Trạng thái</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="myTable">
+
+        <c:forEach var="order" items="${listServiceOrder}">
+            <tr>
+                <td>${order.billID}</td>
+                <td>${order.customerID}</td>
+                <td>${order.dateCreate}</td>
+                <td>${order.serviceID}</td>
+                <td>${order.shiftID}</td>
+                <td>${order.day}</td>
+                <td>${order.amount}</td>
+                <td>${order.status==0?"Đang chờ":""}</td>
+                <td><a href="acceptservicebill?billID=${order.billID}&serviceID=${order.serviceID}&shiftID=${order.shiftID}&setDay=${order.day}&numberOfPet=${order.amount}" class="btn btn-success">Xác nhận</a></td>
+                <td><a href="cancelservicebill?billID=${order.billID}" class="btn btn-danger">Hủy</a></td>
+
+            </tr>
+
+        </c:forEach>
+
+        </tbody>
+    </table>
+
+
+</div>
+<div id="pagination" class="text-center"></div>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+<script>
+    var currentPage = 1;
+    var recordsPerPage = 10;
+    var table = document.getElementById("data-table");
+    var rows = table.getElementsByTagName("tr");
+    var totalPage = Math.ceil(rows.length / recordsPerPage);
+
+    function showTable(page) {
+        var start = (page - 1) * recordsPerPage;
+        var end = start + recordsPerPage;
+
+        for (var i = 0; i < rows.length; i++) {
+            if (i >= start && i < end) {
+                rows[i].style.display = "table-row";
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+    }
+
+    function createPagination() {
+        var pagination = document.getElementById("pagination");
+        pagination.innerHTML = "";
+
+        for (var i = 1; i <= totalPage; i++) {
+            var button = document.createElement("a");
+            button.href = "#";
+            button.innerHTML = i;
+
+            if (i === currentPage) {
+                button.classList.add("paging-button", "active");
+            } else {
+                button.classList.add("paging-button");
+            }
+
+            button.addEventListener("click", function () {
+                currentPage = parseInt(this.innerHTML);
+                showTable(currentPage);
+
+                var currentButton = document.querySelector(".paging-button.active");
+                currentButton.classList.remove("active");
+
+                this.classList.add("active");
+            });
+
+            pagination.appendChild(button);
+        }
+    }
+
+    showTable(currentPage);
+    createPagination();
+
+</script>
+
+

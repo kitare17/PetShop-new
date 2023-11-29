@@ -14,7 +14,7 @@
                     <h1 class="text-uppercase text-white mb-lg-4">Make Your Pets Happy</h1>
                     <p class="fs-4 text-white mb-lg-4">Chuỗi cửa hàng thú cưng với chất lượng và uy tín hàng đầu miền Trung. Chuyên cung cấp dịch vụ và các sản phẩm đồ ăn cho thú cưng của bạn</p>
                     <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
-                        <a href="" class="btn btn-outline-light border-2 py-md-3 px-md-5 me-5">Read More</a>
+                        <a href="" class="btn bg-success btn-outline-light border-2 py-md-3 px-md-5 me-5">Tìm hiểu thêm</a>
                         <button type="button" class="btn-play" data-bs-toggle="modal"
                             data-src="https://www.youtube.com/watch?v=xMz3P4_kYFM" data-bs-target="#videoModal">
                             <span></span>
@@ -60,8 +60,8 @@
                 </div>
                 <div class="col-lg-7">
                     <div class="border-start border-5 border-primary ps-5 mb-5">
-                        <h6 class="text-primary text-uppercase">About Us</h6>
-                        <h1 class="display-5 text-uppercase mb-0">We Keep Your Pets Happy All Time</h1>
+                        <h6 class="text-primary text-uppercase">Luôn luôn sẵn sàng phục vụ</h6>
+                        <h1 class="display-5 text-uppercase mb-0">Chúng tôi sẽ cố gắng mang đến sự hài lòng cho khách hàng</h1>
                     </div>
                     <h4 class="text-body mb-4">Với đội ngũ nhân viên chuyên nghiệp của công ty, được đào tạo qua trường lớp và đặc biệt yêu nghề.</h4>
                     <div class="bg-light p-4">
@@ -97,17 +97,17 @@
     <div class="container-fluid py-5">
         <div class="container">
             <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-                <h6 class="text-primary text-uppercase">Services</h6>
-                <h1 class="display-5 text-uppercase mb-0">Our Excellent Pet Care Services</h1>
+                <h6 class="text-primary text-uppercase">Dịch vụ chúng tôi cung cấp</h6>
+                <h1 class="display-5 text-uppercase mb-0">Hỗ trợ bạn chăm sóc người bạn tri kỉ</h1>
             </div>
             <div class="row g-5">
                 <div class="col-md-6">
                     <div class="service-item bg-light d-flex p-4">
                         <i class="flaticon-house display-1 text-primary me-4"></i>
                         <div>
-                            <h5 class="text-uppercase mb-3">Trông giữ thú cưng</h5>
-                            <p>Chăm sóc và trông giữ thú cưng của bạn khi bạn có việc bận</p>
-                            <a class="text-primary text-uppercase" href="">Read More<i class="bi bi-chevron-right"></i></a>
+                            <h5 class="text-uppercase mb-3">Massage</h5>
+                            <p>Đặt lịch dịch vụ massage</p>
+                            <a class="text-primary text-uppercase" href="getservicedetail?serviceID=S0005">Xem ngay<i class="bi bi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -115,9 +115,9 @@
                     <div class="service-item bg-light d-flex p-4">
                         <i class="flaticon-food display-1 text-primary me-4"></i>
                         <div>
-                            <h5 class="text-uppercase mb-3">Cho thú cưng ăn</h5>
-                            <p>Nhận làm công thức thức ăn dành riêng cho thú cưng của bạn</p>
-                            <a class="text-primary text-uppercase" href="">Read More<i class="bi bi-chevron-right"></i></a>
+                            <h5 class="text-uppercase mb-3">Triệt sản</h5>
+                            <p>Đặt lịch dịch vụ triệt sản</p>
+                            <a class="text-primary text-uppercase" href="getservicedetail?serviceID=S0003">Xem ngay<i class="bi bi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -126,8 +126,8 @@
                         <i class="flaticon-grooming display-1 text-primary me-4"></i>
                         <div>
                             <h5 class="text-uppercase mb-3">Cắt tỉa lông</h5>
-                            <p>Chăm sóc ngoài hình và chải chuốt lông cho thú cưng của bạn</p>
-                            <a class="text-primary text-uppercase" href="">Read More<i class="bi bi-chevron-right"></i></a>
+                            <p>Đặt lịch dịch vụ cắt tỉa lông</p>
+                            <a class="text-primary text-uppercase" href="getservicedetail?serviceID=S0002">Xem ngay<i class="bi bi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -135,9 +135,9 @@
                     <div class="service-item bg-light d-flex p-4">
                         <i class="flaticon-cat display-1 text-primary me-4"></i>
                         <div>
-                            <h5 class="text-uppercase mb-3">Huấn luyện thú cưng</h5>
-                            <p>Giúp thú cưng của bạn đi vệ sinh đúng chỗ,ăn ngủ đúng giờ giấc,thực hiện theo mệnh lệnh</p>
-                            <a class="text-primary text-uppercase" href="">Read More<i class="bi bi-chevron-right"></i></a>
+                            <h5 class="text-uppercase mb-3">Vệ sinh tai</h5>
+                            <p>Đặt lịch dịch vụ vệ sinh tai</p>
+                            <a class="text-primary text-uppercase" href="getservicedetail?serviceID=S0006">Xem ngay<i class="bi bi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -145,9 +145,9 @@
                     <div class="service-item bg-light d-flex p-4">
                         <i class="flaticon-dog display-1 text-primary me-4"></i>
                         <div>
-                            <h5 class="text-uppercase mb-3">Chụp hình cho thú cưng</h5>
-                            <p>Giúp bạn lưu giữ những hình ảnh và kỷ niệm với thú cưng của bạn</p>
-                            <a class="text-primary text-uppercase" href="">Read More<i class="bi bi-chevron-right"></i></a>
+                            <h5 class="text-uppercase mb-3">Tắm rửa vệ sinh thú cưng</h5>
+                            <p>Đặt lịch dịch vụ tắm rửa vệ sinh thú cưng</p>
+                            <a class="text-primary text-uppercase" href="getservicedetail?serviceID=S0001">Xem ngay<i class="bi bi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -155,9 +155,9 @@
                     <div class="service-item bg-light d-flex p-4">
                         <i class="flaticon-vaccine display-1 text-primary me-4"></i>
                         <div>
-                            <h5 class="text-uppercase mb-3">Chăm sóc sức khỏe</h5>
-                            <p>Tiêm phòng và chữa trị các loại bệnh phổ biến mà thú cưng thường mắc phải</p>
-                            <a class="text-primary text-uppercase" href="">Read More<i class="bi bi-chevron-right"></i></a>
+                            <h5 class="text-uppercase mb-3">Tiêm phòng</h5>
+                            <p>Đặt lịch dịch vụ tiêm phòng</p>
+                            <a class="text-primary text-uppercase" href="getservicedetail?serviceID=S0004">Xem ngay<i class="bi bi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -206,7 +206,7 @@
                     </div>
                     <p class="text-white mb-4">Khách hàng đầu tiên sử dụng dịch vụ sẽ được giảm giá 50% trên tổng hóa đơn, mang đến cho các chủ nuôi thú cưng một cơ hội tuyệt vời để trải nghiệm và đánh giá chất lượng dịch vụ.</p>
                     <a href="" class="btn btn-light py-md-3 px-md-5 me-3">Shop Now</a>
-                    <a href="" class="btn btn-outline-light py-md-3 px-md-5">Read More</a>
+                    <a href="" class="btn btn-outline-light py-md-3 px-md-5">Tìm hiểu thêm</a>
                 </div>
             </div>
         </div>
@@ -352,8 +352,8 @@
     <div class="container-fluid py-5">
         <div class="container">
             <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-                <h6 class="text-primary text-uppercase">Latest Blog</h6>
-                <h1 class="display-5 text-uppercase mb-0">Latest Articles From Our Blog Post</h1>
+                <h6 class="text-primary text-uppercase">Bảng tin</h6>
+                <h1 class="display-5 text-uppercase mb-0">Cung cấp thông tin thú chăm sóc thú cưng</h1>
             </div>
             <div class="row g-5">
                 <div class="col-lg-6">

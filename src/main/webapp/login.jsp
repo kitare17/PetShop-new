@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Log in</title>
-        <link rel="stylesheet" href="css/login.style.css">
+        <link rel="stylesheet" href="css/login.style.new.css">
     </head>
     <body>
 
@@ -87,16 +87,21 @@
                     <label class="khung-pass">
                         <div class=""></div>
                         <input name="password" class="password" type="password" autocomplete="off" placeholder="Password" value="${cookie.password.value}" />
+                        <h3 class="forgotpass"> <a href="forgotpass.jsp">Quên mật khẩu?</a></h3>
                     </label>
+
                     <label>
                         <input type="submit" value="Login" class="login-button">
+
                     </label>
+
                 </form>
                 
                 <%-- sua cai nay--%>
-                ${thongbao}
+                <h4 class="bg-warning  text-danger " style="text-align: center;background-color: red;padding: 2px 2px; font-size: 16px;margin:2px 0px "> ${thongbao}</h4>
+
                 <div class="social-buttons">
-                    <h3>Don't have any account yet? <a href="register.jsp">Sign up</a></h3>
+                    <h3>Bạn chưa có tài khoản? <a href="register.jsp">Đăng kí ngay</a></h3>
                 </div>
             </div>
 

@@ -4,7 +4,7 @@
     Author     : Admin
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 
 <style>
@@ -14,12 +14,12 @@
         padding: 0 10px;
     }
 
-    .rate:not(:checked)>input {
+    .rate:not(:checked) > input {
         position: absolute;
         top: -9999px;
     }
 
-    .rate:not(:checked)>label {
+    .rate:not(:checked) > label {
         float: right;
         width: 1em;
         overflow: hidden;
@@ -29,27 +29,26 @@
         color: #ccc;
     }
 
-    .rate:not(:checked)>label:before {
+    .rate:not(:checked) > label:before {
         content: '★ ';
     }
 
-    .rate>input:checked~label {
+    .rate > input:checked ~ label {
         color: #ffc700;
     }
 
-    .rate:not(:checked)>label:hover,
-    .rate:not(:checked)>label:hover~label {
+    .rate:not(:checked) > label:hover,
+    .rate:not(:checked) > label:hover ~ label {
         color: #deb217;
     }
 
-    .rate>input:checked+label:hover,
-    .rate>input:checked+label:hover~label,
-    .rate>input:checked~label:hover,
-    .rate>input:checked~label:hover~label,
-    .rate>label:hover~input:checked~label {
+    .rate > input:checked + label:hover,
+    .rate > input:checked + label:hover ~ label,
+    .rate > input:checked ~ label:hover,
+    .rate > input:checked ~ label:hover ~ label,
+    .rate > label:hover ~ input:checked ~ label {
         color: #c59b08;
     }
-
 
 
     .shopee-input-quantity {
@@ -119,7 +118,7 @@
 <div class="container-fluid">
     <div class="container d-flex justify-content-around">
         <div class="col-md-4">
-            <img class="w-100" src="img/product/${product.productId}.jpg" alt="">
+            <img class="w-100" src="${product.listImg.get(0).getUrl()}" alt="asdsd">
         </div>
         <div class="col-md-7">
 
@@ -134,59 +133,74 @@
             <h6>Thương hiệu: <a href="">Rlex</a></h6>
             <div class="d-flex">
                 <h4 class="mb-3 pb-3">đ</h4>
-                 <h1>${product.getPriceString()}</h1>
+                <h1>${product.getPriceString()}</h1>
             </div>
             <div class="d-flex">
                 <h6 class="align-self-center mb-0">Đánh giá sản phẩm: </h6>
                 <div class="rate align-self-auto">
-                    <input type="radio" id="star5" name="rate" value="5" />
+                    <input type="radio" id="star5" name="rate" value="5"/>
                     <label for="star5" title="text">5 stars</label>
-                    <input type="radio" id="star4" name="rate" value="4" />
+                    <input type="radio" id="star4" name="rate" value="4"/>
                     <label for="star4" title="text">4 stars</label>
-                    <input type="radio" id="star3" name="rate" value="3" />
+                    <input type="radio" id="star3" name="rate" value="3"/>
                     <label for="star3" title="text">3 stars</label>
-                    <input type="radio" id="star2" name="rate" value="2" />
+                    <input type="radio" id="star2" name="rate" value="2"/>
                     <label for="star2" title="text">2 stars</label>
-                    <input type="radio" id="star1" name="rate" value="1" />
+                    <input type="radio" id="star1" name="rate" value="1"/>
                     <label for="star1" title="text">1 star</label>
                 </div>
             </div>
             <div><i class=""></i> Vận chuyển tới: <select class="form-select w-25" name="" id="">
-                    <option value="hcm">TP.Hồ Chí Minh</option>
-                    <option value="dn">Đà Nẵng</option>
-                    <option value="hn">Hà Nội</option>
-                </select>
+                <option value="hcm">TP.Hồ Chí Minh</option>
+                <option value="dn">Đà Nẵng</option>
+                <option value="hn">Hà Nội</option>
+            </select>
             </div>
             <hr>
 
-            <form action="additem">
-                <div>
-                    <div class="shopee-input-quantity">
-                        <input type="button" class="sub-sl shopee-button-outline" title="Bớt"
-                               onclick="var qty_el = document.getElementById('qty');
+
+            <c:if test="${sessionScope.user.userId.startsWith('C')}">
+
+                <form action="additem">
+
+
+                    <div  class="${product.productId.startsWith('P')?"d-none":""}"  >
+                        <div class="shopee-input-quantity">
+                            <input type="button" class="add-sl shopee-button-outline" title="Bớt"
+                                   onclick="var qty_el = document.getElementById('qty');
                                        var qty = qty_el.value;
-                                       if (!isNaN(qty))
+                                       if (!isNaN(qty) && qty >1)
                                            qty_el.value--;
                                        return false;">
 
-                        <input aria-label="Number" name="ammount" id="qty" type="text" size="1"
-                               class="soluong_12 shopee-button-outline shopee-button-outline-mid" value="1">
-                        <input type="button" class="add-sl shopee-button-outline" title="Thêm"
-                               onclick="var qty_el = document.getElementById('qty');
+                            <input aria-label="Number" name="ammount" id="qty" type="text" size="1"
+                                   class="soluong_12 shopee-button-outline shopee-button-outline-mid" value="1"
+                                   readonly>
+                            <input type="button" class="sub-sl shopee-button-outline" title="Thêm"
+                                   onclick="var qty_el = document.getElementById('qty');
                                        var qty = qty_el.value;
                                        if (!isNaN(qty))
                                            qty_el.value++;
                                        return false;">
+                        </div>
                     </div>
-                </div>
-                <div class="buttons">
-                    <div>
-                        <input name ="id" type = "text" hidden="" value = "${product.productId}">
-                        <input class="btn btn-primary" type="submit" value="Thêm vào giỏ hàng">
-                    </div>
+
+
+
+                    <div class="buttons">
+                        <div>
+                            <input name="id" type="text" hidden="" value="${product.productId}">
+                            <input class="btn btn-primary" type="submit" value="Thêm vào giỏ hàng">
+                        </div>
                         <h3>${message}</h3>
-                </div>
-            </form>
+                    </div>
+                </form>
+            </c:if>
+            <c:if test="${sessionScope.user==null}">
+
+                <a href="login.jsp" class="btn btn-primary">Mua ngay</a>
+
+            </c:if>
         </div>
 
     </div>

@@ -4,42 +4,42 @@
     Author     : Admin
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!-- Contact Start -->
 <div class="container-fluid pt-5">
     <div class="container">
-        <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-            <h6 class="text-primary text-uppercase">Contact Us</h6>
-            <h1 class="display-5 text-uppercase mb-0">Sign up</h1>
-        </div>
+
         <div class="row g-5">
             <div class="col-lg-7">
                 <h1>${message}</h1>
 
-                <form class="needs-validation" novalidate action="register" method="post" >
+                <form class="needs-validation" novalidate action="register" method="post">
 
                     <div class="row">
-                        <div class="col-12" style="background-color:#7ab730;border-radius: 10px " >
+                        <div class="col-12" style="background-color:#7ab730;border-radius: 10px ">
                             <h2>Đăng kí thành viên mới</h2>
                         </div>
 
 
                         <%--input username--%>
                         <div class="col-md-6 offset-3 mb-3">
-                            <label for="username">Username</label>
+                            <label for="username">Username<span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="username" placeholder="Username" name="username"
-                                       aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z][a-zA-Z0-9]{7,20}$" required>
+                                <input type="text" class="form-control" id="username" placeholder="Username"
+                                       name="username"
+                                       aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z][a-zA-Z0-9]{7,20}$"
+                                       required>
                                 <div class="invalid-feedback">
-                                   Username bắt đầu bằng chữ cái  và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
+                                    Username bắt đầu bằng chữ cái và từ 8 đến 20 kí tự không chứa kí tự đặc biệt
                                 </div>
                             </div>
                         </div>
                         <%--input password--%>
                         <div class="col-md-6 offset-3 mb-3">
-                            <label for="password">Mật khẩu</label>
+                            <label for="password">Mật khẩu<span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="password" placeholder="Mật khẩu" name="password"
+                                <input type="password" class="form-control" id="password" placeholder="Mật khẩu"
+                                       name="password"
                                        aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z0-9]{7,32}$" required>
                                 <div class="invalid-feedback">
                                     Mật khẩu chứa số hoặc chữ cái độ dài từ 7 đến 32 kí tự
@@ -49,9 +49,10 @@
 
                         <%--input re-password--%>
                         <div class="col-md-6 offset-3 mb-3">
-                            <label for="re-password">Nhập mật khẩu</label>
+                            <label for="re-password">Nhập mật khẩu<span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="re-password" placeholder="Nhập lại mật khẩu" name="re-password"
+                                <input type="password" class="form-control" id="re-password"
+                                       placeholder="Nhập lại mật khẩu" name="re-password"
                                        aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z0-9]{7,32}$" required>
                                 <div class="invalid-feedback">
                                     Mật khẩu không trùng nhau
@@ -60,15 +61,12 @@
                         </div>
 
 
-
-
-
-                    <%--input fistname--%>
+                        <%--input fistname--%>
                         <div class="col-md-6 offset-3 mb-3">
-                            <label for="firstname">Họ</label>
+                            <label for="firstname">Họ<span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="firstname" placeholder="Họ" name="firstname"
-                                       aria-describedby="inputGroupPrepend" pattern="^[A-Za-z ]{1,50}$" required>
+                                       aria-describedby="inputGroupPrepend" pattern="^[\p{Lu}\p{Ll}\sA-Za-záàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]{1,50}$" required>
                                 <div class="invalid-feedback">
                                     Họ chứa từ 1 đến 50 kí tự
                                 </div>
@@ -76,10 +74,10 @@
                         </div>
                         <%-- input lastname--%>
                         <div class="col-md-6 offset-3 mb-3">
-                            <label for="lastname">Tên</label>
+                            <label for="lastname">Tên<span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="lastname" placeholder="Tên" name="lastname"
-                                       aria-describedby="inputGroupPrepend" pattern="^[A-Za-z ]{1,50}$" required>
+                                       aria-describedby="inputGroupPrepend" pattern="^[\p{Lu}\p{Ll}\sA-Za-záàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]{1,50}$" required>
                                 <div class="invalid-feedback">
                                     Tên chứa từ 1 đến 50 kí tự
                                 </div>
@@ -88,24 +86,36 @@
 
                         <%--        input address--%>
                         <div class="col-md-6 offset-3 ol mb-3">
-                            <label for="address">Địa chỉ</label>
+                            <label for="address">Địa chỉ<span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="address" placeholder="Địa chỉ" name="address"
-                                       aria-describedby="inputGroupPrepend" pattern="^[a-zA-Z0-9\s#-_,./()]{1,100}$" required>
+                                <input type="text" class="form-control" id="address" placeholder="Địa chỉ"
+                                       name="address"
+                                       aria-describedby="inputGroupPrepend" pattern="^.{1,100}$"
+                                       required>
                                 <div class="invalid-feedback">
-                                    Địa chỉ có độ dài 100 kí tự
+                                    Địa chỉ có độ dài tối đa 100 kí tự
                                 </div>
                             </div>
                         </div>
 
                         <%--        input phone--%>
                         <div class="col-md-6 offset-3 mb-3">
-                            <label for="address">Điện thoại</label>
+                            <label for="phone">Điện thoại<span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="phone" placeholder="Điện thoại" name="phone"
                                        aria-describedby="inputGroupPrepend" pattern="^[0-9]{10}$" required>
                                 <div class="invalid-feedback">
                                     Số điện thoại có dộ dài 10 kí tự
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 offset-3 mb-3">
+                            <label for="email">Email<span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <input type="email" class="form-control" id="email" placeholder="Email" name="email"
+                                       aria-describedby="inputGroupPrepend"  required>
+                                <div class="invalid-feedback">
+                                    Địa chỉ email không hợp lệ
                                 </div>
                             </div>
                         </div>
@@ -120,6 +130,7 @@
                     </div>
 
                 </form>
+                <h3 class="text-danger">${thongbao}</h3>
             </div>
             <div class="col-lg-5">
                 <div class="bg-light mb-5 p-5">
@@ -156,7 +167,6 @@
     </div>
 
 
-
 </div>
 <!-- Contact End -->
 
@@ -186,7 +196,7 @@
     const rePasswordField = document.getElementById("re-password");
 
     // Thêm sự kiện khi thay đổi giá trị của trường re-password
-    rePasswordField.addEventListener("input", function() {
+    rePasswordField.addEventListener("input", function () {
         // Kiểm tra xem giá trị của 2 trường có giống nhau hay không
         if (passwordField.value !== rePasswordField.value) {
             // Nếu không giống nhau, hiển thị thông báo lỗi
@@ -198,7 +208,7 @@
     });
 
     // Thêm sự kiện submit cho form
-    document.querySelector("form").addEventListener("submit", function(event) {
+    document.querySelector("form").addEventListener("submit", function (event) {
         // Kiểm tra xem giá trị của 2 trường có giống nhau hay không
         if (passwordField.value !== rePasswordField.value) {
             // Nếu không giống nhau, ngăn chặn form được submit

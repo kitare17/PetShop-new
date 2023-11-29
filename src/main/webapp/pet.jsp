@@ -6,15 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="include/header.jsp" %>
-<form action="pet" method="get">
-    
-    <select name="type">
-        <option value="all">All</option>
-        <option value="dog">Dog</option>
-        <option value="cat">Cat</option> 
-    </select>
-    <input type="submit" value="Filter">
-</form>
+
 <%@include file="include/pet_form.jsp" %>
 <%--<a href="pet?page=first&type=${param.type}">First</a>--%>
 <%--<c:choose>--%>
